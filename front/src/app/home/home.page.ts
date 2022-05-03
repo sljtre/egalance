@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import * as honeycomb from 'honeycomb-grid';
+import * as SVG from 'svg.js';
 
 @Component({
   selector: 'app-home',
@@ -12,13 +14,9 @@ export class HomePage implements OnInit{
   constructor() {}
 
   ngOnInit() {
-    for(let x=0; x<5; x++){
-      this.matrix[x]=[];
-      for(let y=0; y<5; y++){
-        this.matrix[x].push({line: x,col: y});
+      for(let i=0;i<50;i++) {
+        this.matrix.push({type: 'usine'});
       }
-    }
     console.log(this.matrix);
   }
-
 }
