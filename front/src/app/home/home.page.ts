@@ -9,6 +9,9 @@ import * as SVG from 'svg.js';
 })
 export class HomePage implements OnInit{
 
+  public alternate = ['even', 'odd'];
+  public c1 = [0,1,2,3,4,5];
+  public c2 = [0,1,2,3,4,5,6,7,8];
   public matrix = [];
 
   constructor() {}
