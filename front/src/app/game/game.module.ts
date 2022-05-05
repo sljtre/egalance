@@ -8,12 +8,15 @@ import { GamePageRoutingModule } from './game-routing.module';
 
 import { GamePage } from './game.page';
 
+import {ComponentsModule} from '../shared/components/components.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GamePageRoutingModule
+    GamePageRoutingModule,
+    ComponentsModule
   ],
   declarations: [GamePage]
 })

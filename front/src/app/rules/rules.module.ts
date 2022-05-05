@@ -8,12 +8,15 @@ import { RulesPageRoutingModule } from './rules-routing.module';
 
 import { RulesPage } from './rules.page';
 
+import {ComponentsModule} from '../shared/components/components.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RulesPageRoutingModule
+    RulesPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [RulesPage]
 })

@@ -8,12 +8,15 @@ import { FriendsPageRoutingModule } from './friends-routing.module';
 
 import { FriendsPage } from './friends.page';
 
+import {ComponentsModule} from '../shared/components/components.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FriendsPageRoutingModule
+    FriendsPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [FriendsPage]
 })

@@ -1,90 +1,119 @@
-<ion-grid style="width:100%">
-  <ion-row style="height:5%;">
-    <ion-col>
-      facts
-    </ion-col>
-  </ion-row>
-  <ion-row style="height:80%">
-    <ion-col style="flex-basis:70%">
-      <div class="main">
-        <div class="container">
-          <ion-img [src]="'./assets/img/' + matrix[0].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[1].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[2].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[3].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[4].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[5].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[6].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[7].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[8].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[9].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[10].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[11].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[12].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[13].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[14].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[15].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[16].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[17].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[18].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[19].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[20].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[21].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[22].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[23].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[24].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[25].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[26].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[27].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[28].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[29].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[30].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[31].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[32].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[33].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[34].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[35].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[36].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[37].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[38].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[39].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[40].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[41].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[42].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[43].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[44].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[45].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[46].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[47].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[48].type + '.png'"></ion-img>
-          <ion-img [src]="'./assets/img/' + matrix[49].type + '.png'"></ion-img>
-        </div>
+<ion-content>
+  <ion-grid id="grid">
+
+    <ion-row>
+      <ion-segment value="1">
+        <ion-segment-button value="1" (click)="switch(1)">Connexion</ion-segment-button>
+        <ion-segment-button value="0" (click)="switch(0)">Inscription</ion-segment-button>
+      </ion-segment>
+    </ion-row>
+
+    <div *ngIf="exists===0">
+      <div *ngIf="displayToken===0"> <!-- ////////////////////// INPUT INSCRIPTION //////////////////////-->
+        <ion-row>
+          <ion-col><h1>Inscripton :</h1></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item color="none" shape="round">
+              <ion-label color="secondary" position="floating">Nickname</ion-label>
+              <ion-input clearInput="true" color="secondary" placeholder="Nickname" (keyup)="updateSignUp($event)" [(ngModel)]="iname" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item color="none" shape="round">
+              <ion-label color="secondary" position="floating">Password</ion-label>
+              <ion-input class="pass" clearInput="true" color="secondary" placeholder="Password" (keyup)="updateSignUp($event)" [(ngModel)]="ipassword" [type]="showPassword ? 'password' : 'text'"></ion-input>
+              <ion-icon name="eye" slot="end" (click)="showPass()" *ngIf="showPassword"></ion-icon>
+              <ion-icon name="eye-off" slot="end" (click)="showPass()" *ngIf="!showPassword"></ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item color="none" shape="round">
+              <ion-label color="secondary" position="floating">Confirm password</ion-label>
+              <ion-input class="pass" clearInput="true" color="secondary" placeholder="Confirm password" (keyup)="updateSignUp($event)" [(ngModel)]="confPassword" [type]="showPassword ? 'password' : 'text'"></ion-input>
+              <ion-icon name="eye" slot="end" (click)="showPass()" *ngIf="showPassword"></ion-icon>
+              <ion-icon name="eye-off" slot="end" (click)="showPass()" *ngIf="!showPassword"></ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item color="none" shape="round">
+              <ion-label color="secondary" position="floating">Email</ion-label>
+              <ion-input clearInput="true" color="secondary" placeholder="Mail" (keyup)="updateSignUp($event)" [(ngModel)]="imail" type="email"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button (click)="reset()">Reset</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button (click)="signUp()">Submit</ion-button>
+          </ion-col>
+        </ion-row>
       </div>
-    </ion-col>
-    <ion-col style="flex-basis:30%">
-      <ion-row>
-        <ion-col>
-          santé, bonheur, religion
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          income
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          inventaire
-        </ion-col>
-      </ion-row>
-    </ion-col>
-  </ion-row>
-  <ion-row style="height:15%;">
-    <ion-col style="flex-basis:30%">
+    </div>
 
-    </ion-col>
-    <ion-col style="flex-basis:70%">
+    <div *ngIf="exists===1"> <!-- ////////////////////// INPUT INSCRIPTION //////////////////////-->
+      <ion-row>
+        <ion-col><h1>Connexion :</h1></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item color="none" shape="round">
+            <ion-label color="secondary" position="floating">Nickname or email</ion-label>
+            <ion-input clearInput="true" color="secondary" placeholder="Nickname or email" (keyup)="updateSignIn($event)" [(ngModel)]="cname" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item color="none" shape="round">
+            <ion-label color="secondary" position="floating">Password</ion-label>
+            <ion-input class="pass" clearInput="true" color="secondary" placeholder="Password" (keyup)="updateSignIn($event)" [(ngModel)]="cpassword" [type]="showPassword ? 'password' : 'text'"></ion-input>
+            <ion-icon name="eye" slot="end" (click)="showPass()" *ngIf="showPassword"></ion-icon>
+            <ion-icon name="eye-off" slot="end" (click)="showPass()" *ngIf="!showPassword"></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="reset()">Reset</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="signIn(this.cname, this.cpassword)">Submit</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="sendPassword()">Forgot password</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf="exists===2"> <!-- ////////////////////// INPUT RESET PASSWORD //////////////////////-->
+      <ion-row>
+        <ion-col>
+          <ion-item color="none" shape="round">
+            <ion-label color="secondary" position="floating">Email</ion-label>
+            <ion-input clearInput="true" color="secondary" placeholder="Email" (keyup)="updateResetPassword($event)" [(ngModel)]="recupMail" type="email"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="backToLogin()">Back to login</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="resetPassword()">Submit</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
 
-    </ion-col>
-  </ion-row>
-</ion-grid>
+    <ion-row><ion-col><p>{{output}}</p></ion-col></ion-row>
+
+  </ion-grid>
+</ion-content>

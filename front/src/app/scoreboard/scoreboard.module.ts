@@ -8,12 +8,15 @@ import { ScoreboardPageRoutingModule } from './scoreboard-routing.module';
 
 import { ScoreboardPage } from './scoreboard.page';
 
+import {ComponentsModule} from '../shared/components/components.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ScoreboardPageRoutingModule
+    ScoreboardPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [ScoreboardPage]
 })

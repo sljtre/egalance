@@ -1,25 +1,160 @@
 import {Component, OnInit} from '@angular/core';
-import * as honeycomb from 'honeycomb-grid';
-import * as SVG from 'svg.js';
+import {StorageService} from '../shared/services/storage.service';
+import {HttpService} from '../shared/services/http.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit{
 
-  public alternate = ['even', 'odd'];
-  public c1 = [0,1,2,3,4,5];
-  public c2 = [0,1,2,3,4,5,6,7,8];
-  public matrix = [];
+export class HomePage implements OnInit {
 
-  constructor() {}
+  public iname = '';
+  public ipassword = '';
+  public confPassword = '';
+  public imail = '';
+  public token;
 
-  ngOnInit() {
-      for(let i=0;i<50;i++) {
-        this.matrix.push({type: 'usine'});
-      }
-    console.log(this.matrix);
+  public cname = '';
+  public cpassword = '';
+  public cpass = '';
+
+  public showPassword = 1;
+
+  public recupMail = '';
+
+  public displayToken = 0;
+  public output = '';
+
+  public exists = 1;
+
+  private retour;
+
+  constructor(
+    private httpService: HttpService,
+    private storage: StorageService,
+    private router: Router,
+  ) {
   }
+
+  ngOnInit() {}
+
+  switch = (val) => { //toggle pour les components
+    this.output = '';
+    this.showPassword = 1;
+    this.exists = val;
+  };
+
+  switchTokenDisplay = () => {
+    this.token = '';
+    this.displayToken = 0;
+  };
+
+  signUp = async () => {
+    this.output = '';
+    if (this.ipassword && this.confPassword && this.ipassword === this.confPassword) {
+      this.output = '';
+      this.retour = await this.httpService.mailToken(this.imail, this.iname, this.ipassword);
+      this.output = this.retour.message;
+      if (this.retour.output === 1) {
+        this.displayToken = 1;
+      }
+    } else {
+      if (this.ipassword && this.confPassword && this.ipassword !== this.confPassword) {
+        this.output = 'Mots de passe différents';
+      } else {
+        if (!this.iname) {
+          this.output = 'Nom d\'utilisateur requis';
+        } else {
+          if (!this.ipassword) {
+            this.output = 'Mot de passe requis';
+          } else {
+            if (!this.confPassword) {
+              this.output = 'Confirmation du mot de passe requise';
+            } else {
+              if (!this.imail) {
+                this.output = 'E-mail requis';
+              }
+            }
+          }
+        }
+      }
+    }
+  };
+
+  signIn = async (name, password) => {
+    if (name && password) {
+      this.retour = await this.httpService.login(name, password);
+      this.output = this.retour.message;
+      if (this.retour.co === true) {
+        await this.login(name);
+      }
+    } else {
+      if (!name) {
+        this.output = 'Nickname required';
+      } else {
+        if (!password) {
+          this.output = 'Password required';
+        }
+      }
+    }
+  };
+
+  resetPassword = async () => {
+    this.output = await this.httpService.sendResetPassword(this.recupMail);
+  };
+
+  login = async (name) => {
+    await this.storage.setNickname(name);
+    await this.router.navigateByUrl('/welcome');
+  };
+
+  updateSignIn = async (e) => {
+    if (e.key === 'Enter') {
+      await this.signIn(this.cname, this.cpassword);
+    }
+  };
+
+  updateSignUp = async (e) => {
+    if (e.key === 'Enter') {
+      await this.signUp();
+    }
+  };
+
+  updateResetPassword = async (e) => {
+    if (e.key === 'Enter') {
+      await this.resetPassword();
+    }
+  };
+
+  backToLogin = () => {
+    this.recupMail = '';
+    this.exists = 1;
+    this.output = '';
+  };
+
+  sendPassword = () => {
+    this.output = '';
+    this.exists = 2;
+  };
+
+  showPass = () => {
+    if (this.showPassword) {
+      this.showPassword = 0;
+    } else {
+      this.showPassword = 1;
+    }
+  };
+
+  reset = () => {
+    this.cname = '';
+    this.cpassword = '';
+    this.iname = '';
+    this.ipassword = '';
+    this.confPassword = '';
+    this.imail = '';
+    this.output = '';
+  };
 }
