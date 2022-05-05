@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {StorageService} from '../shared/services/storage.service';
+import {HttpService} from '../shared/services/http.service';
 
 @Component({
   selector: 'app-conf-account',
@@ -7,9 +10,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfAccountPage implements OnInit {
 
-  constructor() { }
+  public output;
+  public redirect = false;
 
-  ngOnInit() {
+  private token;
+  private username;
+  private mail;
+  private password;
+
+  private retour;
+
+  constructor(
+    private getVarInURL: ActivatedRoute,
+    private router: Router,
+    private storage: StorageService,
+    private httpService: HttpService,
+  ) {
   }
+
+  async ngOnInit() {
+    this.getVarInURL.queryParams.subscribe(params => {
+      this.token = params.token;
+      this.username = params.name;
+      this.mail = params.mail;
+      this.password = params.password;
+    });
+
+    this.retour = await this.httpService.checkToken(this.token, this.mail);
+    this.output = this.retour.message;
+    if (this.retour.output === 1) {
+      this.retour = await this.httpService.signUp(this.username, this.password, this.mail);
+      this.output = this.retour.message;
+      if (this.retour.return === true) {
+        await this.storage.setNickname(this.username);
+        this.redirect = true;
+        await this.router.navigateByUrl('/welcome');
+      }
+    }
+  };
+
+  redir = async (dest) => {
+    await this.router.navigateByUrl(dest);
+  };
+
+  copy = () => {
+    navigator.clipboard.writeText('noreply.tassadar.ovh@gmail.com').then().catch(e => console.error(e));
+    this.output = 'Email adress copied to clipboard !';
+  };
 
 }
