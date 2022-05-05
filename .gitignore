@@ -17,8 +17,11 @@ $RECYCLE.BIN/
 log.txt
 npm-debug.log*
 
-/front/.angular
 /.idea
+
+/back/node_modules
+
+/front/.angular
 /front/.ionic
 /front/.sass-cache
 /front/.sourcemaps
