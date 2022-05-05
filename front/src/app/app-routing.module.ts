@@ -39,6 +39,10 @@ const routes: Routes = [
     path: 'conf-account',
     loadChildren: () => import('./conf-account/conf-account.module').then( m => m.ConfAccountPageModule)
   },
+  {
+    path: 'dev-map',
+    loadChildren: () => import('./dev-map/dev-map.module').then( m => m.DevMapPageModule)
+  },
 
 ];
 
