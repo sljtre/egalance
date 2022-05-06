@@ -44,12 +44,14 @@ body {
   width: 100vw;
   height: 100vh;
   position: fixed;
+  transition: 1s;
 
   $particleSize: 100px;
   $animationDuration: 30s;
-  $amount: 20;
+  $amount: 30;
 
   & span {
+    transition: 1s;
     width: $particleSize;
     height: $particleSize;
     border-radius: $particleSize;
@@ -61,11 +63,26 @@ body {
     animation-iteration-count: infinite;
   }
 
+  span {
+    @for $i from 1 through $amount {
+      &:nth-child(#{$i}) {
+        top: random(100) * 1%;
+        left: random(100) * 1%;
+        animation-duration: (random($animationDuration * 10) / 10) * 1s + 10s;
+        animation-delay: random(($animationDuration + 10s) * 10) / 10 * -1s;
+        transform-origin: (random(50) - 25) * 1vw (random(50) - 25) * 1vh;
+        $blurRadius: (random() + 0.5) * $particleSize * 0.5;
+        $x: if(random() > 0.5, -1, 1);
+        box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
+      }
+    }
+  }
+
   $season-colors: (
-    "winter": (#583C87, #583C87, #E45A84, #FFACAC),
-    "spring": (#877d3c, #877d3c, #e4d95a, #c8ffac),
-    "summer": (#423a25, #e8c40a, #1f6bae, #cfcbc2),
-    "autumn": (#8e3522, #8e3522, #e7daa6, #f1aa0c),
+    "winter": (#97b5d9, #e0dcdb, #000d41, #1c66b7),
+    "spring": (#8ec53f, #c00040, #efe039, #4f46b5),
+    "summer": (#e8c40a, #f1b637, #f82830, #1ec2b9),
+    "autumn": (#e7c57e, #7e2725, #19745f, #6a4622),
   );
   @each $season, $colors in $season-colors {
     &.bg-#{$season} {
@@ -74,15 +91,7 @@ body {
       span {
         @for $i from 1 through $amount {
           &:nth-child(#{$i}) {
-            color: nth($colors, random(length($colors)));
-            top: random(100) * 1%;
-            left: random(100) * 1%;
-            animation-duration: (random($animationDuration * 10) / 10) * 1s + 10s;
-            animation-delay: random(($animationDuration + 10s) * 10) / 10 * -1s;
-            transform-origin: (random(50) - 25) * 1vw (random(50) - 25) * 1vh;
-            $blurRadius: (random() + 0.5) * $particleSize * 0.5;
-            $x: if(random() > 0.5, -1, 1);
-            box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
+            color: nth($colors, random(length($colors) - 1) + 1);
           }
         }
       }

@@ -23,7 +23,7 @@ export class GamePage implements OnInit {
   }
 
   ngOnInit() {
-    setInterval(this.changeSeason, 2000);
+    setInterval(this.changeSeason, 3000);
     for (let i = 0; i < 50; i++) {
       this.matrix.push({type: 'usine'});
     }
