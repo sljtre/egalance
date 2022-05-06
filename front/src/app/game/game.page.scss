@@ -1,15 +1,15 @@
-ion-col{
+ion-col {
   border: solid 1px white;
   color: white;
 }
 
 .main {
-  display:flex;
-  width:100%;
-  --s: 80px;  /* size  */
-  --m: 1px;    /* margin */
-  --f: calc(1.732 * var(--s) + 4 * var(--m)  - 1px);
-  padding-bottom:50px;
+  display: flex;
+  width: 100%;
+  --s: 80px; /* size  */
+  --m: 1px; /* margin */
+  --f: calc(1.732 * var(--s) + 4 * var(--m) - 1px);
+  padding-bottom: 50px;
 }
 
 .container {
@@ -19,19 +19,19 @@ ion-col{
 .container ion-img {
   width: var(--s);
   margin: var(--m);
-  height: calc(var(--s)*1.1547);
+  height: calc(var(--s) * 1.1547);
   display: inline-block;
-  font-size:initial;
+  font-size: initial;
   clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
-  margin-bottom: calc(var(--m) - var(--s)*0.2885);
+  margin-bottom: calc(var(--m) - var(--s) * 0.2885);
 }
 
 .container::before {
   content: "";
-  width: calc(var(--s)/2 + var(--m));
+  width: calc(var(--s) / 2 + var(--m));
   float: left;
   height: 120%;
-  shape-outside: repeating-linear-gradient(#0000 0 calc(var(--f) - 1px), #000  0 var(--f));
+  shape-outside: repeating-linear-gradient(#0000 0 calc(var(--f) - 1px), #000 0 var(--f));
 }
 
 
@@ -40,40 +40,52 @@ body {
   overflow: hidden;
 }
 
-.animated-background {
-  background: #3E1E68;
-}
+#animated-bg {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
 
-$particleSize: 100px;
-$animationDuration: 30s;
-$amount: 20;
-.animated-background span {
-  width: $particleSize;
-  height: $particleSize;
-  border-radius: $particleSize;
-  backface-visibility: hidden;
-  position: absolute;
-  animation-name: move;
-  animation-duration: $animationDuration;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  $colors: (
-    #583C87,
-    #E45A84,
-    #FFACAC
+  $particleSize: 100px;
+  $animationDuration: 30s;
+  $amount: 20;
+
+  & span {
+    width: $particleSize;
+    height: $particleSize;
+    border-radius: $particleSize;
+    backface-visibility: hidden;
+    position: absolute;
+    animation-name: move;
+    animation-duration: $animationDuration;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  $season-colors: (
+    "winter": (#583C87, #583C87, #E45A84, #FFACAC),
+    "spring": (#877d3c, #877d3c, #e4d95a, #c8ffac),
+    "summer": (#423a25, #e8c40a, #1f6bae, #cfcbc2),
+    "autumn": (#8e3522, #8e3522, #e7daa6, #f1aa0c),
   );
-  @for $i from 1 through $amount {
-    &:nth-child(#{$i}) {
-      color: nth($colors, random(length($colors)));
-      top: random(100) * 1%;
-      left: random(100) * 1%;
-      animation-duration: (random($animationDuration * 10) / 10) * 1s + 10s;
-      animation-delay: random(($animationDuration + 10s) * 10) / 10 * -1s;
-      transform-origin: (random(50) - 25) * 1vw (random(50) - 25) * 1vh;
-      $blurRadius: (random() + 0.5) * $particleSize * 0.5;
-      //$blurRadius: 0;
-      $x: if(random() > 0.5, -1, 1);
-      box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
+  @each $season, $colors in $season-colors {
+    &.bg-#{$season} {
+      background: nth($colors, 1);
+
+      span {
+        @for $i from 1 through $amount {
+          &:nth-child(#{$i}) {
+            color: nth($colors, random(length($colors)));
+            top: random(100) * 1%;
+            left: random(100) * 1%;
+            animation-duration: (random($animationDuration * 10) / 10) * 1s + 10s;
+            animation-delay: random(($animationDuration + 10s) * 10) / 10 * -1s;
+            transform-origin: (random(50) - 25) * 1vw (random(50) - 25) * 1vh;
+            $blurRadius: (random() + 0.5) * $particleSize * 0.5;
+            $x: if(random() > 0.5, -1, 1);
+            box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
+          }
+        }
+      }
     }
   }
 }
