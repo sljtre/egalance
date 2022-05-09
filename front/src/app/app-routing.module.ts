@@ -43,6 +43,14 @@ const routes: Routes = [
     path: 'dev-map',
     loadChildren: () => import('./dev-map/dev-map.module').then( m => m.DevMapPageModule)
   },
+  {
+    path: 'city-selection',
+    loadChildren: () => import('./city-selection/city-selection.module').then( m => m.CitySelectionPageModule)
+  },
+  {
+    path: 'customization',
+    loadChildren: () => import('./customization/customization.module').then( m => m.CustomizationPageModule)
+  },
 
 ];
 

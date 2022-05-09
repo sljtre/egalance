@@ -107,6 +107,10 @@ function preventDisconnect() {
             app.post('/deleteDemand', function (req, res) {
                 account.deleteDemand(req.body.name, req.body.owner, req.body.list, req.body.public, con, res);
             });
+
+            app.post('/getScoreboard', function (req, res) {
+                account.getScoreboard(con, res);
+            });
         }
     });
 

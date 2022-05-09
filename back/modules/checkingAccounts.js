@@ -204,3 +204,17 @@ module.exports.deleteDemand = function (send, receive, con, res){
     }
   });
 }
+
+module.exports.getScoreboard = function (con, res){
+  con.query("SELECT username, score FROM users ORDER BY score DESC LIMIT 100", (err, result)=> {
+    if(err){
+      throw err;
+    }else{
+      const tab = [];
+      for(const line of result){
+        tab.push({name: line.username, bestScore: line.score});
+      }
+      res.json({output: tab});
+    }
+  })
+}
