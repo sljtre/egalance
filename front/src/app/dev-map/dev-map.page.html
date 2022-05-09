@@ -1,9 +1,16 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>devMap</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-menu></app-menu>
 
-<ion-content>
-
-</ion-content>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-title>Select your starting city</ion-title>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <highcharts-chart id="container"
+                      [Highcharts]="Highcharts"
+                      [constructorType]="chartConstructor"
+                      [options]="chartOptions">
+    </highcharts-chart>
+  </ion-row>
+</ion-grid>

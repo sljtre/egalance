@@ -8,12 +8,18 @@ import { DevMapPageRoutingModule } from './dev-map-routing.module';
 
 import { DevMapPage } from './dev-map.page';
 
+import {ComponentsModule} from '../shared/components/components.module';
+
+import { HighchartsChartModule} from 'highcharts-angular';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DevMapPageRoutingModule
+    DevMapPageRoutingModule,
+    ComponentsModule,
+    HighchartsChartModule
   ],
   declarations: [DevMapPage]
 })
