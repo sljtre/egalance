@@ -11,14 +11,28 @@ export class GamePage implements OnInit {
   public matrix = [];
   private currentSeason: number;
   private changeSeason: () => void;
+  private launchSummerAnimation: () => void;
 
   constructor() {
     this.currentSeason = 0;
     this.changeSeason = () => {
       const seasons = ['winter', 'spring', 'summer', 'autumn'];
+      switch (this.currentSeason) {
+        case 2:
+          this.launchSummerAnimation();
+          break;
+      }
       const bgElement = document.getElementById('animated-bg');
       bgElement.className = 'bg-' + seasons[this.currentSeason];
       this.currentSeason = (this.currentSeason + 1) % 4;
+    };
+
+    this.launchSummerAnimation = () => {
+      const sun = document.querySelector('#sun-div');
+      sun.className = 'animated';
+      setTimeout(() => {
+        sun.className = '';
+      }, 5000);
     };
   }
 
