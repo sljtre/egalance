@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActionSheetController} from '@ionic/angular';
 import {Router} from '@angular/router';
+import {PersoService} from '../shared/services/perso.service';
 
 @Component({
   selector: 'app-city-selection',
@@ -11,7 +12,8 @@ export class CitySelectionPage implements OnInit {
 
   constructor(
     private actionSheet: ActionSheetController,
-    private router: Router
+    private router: Router,
+    private perso: PersoService,
   ) { }
 
   ngOnInit() {}
@@ -23,7 +25,7 @@ export class CitySelectionPage implements OnInit {
         text: 'Yes',
         icon: 'airplane',
         handler: () => {
-          console.log('Let\'s go to ' + city);
+          this.perso.createPerso(city);
           this.router.navigateByUrl('/customization');
         }
       }, {
