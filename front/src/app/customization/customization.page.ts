@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {PersoService} from '../shared/services/perso.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-customization',
@@ -22,7 +24,10 @@ export class CustomizationPage implements OnInit {
   private indGenre=0;
   private indReligion=0;
 
-  constructor() {}
+  constructor(
+    private persoService: PersoService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.ethnie = this.listeEthnie[0];
@@ -131,5 +136,10 @@ export class CustomizationPage implements OnInit {
     this.randGenre();
     this.randReligion();
     await this.randFullName();
+  };
+
+  validatePerso = async () => {
+    this.persoService.custom(this.religion, this.genre, this.ethnie, this.fullName);
+    await this.router.navigateByUrl('/game');
   };
 }
