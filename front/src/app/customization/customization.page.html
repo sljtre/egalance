@@ -8,7 +8,7 @@
     </ion-col>
     <ion-item>
       <!--<ion-label>Character Name</ion-label>-->
-      <ion-input [(ngModel)]="fullName"></ion-input>
+      <ion-input [(ngModel)]="fullName" placeholder="First name / Last name"></ion-input>
     </ion-item>
     <ion-col>
       <ion-button (click)="randFullName()" fill="clear">
@@ -28,7 +28,7 @@
       </ion-button>
     </ion-col>
     <ion-col>
-      <ion-img class="imgPerso" [src]="'../assets/img/skin'+ethnie+'.png'"></ion-img>
+      <ion-img class="imgPerso" [src]="'./assets/img/skin/skin'+ethnie+'.png'"></ion-img>
     </ion-col>
     <ion-col>
       <ion-button (click)="funcEthnie('right')" shape="round" fill="clear">
@@ -53,7 +53,7 @@
       </ion-button>
     </ion-col>
     <ion-col>
-      <ion-img class="imgPerso" [src]="'../assets/img/'+genre+'.png'"></ion-img>
+      <ion-img class="imgPerso" [src]="'./assets/img/'+genre+'.png'"></ion-img>
     </ion-col>
     <ion-col>
       <ion-button (click)="funcGenre('right')" shape="round" fill="clear">
@@ -78,7 +78,7 @@
       </ion-button>
     </ion-col>
     <ion-col>
-      <ion-img class="imgPerso" [src]="'../assets/img/'+religion+'.png'"></ion-img>
+      <ion-img class="imgPerso" [src]="'./assets/img/religion/'+religion+'.png'"></ion-img>
 
     </ion-col>
     <ion-col>

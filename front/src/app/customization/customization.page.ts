@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomizationPage implements OnInit {
 
-  public fullName = 'Prénom Nom';
+  public fullName = '';
   public ethnie;
   public genre;
   public religion;
