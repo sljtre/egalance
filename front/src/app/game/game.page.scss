@@ -270,3 +270,30 @@ div#leaves {
     opacity: 0;
   }
 }
+
+div#spring {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+
+  img.grass {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+  }
+
+  &.animated img.grass {
+    animation: 5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite grass;
+  }
+}
+
+@keyframes grass {
+  30% {
+    transform: skewX(10deg) translateX(-5px);
+  }
+  70% {
+    transform: skewX(-10deg) translateX(5px);
+  }
+
+}
