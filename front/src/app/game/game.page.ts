@@ -13,6 +13,8 @@ export class GamePage implements OnInit {
   private changeSeason: () => void;
   private launchSummerAnimation: () => void;
   private launchAutumnAnimation: () => void;
+  private launchWinterAnimation: () => void;
+  private snowflakes: any[];
 
   constructor() {
     this.currentSeason = 0;
@@ -24,6 +26,9 @@ export class GamePage implements OnInit {
           break;
         case 2:
           this.launchAutumnAnimation();
+          break;
+        case 3:
+          this.launchWinterAnimation();
           break;
       }
       const bgElement = document.getElementById('animated-bg');
@@ -45,10 +50,18 @@ export class GamePage implements OnInit {
         leaves.className = '';
       }, 15000);
     };
+    this.launchWinterAnimation = () => {
+      const snow = document.querySelector('#snow');
+      snow.className = 'animated';
+      setTimeout(() => {
+        snow.className = '';
+      }, 15000);
+    };
   }
 
   ngOnInit() {
-    setInterval(this.changeSeason, 5000);
+    setInterval(this.changeSeason, 7000);
+    this.snowflakes = new Array(200);
     for (let i = 0; i < 50; i++) {
       this.matrix.push({type: 'usine'});
     }
