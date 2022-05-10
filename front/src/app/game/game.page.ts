@@ -15,6 +15,7 @@ export class GamePage implements OnInit {
   private launchAutumnAnimation: () => void;
   private launchWinterAnimation: () => void;
   private snowflakes: any[];
+  private fallingLeaves: any[];
 
   constructor() {
     this.currentSeason = 0;
@@ -62,6 +63,10 @@ export class GamePage implements OnInit {
   ngOnInit() {
     setInterval(this.changeSeason, 7000);
     this.snowflakes = new Array(200);
+    this.fallingLeaves = [];
+    for (let i = 1; i <= 48; i++) {
+      this.fallingLeaves.push(i);
+    }
     for (let i = 0; i < 50; i++) {
       this.matrix.push({type: 'usine'});
     }
