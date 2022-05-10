@@ -133,19 +133,23 @@ div#leaves {
   left: 0;
   pointer-events: none;
 
-  div {
+  ion-img {
     position: absolute;
     display: block;
     top: -20%;
+    opacity: 0;
+  }
 
-    @for $i from 1 through $leaves {
-      &:nth-child(#{ $i }) {
-        left: random(100) * 1%;
-        animation: falling-leaf-#{$i % $animations} linear infinite;
-        animation-duration: (random(4) + 2) * 1s;
-        animation-delay: random(4000) * 1ms;
-        width: (random(30) + 30) * 1px;
-      }
+  @for $i from 1 through $leaves {
+    &.animated ion-img:nth-child(#{ $i }) {
+      opacity: 1;
+      left: random(100) * 1%;
+      animation-name: falling-leaf-#{$i % $animations};
+      animation-timing-function: linear;
+      animation-iteration-count: 1;
+      animation-duration: (random(4000) + 2000) * 1ms;
+      animation-delay: random(3000) * 1ms;
+      width: (random(30) + 30) * 1px;
     }
   }
 }
@@ -176,5 +180,4 @@ div#leaves {
       transform: translateX(-20px) rotate(225deg);
     }
   }
-
 }
