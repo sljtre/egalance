@@ -79,6 +79,20 @@
           inventaire
         </ion-col>
       </ion-row>
+      <ion-row>
+        <ion-button (click)="pause()" *ngIf="!paused" color="warning">pause</ion-button>
+        <ion-button (click)="pause()" *ngIf="paused" color="success">resume</ion-button>
+      </ion-row>
+      <ion-row>
+        <ion-button (click)="addTime(30)">30</ion-button>
+        <ion-button (click)="addTime(60)">60</ion-button>
+        <ion-button (click)="addTime(90)">90</ion-button>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          {{day}}/{{month}}/{{year}}
+        </ion-col>
+      </ion-row>
     </ion-col>
   </ion-row>
   <ion-row style="height:15%;">
