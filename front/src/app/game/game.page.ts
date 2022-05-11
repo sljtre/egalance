@@ -65,7 +65,7 @@ export class GamePage implements OnInit {
 
     console.log(this.persoService.perso.localization);
     this.importedTuiles = this.tuiles.getData(this.persoService.perso.localization);
-    this.type = this.tuiles.getType(this.type = this.tuiles.getType(this.persoService.perso.localization));
+    this.type = this.tuiles.getType(this.persoService.perso.localization);
 
     for(let i=0;i<50;i++) {
       if (i === 0) {
