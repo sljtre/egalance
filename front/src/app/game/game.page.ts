@@ -92,9 +92,6 @@ export class GamePage implements OnInit {
     console.log(this.persoService.perso);
   }
 
-<<<<<<< HEAD
-  //---------Fonctions sur l'horloge du jeu--------- 
-=======
   chooseAleatTuile = (matrix, tuiles) => {
     const i = Math.floor(Math.random()*tuiles.length);
     matrix.push({name: tuiles[i].name});
@@ -102,7 +99,6 @@ export class GamePage implements OnInit {
     return {mat: matrix, ref: tuiles};
   };
 
->>>>>>> 1a687f24d951aef48687ce68d1bf47bc741b1665
   calendar = () => {
     this.persoService.calculAll();
     this.refreshAll();
