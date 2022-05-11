@@ -13,6 +13,8 @@ export class CustomizationPage implements OnInit {
   public ethnie;
   public genre;
   public religion;
+  public birthdayDay;
+  public birthdayMonth;
 
   private prenom = '';
   private nom = '';
@@ -33,6 +35,13 @@ export class CustomizationPage implements OnInit {
     this.ethnie = this.listeEthnie[0];
     this.genre = this.listeGenre[0];
     this.religion = this.listeReligion[0];
+    let days=document.getElementById('dayvalue');
+    for(let i=1;i<=30;i++){
+      days.innerHTML+='<ion-select-option value='+i+'>'+i+'<ion-select-option>'
+    }
+
+
+
   }
 
   funcEthnie = (move)=>{
@@ -131,15 +140,21 @@ export class CustomizationPage implements OnInit {
     this.fullName = this.prenom + ' ' + this.nom;
   };
 
+  randBirthday=()=>{
+    this.birthdayDay=Math.floor(Math.random()*29+1);
+    this.birthdayMonth=Math.floor(Math.random()*11+1);
+  }
+
   allRand = async () => {
     this.randEthnie();
     this.randGenre();
-    this.randReligion();
+    this.randReligion();    
     await this.randFullName();
+    this.randBirthday();
   };
 
   validatePerso = async () => {
-    this.persoService.custom(this.religion, this.genre, this.ethnie, this.fullName);
+    this.persoService.custom(this.religion, this.genre, this.ethnie, this.fullName,this.birthdayDay,this.birthdayMonth);
     await this.router.navigateByUrl('/game');
   };
 }
