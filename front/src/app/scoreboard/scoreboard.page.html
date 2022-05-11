@@ -1,1 +1,31 @@
 <app-menu></app-menu>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-input type="number" min="0" max="100" [(ngModel)]="nbRQ" (ionChange)="updateDisplay()"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-title>
+          Username
+        </ion-title>
+      </ion-col>
+      <ion-col>
+        <ion-title>
+          Best score
+        </ion-title>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let line of display">
+      <ion-col>
+        {{line.name}}
+      </ion-col>
+      <ion-col>
+        {{line.bestScore}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

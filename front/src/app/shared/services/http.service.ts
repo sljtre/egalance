@@ -177,4 +177,11 @@ export class HttpService {
       this.retour = response;
     });
   };
+
+  getScoreboard = async () => {
+    await this.http.post<string>(this.urlBack + 'getScoreboard', '').toPromise().then(response => {
+      this.retour = response;
+    });
+    return this.retour;
+  };
 }

@@ -1,8 +1,20 @@
-#container{
-  margin:auto;
-  border: solid 1px white;
+ion-grid{
+  width:100%;
+  background-size: 1200px;
 }
 
 ion-col{
-  text-align:center;
+  border: solid white 1px;
+}
+
+ion-img{
+  width:40px;
+  position: absolute;
+  top: attr(top px);
+  left: attr(left px);
+}
+
+ion-img:hover{
+  transform: scale(1.2, 1.2);
+  cursor: pointer;
 }

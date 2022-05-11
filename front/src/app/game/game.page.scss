@@ -3,6 +3,11 @@ ion-col {
   color: white;
 }
 
+#top ion-col{
+  text-align:center;
+  border: none;
+}
+
 .main {
   display: flex;
   width: 100%;

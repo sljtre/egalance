@@ -1,0 +1,124 @@
+<app-menu></app-menu>
+
+<ion-grid>
+  <!--editeur pour le nom prenom-->
+  <ion-row>
+
+    <ion-col>
+      <ion-row>
+        <!--filler col for spacing-->
+        <ion-col>
+        </ion-col>
+        <ion-item>
+          <!--<ion-label>Character Name</ion-label>-->
+          <ion-input [(ngModel)]="fullName" placeholder="First name / Last name"></ion-input>
+        </ion-item>
+        <ion-col>
+          <ion-button (click)="randFullName()" fill="clear">
+            <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+      </ion-row>
+      <!--editeur pour l'ethnie-->
+      <ion-row>
+
+        <ion-col>
+          <ion-button (click)="randEthnie()" fill="clear">
+            <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col>
+          <ion-button (click)="funcEthnie('left')" shape="round" fill="clear">
+            <ion-icon name="arrow-back-circle-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col>
+          <ion-img class="imgPerso" [src]="'./assets/img/skin/skin'+ethnie+'.png'"></ion-img>
+        </ion-col>
+
+        <ion-col>
+          <ion-button (click)="funcEthnie('right')" shape="round" fill="clear">
+            <ion-icon name="arrow-forward-circle-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+      </ion-row>
+
+      <!--editeur pour le genre-->
+      <ion-row>
+
+        <ion-col>
+          <ion-button (click)="randGenre()" fill="clear">
+            <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col>
+          <ion-button (click)="funcGenre('left')" shape="round" fill="clear">
+            <ion-icon name="arrow-back-circle-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col>
+          <ion-img style="width:40px; margin-left:20px;" [src]="'./assets/img/'+genre+'.png'"></ion-img>
+        </ion-col>
+
+        <ion-col>
+          <ion-button (click)="funcGenre('right')" shape="round" fill="clear">
+            <ion-icon name="arrow-forward-circle-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+      </ion-row>
+
+      <!--editeur pour la religion-->
+      <ion-row>
+
+        <ion-col>
+          <ion-button (click)="randReligion()" fill="clear">
+            <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col>
+          <ion-button (click)="funcReligion('left')" shape="round" fill="clear">
+            <ion-icon name="arrow-back-circle-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col>
+          <ion-img style="width:40px; margin-left:20px;" [src]="'./assets/img/religion/'+religion+'.png'"></ion-img>
+        </ion-col>
+
+        <ion-col>
+          <ion-button (click)="funcReligion('right')" shape="round" fill="clear">
+            <ion-icon name="arrow-forward-circle-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+      </ion-row>
+      <!-- rand global-->
+      <ion-row>
+
+        <ion-col>
+          <ion-button (click)="allRand()">
+            <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col>
+          <ion-button color="success" shape="round" (click)="validatePerso()">
+            <ion-icon name="checkbox-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+      </ion-row>
+    </ion-col>
+    <ion-col>
+      <ion-img [src]="'./assets/img/persos/skin'+ethnie+'-'+genre+'-'+religion+'.png'"></ion-img>
+    </ion-col>
+  </ion-row>
+</ion-grid>

@@ -1,10 +1,6 @@
-<ion-row>
-  <ion-col>
-    <ion-header>
-      <ion-menu-button color="white"></ion-menu-button>
-    </ion-header>
-  </ion-col>
-</ion-row>
+<ion-fab vertical="top" horizontal="end" slot="fixed">
+  <ion-menu-button color="white"></ion-menu-button>
+</ion-fab>
 
 <!-- /////////////////////// MENU CONTENT /////////////////////// -->
 
@@ -56,7 +52,7 @@
         <ion-icon color="secondary" class="start" name="game-controller"></ion-icon>
         <strong>Play</strong>
       </ion-list-header>
-      <ion-item button="true" (click)="redirect('game')">
+      <ion-item button="true" (click)="redirect('city-selection')">
         <ion-icon color="secondary" class="start" name="enter"></ion-icon>
         <ion-label>Enter game</ion-label>
         <ion-icon color="secondary" name="chevron-forward" slot="end"></ion-icon>
