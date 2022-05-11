@@ -11,9 +11,6 @@ export class GamePage implements OnInit {
   public matrix = [];
   private currentSeason: number;
   private changeSeason: () => void;
-  private launchSummerAnimation: () => void;
-  private launchAutumnAnimation: () => void;
-  private launchWinterAnimation: () => void;
   private snowflakes: any[];
   private fallingLeaves: any[];
   private flowers: any[];
@@ -22,42 +19,15 @@ export class GamePage implements OnInit {
     this.currentSeason = 0;
     this.changeSeason = () => {
       const seasons = ['spring', 'summer', 'autumn', 'winter'];
-      switch (this.currentSeason) {
-        case 1:
-          this.launchSummerAnimation();
-          break;
-        case 2:
-          this.launchAutumnAnimation();
-          break;
-        case 3:
-          this.launchWinterAnimation();
-          break;
-      }
+      const transitionDuration = [5000, 6000, 15000, 15000];
+      const div = document.getElementById(seasons[this.currentSeason]);
+      div.className = 'animated';
+      setTimeout(() => {
+        div.className = '';
+      }, transitionDuration[this.currentSeason]);
       const bgElement = document.getElementById('animated-bg');
       bgElement.className = 'bg-' + seasons[this.currentSeason];
       this.currentSeason = (this.currentSeason + 1) % 4;
-    };
-
-    this.launchSummerAnimation = () => {
-      const sun = document.querySelector('#sun-div');
-      sun.className = 'animated';
-      setTimeout(() => {
-        sun.className = '';
-      }, 5000);
-    };
-    this.launchAutumnAnimation = () => {
-      const leaves = document.querySelector('#leaves');
-      leaves.className = 'animated';
-      setTimeout(() => {
-        leaves.className = '';
-      }, 15000);
-    };
-    this.launchWinterAnimation = () => {
-      const snow = document.querySelector('#snow');
-      snow.className = 'animated';
-      setTimeout(() => {
-        snow.className = '';
-      }, 15000);
     };
   }
 
