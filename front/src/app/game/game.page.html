@@ -34,14 +34,14 @@
 </div>
 
 <ion-grid style="width:100%">
-  <ion-row style="height:8.5%;" id="top">
+  <ion-row style="height:8.5%; background-color: black" id="top">
     <ion-col style="flex-basis:10%;">
       <ion-button fill="clear" size="medium" title="Decrease time speed" (click)="clockSpeed('-')">
         <ion-icon name="remove-circle" slot="icon-only" color="success"></ion-icon>
       </ion-button>
     </ion-col>
     <ion-col style="flex-basis:5%;">
-      x{{speed}}
+        x{{speed}}
     </ion-col>
     <ion-col style="flex-basis:10%;">
       <ion-button fill="clear" size="medium" title="Increase time speed" (click)="clockSpeed('+')">
@@ -51,9 +51,13 @@
     <ion-col style="flex-basis:10%;">
       {{day}}/{{month}}/{{year}}
     </ion-col>
-    <ion-col style="flex-basis:30%;">
-      <ion-button (click)="pause()" *ngIf="!paused" color="warning">pause</ion-button>
-      <ion-button (click)="pause()" *ngIf="paused" color="success">resume</ion-button>
+    <ion-col style="flex-basis:10%;">
+        <ion-button fill="clear" size="medium" title="Pause" (click)="pause()" *ngIf="!paused">
+          <ion-icon name="pause-circle" slot="icon-only" color="warning"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" size="medium" title="Resume" (click)="pause()" *ngIf="paused">
+          <ion-icon name="play-circle" slot="icon-only" color="success"></ion-icon>
+        </ion-button>
     </ion-col>
     <ion-col style="flex-basis:35%;">
       {{persoService.perso.name}}, {{persoService.perso.localization}}
@@ -62,58 +66,58 @@
   <ion-row style="height:80%">
     <ion-col style="flex-basis:70%">
       <div class="main">
-        <!--        <div class="container">-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[0].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[1].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[2].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[3].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[4].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[5].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[6].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[7].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[8].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[9].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[10].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[11].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[12].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[13].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[14].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[15].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[16].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[17].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[18].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[19].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[20].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[21].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[22].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[23].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[24].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[25].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[26].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[27].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[28].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[29].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[30].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[31].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[32].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[33].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[34].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[35].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[36].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[37].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[38].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[39].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[40].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[41].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[42].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[43].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[44].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[45].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[46].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[47].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[48].name + '.png'"></ion-img>-->
-        <!--          <ion-img [src]="'./assets/img/' + matrix[49].name + '.png'"></ion-img>-->
-        <!--        </div>-->
+                <div class="container">
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[0].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[1].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[2].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[3].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[4].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[5].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[6].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[7].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[8].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[9].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[10].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[11].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[12].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[13].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[14].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[15].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[16].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[17].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[18].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[19].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[20].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[21].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[22].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[23].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[24].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[25].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[26].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[27].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[28].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[29].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[30].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[31].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[32].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[33].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[34].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[35].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[36].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[37].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[38].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[39].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[40].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[41].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[42].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[43].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[44].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[45].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[46].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[47].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[48].name + '.png'"></ion-img>
+                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[49].name + '.png'"></ion-img>
+                </div>
       </div>
     </ion-col>
     <ion-col style="flex-basis:30%">
@@ -136,7 +140,19 @@
   </ion-row>
   <ion-row style="height:15%;">
     <ion-col style="flex-basis:30%">
+      <ion-row style="height:33%;">
+        <ion-progress-bar id="progFatigue" value={{displayFatigue}}></ion-progress-bar>Fatigue 
+      </ion-row>
 
+      <ion-row style="height:33%;">
+        <ion-progress-bar id="progSante" value={{displaySante}}></ion-progress-bar>Health 
+      </ion-row>
+
+      <ion-row style="height:33%;">
+        <ion-progress-bar id="progFaim" value={{displayFaim}}></ion-progress-bar>Hunger
+      </ion-row>
+
+      
     </ion-col>
     <ion-col style="flex-basis:70%">
 
