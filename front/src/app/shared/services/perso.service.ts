@@ -22,27 +22,27 @@ export class PersoService {
     this.perso = new Perso(loc);
     this.perso.customization(religion, gender, skin, name);
   };
-  
+
   faim=()=>{
    this.perso.calculFaim();
-  }
+  };
 
   fatigue=()=>{
     this.perso.calculFatigue();
-  }
+  };
 
   sante=()=>{
     this.perso.calculSante();
-  }
+  };
 
   malade=()=>{
     this.perso.fallSick();
-  }
+  };
 
   calculAll=()=>{
     this.perso.calculFaim();
     this.perso.calculFatigue();
     this.perso.calculSante();
-  }
+  };
 
 }

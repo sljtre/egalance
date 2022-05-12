@@ -25,13 +25,17 @@ export class GamePage implements OnInit {
   public displaySante;
   public displayFaim;
 
-  private importedTuiles;
+  public tuileHover = '';
 
-  private currentSeason;
-  private changeSeason: (month) => void;
-  private snowflakes: any[];
-  private fallingLeaves: any[];
-  private flowers: any[];
+  public currentSeason;
+  public changeSeason: (month) => void;
+  public snowflakes: any[];
+  public fallingLeaves: any[];
+  public flowers: any[];
+
+  public position = {x:100, y:100};
+
+  private importedTuiles;
 
   constructor(
     private tuiles: TuilesService,
@@ -71,6 +75,8 @@ export class GamePage implements OnInit {
 
     this.persoService.dev('Paris', 'judaisme', 'homme', '4', 'David Salomon');
     this.refreshAll();
+
+    setInterval(this.changeSeason, 7000);
     this.snowflakes = new Array(200);
     this.fallingLeaves = [];
     for (let i = 1; i <= 48; i++) {
@@ -93,11 +99,11 @@ export class GamePage implements OnInit {
       } else if (i === 26) {
         this.matrix.push({name: 'mairie'});
       } else if (i === 25) {
-        this.matrix.push({name: 'culturel'});
+        this.matrix.push({name: 'aeroport'});
       } else if (i === 35) {
         this.matrix.push({name: 'justice'});
       } else {
-        const retour = this.chooseAleatTuile(this.matrix, this.importedTuiles);
+        const retour = this.tuiles.chooseAleatTuile(this.matrix, this.importedTuiles);
         this.matrix = retour.mat;
         this.importedTuiles = retour.ref;
       }
@@ -106,12 +112,11 @@ export class GamePage implements OnInit {
     console.log(this.persoService.perso);
   }
 
-  chooseAleatTuile = (matrix, tuiles) => {
-    const i = Math.floor(Math.random() * tuiles.length);
-    matrix.push({name: tuiles[i].name});
-    tuiles.splice(i, 1);
-    return {mat: matrix, ref: tuiles};
+  hoverEnter = (name) => {
+    this.tuileHover = name;
   };
+
+  hoverLeave = () => this.tuileHover = '';
 
   calendar = () => {
     this.persoService.calculAll();
@@ -143,6 +148,7 @@ export class GamePage implements OnInit {
       this.addTime(0);
     }
   };
+
   //---------------------------------------------
 
   refreshAll = () => {
@@ -174,12 +180,11 @@ export class GamePage implements OnInit {
     progSante.style.setProperty('--progress-background', tmp);
 
     //Changement de couleur barre de progression Fatigue
+    //Changement de couleur barre de progression Faim
     if (this.displayFatigue > 0 && this.displayFatigue <= 0.5) {
-      tmp = 'rgb(' + Math.floor(this.displayFatigue * 510) + ',255,0)';
+      tmp = 'rgb(255,' + Math.floor(this.displayFatigue * 510) + ',0)';
     } else if (this.displayFatigue > 0.5 && this.displayFatigue <= 1) {
-      tmp = 'rgb(255,' + (510 - Math.floor(this.displayFatigue * 510)) + ',0)';
-    } else if (this.displayFatigue >= 1) {
-      tmp = 'rgb(255,0,0)';
+      tmp = 'rgb(' + (510 - Math.floor(this.displayFatigue * 510)) + ',255,0)';
     }
     progFatigue.style.setProperty('--progress-background', tmp);
   };

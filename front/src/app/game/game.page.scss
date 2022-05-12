@@ -1,23 +1,29 @@
 ion-col {
-  border: solid 1px white;
+  //border: solid 1px white;
   color: white;
 }
 
 #top ion-col{
   text-align:center;
   border: none;
+  background-color:#bfbfbf;
 }
 
 .main {
   display: flex;
-  width: 100%;
+  width: 95%;
   --s: 80px; /* size  */
-  --m: 1px; /* margin */
+  --m: 0px; /* margin */
   --f: calc(1.732 * var(--s) + 4 * var(--m) - 1px);
-  padding-bottom: 50px;
+  padding-bottom: 40px;
 }
 
 .container {
+  position:relative;
+  padding-bottom:25px;
+  width:95%;
+  margin-left:auto;
+  margin-right:auto;
   font-size: 0; /*disable white space between inline block element */
 }
 

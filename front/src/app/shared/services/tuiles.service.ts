@@ -372,4 +372,11 @@ export class TuilesService {
       }
     }
   };
+
+  chooseAleatTuile = (matrix, tuiles) => {
+    const i = Math.floor(Math.random() * tuiles.length);
+    matrix.push({name: tuiles[i].name});
+    tuiles.splice(i, 1);
+    return {mat: matrix, ref: tuiles};
+  };
 }

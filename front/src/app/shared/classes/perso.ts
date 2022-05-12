@@ -17,7 +17,6 @@ export class Perso {
 
   constructor(loc){
     this.localization=loc;
-    
   }
 
   customization = (religion, gender, skin, name,birthdayDay,birthdayMonth) => {
@@ -30,22 +29,22 @@ export class Perso {
   };
 
   isBirthday=(day,month)=>{
-    if(this.birthdayDay==day && this.birthdayMonth==month){
+    if(this.birthdayDay === day && this.birthdayMonth === month){
       this.age+=1;
-    
-      let event = Math.floor(Math.random()*4) //c 4 mais faut le changer au max d'event possibles
+
+      const event = Math.floor(Math.random()*4); //c 4 mais faut le changer au max d'event possibles
       switch(event){
         case 1:
-          console.log("Mamie et Papie ont donne un cadeau !");
+          console.log('Mamie et Papi ont donne un cadeau !');
           break;
         case 2:
-          console.log("Papa et Maman ont donne un cadeau !");
+          console.log('Papa et Maman ont donne un cadeau !');
           break;
         case 3:
-          console.log("Tes amis t'onf fait un cadeau !");
+          console.log('Tes amis t\'ont fait un cadeau !');
           break;
         case 4:
-          console.log("Tu ta prend un resto tout seul...");
+          console.log('Tu te prends un resto tout seul...');
           break;
         default:
           break;
@@ -55,13 +54,13 @@ export class Perso {
 
   calculFaim=()=>{
     if(this.faim>0){
-      this.faim-=0.05;    
+      this.faim-=0.05;
     }
     //Pour eviter de faire des dépassements de borne
     if(this.faim<0){
       this.faim=0;
     }
-  }
+  };
 
   calculFatigue=()=>{
     if(this.fatigue<1){
@@ -72,7 +71,7 @@ export class Perso {
     if(this.fatigue>1){
       this.fatigue=1;
     }
-  }
+  };
 
   calculSante=()=>{
     if(this.sante>0){
@@ -83,13 +82,13 @@ export class Perso {
     if(this.sante<0){
       this.sante=0;
     }
-  }
+  };
 
   fallSick=()=>{
     //Si le joueur n'est pas actuellement malade
-    if(this.currentSickness==0){
-    let sickness=Math.floor(Math.random()*9999+1);
-    if(sickness==1){
+    if(this.currentSickness === 0){
+    const sickness=Math.floor(Math.random()*9999+1);
+    if(sickness === 1){
       this.currentSickness=0.3;
     }
     else if(sickness>=2 && sickness<=11){
@@ -102,6 +101,6 @@ export class Perso {
       this.currentSickness=0.3;
     }
   }
-}
+};
 
 }
