@@ -1,18 +1,18 @@
 <app-menu></app-menu>
 
-<ion-grid style="height:1em;">
+<ion-grid style="height:[height]px;">
   <!--editeur pour le nom prenom-->
   <ion-row style="height:12.5%">
 
-    <ion-col>
+    <ion-col size="5">
     <ion-row>        
-      <ion-col style="flex-basis:15%;">
+      <ion-col size="2">
         <ion-button (click)="randFullName()" fill="clear">
             <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
         </ion-button>
       </ion-col>
 
-      <ion-col style="flex-basis:85%;">
+      <ion-col size="10">
         <ion-item>
           <ion-input [(ngModel)]="fullName" placeholder="First name / Last name" style="text-align:center;"></ion-input>
         </ion-item>        
@@ -23,23 +23,23 @@
   <!--editeur pour l'ethnie-->
   <ion-row style="height:12.5%">
 
-    <ion-col style="flex-basis:15%;">
+    <ion-col size="2">
       <ion-button (click)="randEthnie()" fill="clear">
         <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-col>
 
-    <ion-col style="flex-basis:20%;">
+    <ion-col size="2">
       <ion-button (click)="funcEthnie('left')" shape="round" fill="clear">
         <ion-icon name="arrow-back-circle-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-col>
 
-    <ion-col style="flex-basis:40%;size:100%;">
+    <ion-col size="6">
       <ion-img class="imgPerso" [src]="'./assets/img/skin/skin'+ethnie+'.png'"></ion-img>
     </ion-col>
 
-    <ion-col style="flex-basis:20%;">
+    <ion-col size="2">
       <ion-button (click)="funcEthnie('right')" shape="round" fill="clear">
         <ion-icon name="arrow-forward-circle-outline" slot="icon-only"></ion-icon>
       </ion-button>
@@ -48,25 +48,25 @@
   </ion-row>
 
   <!--editeur pour le genre-->
-  <ion-row style="height:25%">
+  <ion-row style="height:20%">
 
-    <ion-col style="flex-basis:15%;">
+    <ion-col size="2">
       <ion-button (click)="randGenre()" fill="clear">
         <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-col>
 
-    <ion-col style="flex-basis:20%;">
+    <ion-col size="2">
       <ion-button (click)="funcGenre('left')" shape="round" fill="clear">
         <ion-icon name="arrow-back-circle-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-col>
 
-    <ion-col style="flex-basis:40%;">
-        <ion-img style="size:100%;margin:auto;" [src]="'./assets/img/'+genre+'.png'"></ion-img>
+    <ion-col size="6">
+        <ion-img class="imgPerso" [src]="'./assets/img/'+genre+'.png'"></ion-img>
     </ion-col>
 
-    <ion-col style="flex-basis:20%;">
+    <ion-col size="2">
       <ion-button (click)="funcGenre('right')" shape="round" fill="clear">
         <ion-icon name="arrow-forward-circle-outline" slot="icon-only"></ion-icon>
       </ion-button>
@@ -75,26 +75,26 @@
   </ion-row>
 
   <!--editeur pour la religion-->
-  <ion-row style="height:25%">
+  <ion-row style="height:20%">
 
-    <ion-col style="flex-basis:15%;">
+    <ion-col size="2">
       <ion-button (click)="randReligion()" fill="clear">
           <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-col>
 
-    <ion-col style="flex-basis:20%;">
-      <ion-button (click)="funcReligion('left')" shape="round" fill="clear" style="margin:auto;display:block;">
+    <ion-col size="2">
+      <ion-button (click)="funcReligion('left')" shape="round" fill="clear"   >
           <ion-icon name="arrow-back-circle-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-col>
 
-    <ion-col style="flex-basis:40%;">
-        <ion-img style="size:100%;margin:auto;" [src]="'./assets/img/religion/'+religion+'.png'"></ion-img>
+    <ion-col size="6">
+        <ion-img class="imgPerso" [src]="'./assets/img/religion/'+religion+'.png'"></ion-img>
     </ion-col>
 
-    <ion-col style="flex-basis:20%;">
-      <ion-button (click)="funcReligion('right')" shape="round" fill="clear" style="margin:auto;display:block;">
+    <ion-col size="2">
+      <ion-button (click)="funcReligion('right')" shape="round" fill="clear" >
           <ion-icon name="arrow-forward-circle-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-col>
@@ -104,37 +104,37 @@
   <!--choix de l'anniversaire-->
   <ion-row style="height:12.5%">
 
-        <ion-col style="flex-basis:15%">
+        <ion-col size="2">
             <ion-button (click)="randBirthday()" fill="clear">
                 <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
             </ion-button>
         </ion-col>
 
-        <ion-col style="flex-basis:42.5%">
+        <ion-col size="5">
           <ion-item>
             <ion-label>Day</ion-label>
             <ion-input [(ngModel)]="birthdayDay" type="number" max=30 min=1></ion-input>
           </ion-item>
         </ion-col>  
 
-        <ion-col style="flex-basis:42.5%">
+        <ion-col size="5">
           <ion-item>
             <ion-label>Month</ion-label>
             <ion-input [(ngModel)]="birthdayMonth" type="number" max=12 min=1></ion-input>
           </ion-item>
         </ion-col>
 
-      </ion-row>
+  </ion-row>
       <!-- rand global et validation-->
       <ion-row style="height:12.5%;">
 
-        <ion-col style="width:15%;">
+        <ion-col size="6">
           <ion-button (click)="allRand()">
             <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
           </ion-button>
         </ion-col>
 
-        <ion-col>
+        <ion-col size="6">
           <ion-button color="success" shape="round" (click)="validatePerso()">
             <ion-icon name="checkbox-outline" slot="icon-only"></ion-icon>
           </ion-button>
@@ -142,7 +142,8 @@
 
       </ion-row>
     </ion-col>
-    <ion-col>
+    <ion-col size=2></ion-col>
+    <ion-col size="5">
       <ion-img [src]="'./assets/img/persos/skin'+ethnie+'-'+genre+'-'+religion+'.png'"></ion-img>
     </ion-col>
   </ion-row>

@@ -16,6 +16,8 @@ export class CustomizationPage implements OnInit {
   public birthdayDay;
   public birthdayMonth;
 
+  public height=window.screen.height
+
   private prenom = '';
   private nom = '';
   private listeEthnie=['1','2','3','4','5'];
@@ -35,14 +37,7 @@ export class CustomizationPage implements OnInit {
     this.ethnie = this.listeEthnie[0];
     this.genre = this.listeGenre[0];
     this.religion = this.listeReligion[0];
-    let days=document.getElementById('dayvalue');
-    for(let i=1;i<=30;i++){
-      days.innerHTML+='<ion-select-option value='+i+'>'+i+'<ion-select-option>'
-    }
-
-
-
-  }
+   }
 
   funcEthnie = (move)=>{
     if(move === 'left'){
