@@ -1,12 +1,32 @@
-ion-col {
-  //border: solid 1px white;
-  color: white;
+$radius: 10px;
+$background-color: #00000099;
+ion-grid {
+  ion-row#top {
+    ion-col {
+      background: $background-color;
+      text-align: center;
+
+      &:first-child {
+        border-bottom-left-radius: $radius;
+        border-top-left-radius: $radius;
+      }
+
+      &:last-child {
+        border-top-right-radius: $radius;
+        border-bottom-right-radius: $radius;
+      }
+    }
+  }
+
+  ion-row#main {
+    ion-col#right-panel {
+      background: $background-color;
+    }
+  }
 }
 
-#top ion-col{
-  text-align:center;
-  border: none;
-  background-color:#bfbfbf;
+ion-col {
+  color: white;
 }
 
 .main {
@@ -19,11 +39,11 @@ ion-col {
 }
 
 .container {
-  position:relative;
-  padding-bottom:25px;
-  width:95%;
-  margin-left:auto;
-  margin-right:auto;
+  position: relative;
+  padding-bottom: 25px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 0; /*disable white space between inline block element */
 }
 
@@ -135,6 +155,7 @@ body {
 
 $leaves: 48;
 $animations: 12;
+
 div#autumn {
   position: absolute;
   width: 100vw;
