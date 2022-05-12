@@ -27,8 +27,8 @@ export class GamePage implements OnInit {
 
   private importedTuiles;
 
-  private currentSeason: number;
-  private changeSeason: () => void;
+  private currentSeason;
+  private changeSeason: (month) => void;
   private snowflakes: any[];
   private fallingLeaves: any[];
   private flowers: any[];
@@ -37,26 +37,40 @@ export class GamePage implements OnInit {
     private tuiles: TuilesService,
     public persoService: PersoService,
   ) {
-    this.currentSeason = 0;
-    this.changeSeason = () => {
+    this.changeSeason = (month) => {
       const seasons = ['spring', 'summer', 'autumn', 'winter'];
       const transitionDuration = [5000, 6000, 15000, 15000];
-      const div = document.getElementById(seasons[this.currentSeason]);
-      div.className = 'animated';
-      setTimeout(() => {
-        div.className = '';
-      }, transitionDuration[this.currentSeason]);
-      const bgElement = document.getElementById('animated-bg');
-      bgElement.className = 'bg-' + seasons[this.currentSeason];
-      this.currentSeason = (this.currentSeason + 1) % 4;
+      const previousSeason = this.currentSeason;
+      switch (month) {
+        case 12 || 1 || 2:
+          this.currentSeason = 'winter';
+          break;
+        case 3 || 4 || 5:
+          this.currentSeason = 'spring';
+          break;
+        case 6 || 7 || 8:
+          this.currentSeason = 'summer';
+          break;
+        case 9 || 10 || 11:
+          this.currentSeason = 'autumn';
+          break;
+      }
+      if (previousSeason !== this.currentSeason) {
+        const div = document.getElementById(this.currentSeason);
+        div.className = 'animated';
+        setTimeout(() => {
+          div.className = '';
+        }, this.currentSeason === 'spring' ? 7000 : 15000);
+        const bgElement = document.getElementById('animated-bg');
+        bgElement.className = 'bg-' + this.currentSeason;
+      }
     };
   }
 
   ngOnInit() {
+
     this.persoService.dev('Paris', 'judaisme', 'homme', '4', 'David Salomon');
     this.refreshAll();
-    
-    setInterval(this.changeSeason, 7000);
     this.snowflakes = new Array(200);
     this.fallingLeaves = [];
     for (let i = 1; i <= 48; i++) {
@@ -120,6 +134,7 @@ export class GamePage implements OnInit {
     if (this.day > 30) {
       this.day -= 30;
       this.month++;
+      this.changeSeason(this.month);
       this.addTime(0);
     }
     if (this.month > 12) {

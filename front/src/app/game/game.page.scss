@@ -207,9 +207,9 @@ div#autumn {
   $snow-size-base: 30;
   $browser-buffer: 50;
   $left-position: 100 + $browser-buffer;
-  $animate-speed-base: 11000;
+  $animate-speed-base: 5000;
   $minimum-falling-speed: 5000;
-  $animate-delay-base: 5000;
+  $animate-delay-base: 4000;
   $blur-base: 5;
 
   @for $i from 1 through $SNOWDROPS_LENGTH {
