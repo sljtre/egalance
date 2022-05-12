@@ -53,9 +53,9 @@ export class GamePage implements OnInit {
   }
 
   ngOnInit() {
-
     this.persoService.dev('Paris', 'judaisme', 'homme', '4', 'David Salomon');
     this.refreshAll();
+    
     setInterval(this.changeSeason, 7000);
     this.snowflakes = new Array(200);
     this.fallingLeaves = [];
@@ -74,13 +74,13 @@ export class GamePage implements OnInit {
     for (let i = 0; i < 50; i++) {
       if (i === 0) {
         this.matrix.push({name: 'aeroport'});
-      } else if (i === 14) {
+      } else if (i === 15) {
         this.matrix.push({name: 'religion'});
-      } else if (i === 24) {
+      } else if (i === 26) {
         this.matrix.push({name: 'mairie'});
       } else if (i === 25) {
         this.matrix.push({name: 'culturel'});
-      } else if (i === 34) {
+      } else if (i === 35) {
         this.matrix.push({name: 'justice'});
       } else {
         const retour = this.chooseAleatTuile(this.matrix, this.importedTuiles);

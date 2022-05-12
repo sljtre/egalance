@@ -21,7 +21,7 @@ export class TuilesService {
         mairie: 1,
         culturel: 1,
         parc: 1,
-        habitations: 7,
+        habitation: 7,
         bureaux: 2,
         usine: 1,
         ferme: 0,
@@ -50,7 +50,7 @@ export class TuilesService {
         mairie: 1,
         culturel: 1,
         parc: 2,
-        habitations: 9,
+        habitation: 9,
         bureaux: 3,
         usine: 1,
         ferme: 0,
@@ -79,7 +79,7 @@ export class TuilesService {
         mairie: 1,
         culturel: 1,
         parc: 4,
-        habitations: 13,
+        habitation: 13,
         bureaux: 4,
         usine: 2,
         ferme: 1,
@@ -108,7 +108,7 @@ export class TuilesService {
         mairie: 1,
         culturel: 1,
         parc: 2,
-        habitations: 10,
+        habitation: 10,
         bureaux: 3,
         usine: 1,
         ferme: 1,
@@ -137,7 +137,7 @@ export class TuilesService {
         mairie: 1,
         culturel: 1,
         parc: 2,
-        habitations: 5,
+        habitation: 5,
         bureaux: 3,
         usine: 1,
         ferme: 0,
@@ -166,7 +166,7 @@ export class TuilesService {
         mairie: 1,
         culturel: 1,
         parc: 2,
-        habitations: 11,
+        habitation: 11,
         bureaux: 3,
         usine: 2,
         ferme: 1,
@@ -195,7 +195,7 @@ export class TuilesService {
         mairie: 1,
         culturel: 1,
         parc: 3,
-        habitations: 8,
+        habitation: 8,
         bureaux: 2,
         usine: 1,
         ferme: 2,
@@ -224,7 +224,7 @@ export class TuilesService {
         mairie: 1,
         culturel: 1,
         parc: 1,
-        habitations: 8,
+        habitation: 8,
         bureaux: 1,
         usine: 1,
         ferme: 2,
@@ -253,7 +253,7 @@ export class TuilesService {
         mairie: 1,
         culturel: 1,
         parc: 2,
-        habitations: 10,
+        habitation: 10,
         bureaux: 2,
         usine: 2,
         ferme: 1,
@@ -282,7 +282,7 @@ export class TuilesService {
         mairie: 1,
         culturel: 1,
         parc: 3,
-        habitations: 15,
+        habitation: 15,
         bureaux: 3,
         usine: 3,
         ferme: 1,
@@ -326,8 +326,9 @@ export class TuilesService {
         for (let i = 0; i < line[0].tuiles.parc; i++) {
           data.push({name: 'parc'});
         }
-        for (let i = 0; i < line[0].tuiles.habitations; i++) {
-          data.push({name: 'habitations'});
+        for (let i = 0; i < line[0].tuiles.habitation; i++) {
+          const p = Math.floor((Math.random()*1000)%4);
+          data.push({name: 'habitation' + p});
         }
         for (let i = 0; i < line[0].tuiles.bureaux; i++) {
           data.push({name: 'bureaux'});

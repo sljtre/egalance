@@ -3,8 +3,12 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col>
+      <ion-col style="flex-basis: 45%; border: none;">
+      </ion-col>
+      <ion-col style="flex-basis: 10%; border: none;">
         <ion-input type="number" min="0" max="100" [(ngModel)]="nbRQ" (ionChange)="updateDisplay()"></ion-input>
+      </ion-col>
+      <ion-col style="flex-basis: 45%; border: none;">
       </ion-col>
     </ion-row>
     <ion-row>
