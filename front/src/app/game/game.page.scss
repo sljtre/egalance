@@ -82,8 +82,8 @@ ion-progress-bar {
   position: relative;
   padding-bottom: 25px;
   width: 95%;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 0; /*disable white space between inline block element */
 }
 
@@ -105,6 +105,10 @@ ion-progress-bar {
   shape-outside: repeating-linear-gradient(#0000 0 calc(var(--f) - 1px), #000 0 var(--f));
 }
 
+.test:hover{
+  cursor:pointer;
+  transform: scale(1.1, 1.1);
+}
 
 body {
   margin: 0;

@@ -5,7 +5,7 @@ import {Injectable} from '@angular/core';
 })
 export class TuilesService {
 
-  private data = [
+  private cities = [
     [{
       name: 'Reykjavik',
       type: 'glace',
@@ -298,12 +298,152 @@ export class TuilesService {
     }]
   ];
 
-  constructor() {
-  }
+  public tuiles = [
+    [{
+      name: 'Hospital',
+      labels: ['hopital'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Heal', 'Work']
+    }],
+    [{
+      name: 'School',
+      labels: ['ecole'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Study', 'Work']
+    }],
+    [{
+      name: 'College',
+      labels: ['ecoleSup'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Study', 'Work']
+    }],
+    [{
+      name: 'Supermarket',
+      labels: ['supermarche'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Shopping', 'Work']
+    }],
+    [{
+      name: 'Cinema',
+      labels: ['cinema'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Watch', 'Work']
+    }],
+    [{
+      name: 'Bar',
+      labels: ['bar'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Drink', 'Eat', 'Work']
+    }],
+    [{
+      name: 'Religion',
+      labels: ['religion'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Pray']
+    }], //work ?
+    [{
+      name: 'Justice',
+      labels: ['justice'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Work']
+    }], //se défendre ? donc truc illégaux ?
+    [{
+      name: 'Town hall',
+      labels: ['mairie'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Mary', 'Buy any building', 'Work']
+    }],
+    [{
+      name: 'Culture',
+      labels: ['culturel'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Rest']
+    }],
+    [{
+      name: 'Parc',
+      labels: ['parc'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Rest']
+    }],
+    [{
+      name: 'House',
+      labels: ['habitation0', 'habitation1', 'habitation2', 'habitation3'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Rest', 'Pray', 'Eat']
+    }],
+    [{
+      name: 'Office',
+      labels: ['bureaux'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Work']
+    }],
+    [{
+      name: 'Factory',
+      labels: ['usine'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Work']
+    }],
+    [{
+      name: 'Farm',
+      labels: ['ferme'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Eat', 'Work']
+    }],
+    [{
+      name: 'Library',
+      labels: ['bibliotheque'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Study', 'Work']
+    }],
+    [{
+      name: 'Gymnasium',
+      labels: ['gymnase'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Practice', 'Work']
+    }],
+    [{
+      name: 'Museum',
+      labels: ['musee'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Rest', 'Study', 'Work']
+    }],
+    [{
+      name: 'Restaurant',
+      labels: ['restaurant'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Eat', 'Work']
+    }],
+    [{
+      name: 'Bank',
+      labels: ['bibliotheque'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Deposit', 'Pull', 'Work']
+    }],
+    [{
+      name: 'Stadium',
+      labels: ['stade'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Practice', 'Rest', 'Work']
+    }],
+    [{
+      name: 'Airport',
+      labels: ['aeroport'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Travel', 'Work']
+    }],
+    [{
+      name: 'Empty',
+      labels: ['vide'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Rest']
+    }],
+  ];
+
+  constructor() {}
 
   getData = (name) => {
     const data = [];
-    for (const line of this.data) {
+    for (const line of this.cities) {
       if (line[0].name === name) {
         for (let i = 0; i < line[0].tuiles.hopital; i++) {
           data.push({name: 'hopital'});
@@ -327,7 +467,7 @@ export class TuilesService {
           data.push({name: 'parc'});
         }
         for (let i = 0; i < line[0].tuiles.habitation; i++) {
-          const p = Math.floor((Math.random()*1000)%4);
+          const p = Math.floor((Math.random() * 1000) % 4);
           data.push({name: 'habitation' + p});
         }
         for (let i = 0; i < line[0].tuiles.bureaux; i++) {
@@ -366,7 +506,7 @@ export class TuilesService {
   };
 
   getType = (name) => {
-    for (const line of this.data) {
+    for (const line of this.cities) {
       if (line[0].name === name) {
         return line[0].type;
       }
@@ -375,12 +515,22 @@ export class TuilesService {
 
   chooseAleatTuile = (matrix, tuiles) => {
     const i = Math.floor(Math.random() * tuiles.length);
-    for(const line of matrix){
-      if(line.length!==10){
-        line.push({name:tuiles[i].name});
+    for (const line of matrix) {
+      if (line.length !== 10) {
+        line.push({name: tuiles[i].name});
         tuiles.splice(i, 1);
         return {mat: matrix, ref: tuiles};
       }
     }
   };
+
+  getInfo = (label) => {
+    for(const line of this.tuiles){
+      for(const el of line[0].labels){
+        if(el===label){
+          return {name: line[0].name, description: line[0].description, actions: line[0].actions};
+        }
+      }
+    }
+  }
 }

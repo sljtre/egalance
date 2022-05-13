@@ -25,7 +25,9 @@ export class GamePage implements OnInit {
   public displaySante;
   public displayFaim;
 
-  public tuileHover = '';
+  public hoverName = '';
+  public hoverDescription = '';
+  public hoverActions = '';
 
   public currentSeason;
   public changeSeason: (month) => void;
@@ -114,10 +116,20 @@ export class GamePage implements OnInit {
   }
 
   hoverEnter = (name) => {
-    this.tuileHover = name;
+    const retour = this.tuiles.getInfo(name);
+    this.hoverName = retour.name;
+    this.hoverDescription = retour.description;
+    this.hoverActions = 'Possible actions here : '
+    for(const line of retour.actions){
+      this.hoverActions+=line + ' ';
+    }
   };
 
-  hoverLeave = () => this.tuileHover = '';
+  hoverLeave = () => {
+    this.hoverName = '';
+    this.hoverDescription = '';
+    this.hoverActions = '';
+  }
 
   calendar = () => {
     this.persoService.calculAll();
@@ -206,4 +218,6 @@ export class GamePage implements OnInit {
       this.clock = setInterval(this.calendar, Math.floor(this.delay / this.speed));
     }
   };
+
+  test = (data) => console.log(data)
 }

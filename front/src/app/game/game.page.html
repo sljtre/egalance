@@ -24,21 +24,19 @@
       <div class="main">
         <div class="container">
           <ion-img *ngFor="let col of matrix[0]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="test(col.name)" class="test"></ion-img>
           <br>
           <ion-img *ngFor="let col of matrix[1]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="test(col.name)" class="test"></ion-img>
           <br>
           <ion-img *ngFor="let col of matrix[2]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="test(col.name)" class="test"></ion-img>
           <br>
           <ion-img *ngFor="let col of matrix[3]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="test(col.name)" class="test"></ion-img>
           <br>
           <ion-img *ngFor="let col of matrix[4]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"></ion-img>
-          <ion-img src="./assets/img/mappoint.png"
-                   style="position:absolute; top:280px; left:80px; z-index: 5"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="test(col.name)" class="test"></ion-img>
         </div>
       </div>
     </ion-col>
@@ -51,11 +49,17 @@
       <ion-row style="height:50%;">
         <ion-col>
           <ion-row>
-            <ion-chip>
-              <ion-label class="{{!tuileHover ? 'italic' :''}}">
-                {{tuileHover || 'Passez sur une tuile'}}
-              </ion-label>
-            </ion-chip>
+            <ion-title>
+              {{hoverName}}
+            </ion-title>
+          </ion-row>
+          <ion-row>
+            <p>{{hoverDescription}}</p>
+          </ion-row>
+          <ion-row>
+            <ion-note color="primary">
+              {{hoverActions}}
+            </ion-note>
           </ion-row>
         </ion-col>
       </ion-row>
