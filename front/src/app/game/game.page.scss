@@ -23,18 +23,31 @@ ion-grid {
       height: 100%;
       background: $background-color;
 
-      ion-row {
-        ion-col {
-          padding: 10px;
+      > ion-row {
+        &:first-child {
+          box-shadow: 0 0 20px -5px black;
+          border-radius: $radius;
         }
+      }
+
+      ion-col {
+        padding: 10px;
       }
     }
   }
 
   ion-row#bottom {
-    > ion-col:last-child {
-      background: $background-color;
-      border-radius: $radius 0 $radius $radius;
+    > ion-col {
+      &:first-child {
+        background: $background-color;
+        border-top-left-radius: $radius;
+        border-bottom-left-radius: $radius;
+      }
+
+      &:last-child {
+        background: $background-color;
+        border-bottom-right-radius: $radius;
+      }
     }
   }
 }
@@ -43,10 +56,10 @@ ion-col {
   color: white;
 }
 
-ion-progress-bar{
-  margin-top:12px;
-  height:10px;
-  border-radius:5px;
+ion-progress-bar {
+  margin-top: 12px;
+  height: 10px;
+  border-radius: 5px;
 }
 
 .main {
@@ -540,6 +553,6 @@ div#spring {
   }
 }
 
-.italic{
+.italic {
   font-style: italic;
 }
