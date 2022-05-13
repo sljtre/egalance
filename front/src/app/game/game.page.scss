@@ -1,6 +1,7 @@
-$radius: 10px;
-$background-color: #00000099;
 ion-grid {
+  $radius: 10px;
+  $background-color: rgba(0, 0, 0, 0.56);
+
   ion-row#top {
     ion-col {
       background: $background-color;
@@ -13,14 +14,27 @@ ion-grid {
 
       &:last-child {
         border-top-right-radius: $radius;
-        border-bottom-right-radius: $radius;
       }
     }
   }
 
   ion-row#main {
     ion-col#right-panel {
+      height: 100%;
       background: $background-color;
+
+      ion-row {
+        ion-col {
+          padding: 10px;
+        }
+      }
+    }
+  }
+
+  ion-row#bottom {
+    > ion-col:last-child {
+      background: $background-color;
+      border-radius: $radius 0 $radius $radius;
     }
   }
 }
