@@ -9,7 +9,7 @@ import {PersoService} from '../shared/services/perso.service';
 })
 export class GamePage implements OnInit {
 
-  public matrix = [];
+  public matrix = [[], [], [], [], []];
   public type = '';
   public clock;
   public paused = true;
@@ -33,7 +33,7 @@ export class GamePage implements OnInit {
   public fallingLeaves: any[];
   public flowers: any[];
 
-  public position = {x:100, y:100};
+  public position = {x: 100, y: 100};
 
   private importedTuiles;
 
@@ -90,22 +90,23 @@ export class GamePage implements OnInit {
     console.log(this.persoService.perso.localization);
     this.importedTuiles = this.tuiles.getData(this.persoService.perso.localization);
     this.type = this.tuiles.getType(this.persoService.perso.localization);
-
-    for (let i = 0; i < 50; i++) {
-      if (i === 0) {
-        this.matrix.push({name: 'aeroport'});
-      } else if (i === 15) {
-        this.matrix.push({name: 'religion'});
-      } else if (i === 26) {
-        this.matrix.push({name: 'mairie'});
-      } else if (i === 25) {
-        this.matrix.push({name: 'aeroport'});
-      } else if (i === 35) {
-        this.matrix.push({name: 'justice'});
-      } else {
-        const retour = this.tuiles.chooseAleatTuile(this.matrix, this.importedTuiles);
-        this.matrix = retour.mat;
-        this.importedTuiles = retour.ref;
+    for (let k = 0; k < 5; k++) {
+      for (let i = 0; i < 10; i++) {
+        if (!i && !k) {
+          this.matrix[k].push({name: 'aeroport'});
+        } else if (i === 5 && k === 1) {
+          this.matrix[k].push({name: 'religion'});
+        } else if (i === 6 && k === 2) {
+          this.matrix[k].push({name: 'mairie'});
+        } else if (i === 5 && k === 2) {
+          this.matrix[k].push({name: 'aeroport'});
+        } else if (i === 5 && k === 3) {
+          this.matrix[k].push({name: 'justice'});
+        } else {
+          const retour = this.tuiles.chooseAleatTuile(this.matrix, this.importedTuiles);
+          this.matrix = retour.mat;
+          this.importedTuiles = retour.ref;
+        }
       }
     }
     console.log(this.persoService.perso.name);

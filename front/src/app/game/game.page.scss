@@ -43,10 +43,16 @@ ion-col {
   color: white;
 }
 
+ion-progress-bar{
+  margin-top:12px;
+  height:10px;
+  border-radius:5px;
+}
+
 .main {
   display: flex;
   width: 95%;
-  --s: 80px; /* size  */
+  --s: 72px; /* size  */
   --m: 0px; /* margin */
   --f: calc(1.732 * var(--s) + 4 * var(--m) - 1px);
   padding-bottom: 40px;
@@ -56,8 +62,8 @@ ion-col {
   position: relative;
   padding-bottom: 25px;
   width: 95%;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 5%;
+  margin-right: 5%;
   font-size: 0; /*disable white space between inline block element */
 }
 
