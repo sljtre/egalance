@@ -1,4 +1,5 @@
 <app-menu></app-menu>
+<app-saisons></app-saisons>
 
 <ion-grid style="width:100%">
   <ion-row id="top">
@@ -101,22 +102,3 @@
     </ion-col>
   </ion-row>
 </ion-grid>
-
-<div id="animated-bg" class="bg-winter" style="z-index: -1">
-  <span *ngFor="let el of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]"></span>
-</div>
-
-<div id="summer">
-  <ion-img src="./assets/img/sun.png"></ion-img>
-</div>
-<div id="autumn">
-  <ion-img *ngFor="let i of fallingLeaves" [src]="'./assets/img/leaves/leaf'+ ((i % 6) + 1) + '.png'"></ion-img>
-</div>
-<div id="winter">
-  <div *ngFor="let i of snowflakes"></div>
-</div>
-<div id="spring">
-  <ion-img *ngFor="let i of flowers" [src]="'./assets/img/spring/flower'+ i + '.png'"></ion-img>
-  <img class="grass" src="./assets/img/spring/grass.png" alt="grass"/>
-  <img class="bee" src="./assets/img/spring/bee.png" alt="bee">
-</div>
