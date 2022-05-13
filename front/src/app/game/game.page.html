@@ -51,9 +51,11 @@
       <ion-row style="height:50%;">
         <ion-col>
           <ion-row>
-            <ion-title>
-              {{tuileHover}}
-            </ion-title>
+            <ion-chip>
+              <ion-label class="{{!tuileHover ? 'italic' :''}}">
+                {{tuileHover || 'Passez sur une tuile'}}
+              </ion-label>
+            </ion-chip>
           </ion-row>
         </ion-col>
       </ion-row>
