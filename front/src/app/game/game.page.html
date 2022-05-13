@@ -1,165 +1,116 @@
 <app-menu></app-menu>
 
-<div id="animated-bg" class="bg-winter">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
-
 <ion-grid style="width:100%">
-  <ion-row style="height:8.5%; background-color: black" id="top">
-    <ion-col style="flex-basis:10%;">
-      <ion-button fill="clear" size="medium" title="Decrease time speed" (click)="clockSpeed('-')">
+  <ion-row id="top">
+    <ion-col size="1">
+      <ion-button fill="clear" size="medium" title="Decrease time speed" (click)="clockSpeed('-')" class="tuile">
         <ion-icon name="remove-circle" slot="icon-only" color="success"></ion-icon>
       </ion-button>
     </ion-col>
-    <ion-col style="flex-basis:5%;">
-        x{{speed}}
+    <ion-col size="1">
+      x{{speed}}
     </ion-col>
-    <ion-col style="flex-basis:10%;">
+    <ion-col size="1">
       <ion-button fill="clear" size="medium" title="Increase time speed" (click)="clockSpeed('+')">
         <ion-icon name="add-circle" slot="icon-only" color="success"></ion-icon>
       </ion-button>
     </ion-col>
-    <ion-col style="flex-basis:10%;">
+    <ion-col size="2">
       {{day}}/{{month}}/{{year}}
     </ion-col>
-    <ion-col style="flex-basis:10%;">
-        <ion-button fill="clear" size="medium" title="Pause" (click)="pause()" *ngIf="!paused">
-          <ion-icon name="pause-circle" slot="icon-only" color="warning"></ion-icon>
-        </ion-button>
-        <ion-button fill="clear" size="medium" title="Resume" (click)="pause()" *ngIf="paused">
-          <ion-icon name="play-circle" slot="icon-only" color="success"></ion-icon>
-        </ion-button>
+    <ion-col size="2">
+      <ion-button fill="clear" size="medium" title="Pause" (click)="pause()" *ngIf="!paused">
+        <ion-icon name="pause-circle" slot="icon-only" color="warning"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" size="medium" title="Resume" (click)="pause()" *ngIf="paused">
+        <ion-icon name="play-circle" slot="icon-only" color="success"></ion-icon>
+      </ion-button>
     </ion-col>
-    <ion-col style="flex-basis:35%;">
+    <ion-col size="4">
       {{persoService.perso.name}}, {{persoService.perso.localization}}
     </ion-col>
+    <ion-col size="1"></ion-col>
   </ion-row>
-  <ion-row style="height:80%">
-    <ion-col style="flex-basis:70%">
+  <ion-row id="main" style="height:58%; border: none;">
+    <ion-col size="9">
       <div class="main">
-                <div class="container">
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[0].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[1].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[2].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[3].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[4].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[5].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[6].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[7].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[8].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[9].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[10].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[11].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[12].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[13].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[14].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[15].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[16].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[17].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[18].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[19].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[20].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[21].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[22].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[23].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[24].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[25].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[26].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[27].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[28].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[29].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[30].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[31].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[32].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[33].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[34].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[35].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[36].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[37].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[38].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[39].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[40].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[41].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[42].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[43].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[44].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[45].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[46].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[47].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[48].name + '.png'"></ion-img>
-                  <ion-img [src]="'./assets/tuiles/' + type + '/' + matrix[49].name + '.png'"></ion-img>
-                </div>
+        <div class="container">
+          <ion-img *ngFor="let col of matrix[0]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"></ion-img>
+          <br>
+          <ion-img *ngFor="let col of matrix[1]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"></ion-img>
+          <br>
+          <ion-img *ngFor="let col of matrix[2]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"></ion-img>
+          <br>
+          <ion-img *ngFor="let col of matrix[3]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"></ion-img>
+          <br>
+          <ion-img *ngFor="let col of matrix[4]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"></ion-img>
+          <ion-img src="./assets/img/mappoint.png"
+                   style="position:absolute; top:280px; left:80px; z-index: 5"></ion-img>
+        </div>
       </div>
     </ion-col>
-    <ion-col style="flex-basis:30%">
-      <ion-row>
+    <ion-col id="right-panel">
+      <ion-row style="height:50%;">
         <ion-col>
-          santé, bonheur, religion
+          infos case actuelle
         </ion-col>
       </ion-row>
-      <ion-row>
+      <ion-row style="height:50%;">
         <ion-col>
-          income
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          inventaire
+          <ion-row>
+            <ion-title>
+              {{tuileHover}}
+            </ion-title>
+          </ion-row>
         </ion-col>
       </ion-row>
     </ion-col>
   </ion-row>
-  <ion-row style="height:15%;">
-    <ion-col style="flex-basis:30%">
-      <ion-row style="height:33%;">
-        <ion-progress-bar id="progFatigue" value={{displayFatigue}}></ion-progress-bar>Fatigue 
+  <ion-row id="bottom">
+    <ion-col size="4">
+      <ion-row>
+        <ion-col size="1">
+          <ion-icon name="flash" color="warning" size="large"></ion-icon>
+        </ion-col>
+        <ion-col size="10">
+          <ion-progress-bar id="progFatigue" value={{displayFatigue}}></ion-progress-bar>
+        </ion-col>
       </ion-row>
 
-      <ion-row style="height:33%;">
-        <ion-progress-bar id="progSante" value={{displaySante}}></ion-progress-bar>Health 
+      <ion-row>
+        <ion-col size="1">
+          <ion-icon name="heart" color="danger" size="large"></ion-icon>
+        </ion-col>
+        <ion-col size="10">
+          <ion-progress-bar id="progSante" value={{displaySante}}></ion-progress-bar>
+        </ion-col>
       </ion-row>
 
-      <ion-row style="height:33%;">
-        <ion-progress-bar id="progFaim" value={{displayFaim}}></ion-progress-bar>Hunger
+      <ion-row>
+        <ion-col size="1">
+          <ion-icon name="fast-food" color="danger-tint" size="large"></ion-icon>
+        </ion-col>
+        <ion-col size="10">
+          <ion-progress-bar id="progFaim" value={{displayFaim}}></ion-progress-bar>
+        </ion-col>
       </ion-row>
 
-      
+
     </ion-col>
-    <ion-col style="flex-basis:70%">
-
+    <ion-col size="8">
+      INV + INFOS PERSO
     </ion-col>
   </ion-row>
 </ion-grid>
 
+<div id="animated-bg" class="bg-winter" style="z-index: -1">
+  <span *ngFor="let el of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]"></span>
+</div>
 
 <div id="summer">
   <ion-img src="./assets/img/sun.png"></ion-img>

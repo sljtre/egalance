@@ -1,23 +1,69 @@
+ion-grid {
+  $radius: 10px;
+  $background-color: rgba(0, 0, 0, 0.56);
+
+  ion-row#top {
+    ion-col {
+      background: $background-color;
+      text-align: center;
+
+      &:first-child {
+        border-bottom-left-radius: $radius;
+        border-top-left-radius: $radius;
+      }
+
+      &:last-child {
+        border-top-right-radius: $radius;
+      }
+    }
+  }
+
+  ion-row#main {
+    ion-col#right-panel {
+      height: 100%;
+      background: $background-color;
+
+      ion-row {
+        ion-col {
+          padding: 10px;
+        }
+      }
+    }
+  }
+
+  ion-row#bottom {
+    > ion-col:last-child {
+      background: $background-color;
+      border-radius: $radius 0 $radius $radius;
+    }
+  }
+}
+
 ion-col {
-  border: solid 1px white;
   color: white;
 }
 
-#top ion-col{
-  text-align:center;
-  border: none;
+ion-progress-bar{
+  margin-top:12px;
+  height:10px;
+  border-radius:5px;
 }
 
 .main {
   display: flex;
-  width: 100%;
-  --s: 80px; /* size  */
-  --m: 1px; /* margin */
+  width: 95%;
+  --s: 72px; /* size  */
+  --m: 0px; /* margin */
   --f: calc(1.732 * var(--s) + 4 * var(--m) - 1px);
-  padding-bottom: 50px;
+  padding-bottom: 40px;
 }
 
 .container {
+  position: relative;
+  padding-bottom: 25px;
+  width: 95%;
+  margin-left: 5%;
+  margin-right: 5%;
   font-size: 0; /*disable white space between inline block element */
 }
 
@@ -129,6 +175,7 @@ body {
 
 $leaves: 48;
 $animations: 12;
+
 div#autumn {
   position: absolute;
   width: 100vw;
@@ -207,9 +254,9 @@ div#autumn {
   $snow-size-base: 30;
   $browser-buffer: 50;
   $left-position: 100 + $browser-buffer;
-  $animate-speed-base: 11000;
+  $animate-speed-base: 5000;
   $minimum-falling-speed: 5000;
-  $animate-delay-base: 5000;
+  $animate-delay-base: 4000;
   $blur-base: 5;
 
   @for $i from 1 through $SNOWDROPS_LENGTH {
