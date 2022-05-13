@@ -1,12 +1,46 @@
-ion-col {
-  //border: solid 1px white;
-  color: white;
+ion-grid {
+  $radius: 10px;
+  $background-color: rgba(0, 0, 0, 0.56);
+
+  ion-row#top {
+    ion-col {
+      background: $background-color;
+      text-align: center;
+
+      &:first-child {
+        border-bottom-left-radius: $radius;
+        border-top-left-radius: $radius;
+      }
+
+      &:last-child {
+        border-top-right-radius: $radius;
+      }
+    }
+  }
+
+  ion-row#main {
+    ion-col#right-panel {
+      height: 100%;
+      background: $background-color;
+
+      ion-row {
+        ion-col {
+          padding: 10px;
+        }
+      }
+    }
+  }
+
+  ion-row#bottom {
+    > ion-col:last-child {
+      background: $background-color;
+      border-radius: $radius 0 $radius $radius;
+    }
+  }
 }
 
-#top ion-col{
-  text-align:center;
-  border: none;
-  background-color:#bfbfbf;
+ion-col {
+  color: white;
 }
 
 .main {
@@ -19,11 +53,11 @@ ion-col {
 }
 
 .container {
-  position:relative;
-  padding-bottom:25px;
-  width:95%;
-  margin-left:auto;
-  margin-right:auto;
+  position: relative;
+  padding-bottom: 25px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 0; /*disable white space between inline block element */
 }
 
@@ -135,6 +169,7 @@ body {
 
 $leaves: 48;
 $animations: 12;
+
 div#autumn {
   position: absolute;
   width: 100vw;
