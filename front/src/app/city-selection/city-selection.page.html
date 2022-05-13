@@ -1,6 +1,15 @@
 <app-menu></app-menu>
 
-<ion-grid style="background-image: url('../../assets/img/worldmap.png')">
+<ion-grid style="width:100%;">
+  <ion-row style="height: 500px;">
+    <ion-col>
+      <highcharts-chart
+        [Highcharts]="Highcharts"
+        [constructorType]="chartConstructor"
+        [options]="chartOptions">
+      </highcharts-chart>
+    </ion-col>
+  </ion-row>
   <ion-img src="./assets/img/mappoint.png" style="top: 80px; left: 540px;" title="Paris" (click)="select('Paris')"></ion-img>
   <ion-img src="./assets/img/mappoint.png" style="top: 25px; left: 478px;" title="Reykjavik" (click)="select('Reykjavik')"></ion-img>
   <ion-img src="./assets/img/mappoint.png" style="top: 107px; left: 308px;" title="New York" (click)="select('New York')"></ion-img>

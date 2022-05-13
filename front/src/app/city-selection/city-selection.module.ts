@@ -9,13 +9,16 @@ import { CitySelectionPageRoutingModule } from './city-selection-routing.module'
 import { CitySelectionPage } from './city-selection.page';
 import { ComponentsModule } from '../shared/components/components.module';
 
+import { HighchartsChartModule } from 'highcharts-angular';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     CitySelectionPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    HighchartsChartModule
   ],
   declarations: [CitySelectionPage]
 })
