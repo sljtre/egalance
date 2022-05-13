@@ -5,7 +5,9 @@ ion-grid {
   ion-row#top {
     ion-col {
       background: $background-color;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &:first-child {
         border-bottom-left-radius: $radius;
@@ -14,6 +16,11 @@ ion-grid {
 
       &:last-child {
         border-top-right-radius: $radius;
+      }
+
+      ion-icon{
+        font-size: 25px;
+        cursor: pointer;
       }
     }
   }

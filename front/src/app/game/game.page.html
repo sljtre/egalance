@@ -2,29 +2,17 @@
 
 <ion-grid style="width:100%">
   <ion-row id="top">
-    <ion-col size="1">
-      <ion-button fill="clear" size="medium" title="Decrease time speed" (click)="clockSpeed('-')" class="tuile">
-        <ion-icon name="remove-circle" slot="icon-only" color="success"></ion-icon>
-      </ion-button>
-    </ion-col>
-    <ion-col size="1">
-      x{{speed}}
-    </ion-col>
-    <ion-col size="1">
-      <ion-button fill="clear" size="medium" title="Increase time speed" (click)="clockSpeed('+')">
-        <ion-icon name="add-circle" slot="icon-only" color="success"></ion-icon>
-      </ion-button>
+    <ion-col size="3">
+      <ion-icon name="remove-circle" color="success" (click)="clockSpeed('-')"></ion-icon>
+      <ion-badge color="light" style="margin: 0 10px">x {{speed}}</ion-badge>
+      <ion-icon name="add-circle" color="success" (click)="clockSpeed('+')"></ion-icon>
     </ion-col>
     <ion-col size="2">
       {{day}}/{{month}}/{{year}}
     </ion-col>
     <ion-col size="2">
-      <ion-button fill="clear" size="medium" title="Pause" (click)="pause()" *ngIf="!paused">
-        <ion-icon name="pause-circle" slot="icon-only" color="warning"></ion-icon>
-      </ion-button>
-      <ion-button fill="clear" size="medium" title="Resume" (click)="pause()" *ngIf="paused">
-        <ion-icon name="play-circle" slot="icon-only" color="success"></ion-icon>
-      </ion-button>
+      <ion-icon name="pause-circle" color="warning" (click)="pause()" *ngIf="!paused"></ion-icon>
+      <ion-icon name="play-circle" color="success" (click)="pause()" *ngIf="paused"></ion-icon>
     </ion-col>
     <ion-col size="4">
       {{persoService.perso.name}}, {{persoService.perso.localization}}
