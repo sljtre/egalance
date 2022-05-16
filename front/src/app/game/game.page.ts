@@ -50,9 +50,7 @@ export class GamePage implements OnInit {
 
   public isMoving = false;
 
-  private xOnLoad = this.x;
-  private yOnLoad = this.y;
-  public positionPlayer = 'top:' + this.yOnLoad + 'px; left:' + this.xOnLoad + 'px;';
+  public positionPlayer = 'top:' + this.y + 'px; left:' + this.x+ 'px;';
 
 
   constructor(

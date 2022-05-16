@@ -94,7 +94,7 @@ export class TuilesService {
       }
     }],
     [{
-      name: 'Sao Paulo',
+      name: 'Rio de Janeiro',
       type: 'herbe',
       tuiles: {
         hopital: 2,
@@ -108,7 +108,7 @@ export class TuilesService {
         mairie: 1,
         culturel: 1,
         parc: 2,
-        habitation: 10,
+        habitation: 9,
         bureaux: 3,
         usine: 1,
         ferme: 1,
