@@ -57,7 +57,7 @@ export class GamePage implements OnInit {
 
   async ngOnInit() {
 
-    this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon');
+    //this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon');
     this.refreshAll();
 
     this.importedTuiles = this.tuiles.getData(this.persoService.perso.localization);
