@@ -3,7 +3,8 @@ import {TuilesService} from '../shared/services/tuiles.service';
 import {PersoService} from '../shared/services/perso.service';
 import {RouletteService} from '../shared/services/roulette.service';
 import {SaisonsComponent} from './saisons/saisons.component'
-import { Animation, AnimationController } from '@ionic/angular';
+import { Animation, AnimationController,ModalController } from '@ionic/angular';
+import { ObjectUnsubscribedError } from 'rxjs';
 
 
 @Component({
@@ -55,12 +56,18 @@ export class GamePage implements OnInit {
   private yOnLoad = this.y;
   public positionPlayer = 'top:' + this.yOnLoad + 'px; left:' + this.xOnLoad + 'px;';
 
+  public isHiddenSpin =false;
+  public isHiddenValid = true;
+  public isDisabledValid=true;
+  public end;
+
 
   constructor(
     private tuiles: TuilesService,
     public persoService: PersoService,
     public roulette:RouletteService,
-    private animationCtrl: AnimationController
+    private animationCtrl: AnimationController,
+    public modalController:ModalController
   ) {};
 
   async ngOnInit() {
@@ -102,10 +109,43 @@ export class GamePage implements OnInit {
     //this.roulette.drawRouletteWheel();
   }
 
-  chargeRoulette=()=>{
-    console.log("Charge Roulette appele");
+  spin=()=>{    
+    this.roulette.spin();
+    this.isHiddenSpin=true;
+    this.isHiddenValid=false;  
+    this.checkRouletteFin();
+  }
+
+  checkRouletteFin=()=>{
+    if(this.roulette.answer!=undefined){      
+      clearTimeout(this.end);
+      this.isDisabledValid=false;
+    }
+    else{
+      this.end =setTimeout(this.checkRouletteFin,200);
+    }
+  }
+
+  resetRoulette=()=>{
+    this.roulette.answer=undefined;    
     this.roulette.drawRouletteWheel();
   }
+
+  dismissModal=()=>{
+    this.modalController.dismiss({
+      'dismissed':true
+    });
+    
+  }
+
+  buttonReset=()=>{
+    console.log("hello we left the modal !");
+    this.isHiddenSpin=false;
+    this.isHiddenValid=true;
+    this.isDisabledValid=true;
+  }
+
+  
 
   hoverEnter = (name) => {
     const retour = this.tuiles.getInfo(name);
@@ -185,7 +225,6 @@ export class GamePage implements OnInit {
     progSante.style.setProperty('--progress-background', tmp);
 
     //Changement de couleur barre de progression Fatigue
-    //Changement de couleur barre de progression Faim
     if (this.displayFatigue > 0 && this.displayFatigue <= 0.5) {
       tmp = 'rgb(255,' + Math.floor(this.displayFatigue * 510) + ',0)';
     } else if (this.displayFatigue > 0.5 && this.displayFatigue <= 1) {

@@ -1,12 +1,26 @@
 <app-menu></app-menu>
 <app-saisons></app-saisons>
 
-<ion-modal trigger=popoverRoulette reference="event" (ionViewDidEnter)="chargeRoulette()">
+<ion-modal trigger=popoverRoulette backdrop-dismiss=false reference="event" (ionViewDidEnter)="resetRoulette();" (ionViewDidLeave)="buttonReset()" style="--background:transparent !important;--border-style:none;--backdrop-opacity:0;border:none;">
   <ng-template>
-    <ion-content>
-        <ion-button (click)="this.roulette.spin()">Spin!</ion-button>
-        <canvas id="canvas" height="500" width="500"></canvas>      
-    </ion-content>
+    <ion-grid>
+
+      <ion-row >
+        <ion-col></ion-col>
+        <ion-col style="text-align:center;">          
+            <ion-button [hidden]=isHiddenSpin (click)="spin()" >Spin!</ion-button>
+            <ion-button [hidden]=isHiddenValid [disabled]=isDisabledValid color="success" (click)="dismissModal()">OK!</ion-button>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+
+      <ion-row>        
+        <ion-col>
+          <canvas id="canvas" height="500" width="500"></canvas>              
+        </ion-col>
+      </ion-row>
+      
+    </ion-grid>
   </ng-template>
 </ion-modal>
 
