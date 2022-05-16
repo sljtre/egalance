@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {PersoService} from './perso.service';
 
 @Injectable({
   providedIn: 'root'
@@ -119,7 +120,7 @@ export class TuilesService {
         banque: 1,
         stade: 1,
         aeroport: 1,
-        vide: 10
+        vide: 11
       }
     }],
     [{
@@ -297,7 +298,6 @@ export class TuilesService {
       }
     }]
   ];
-
   public tuiles = [
     [{
       name: 'Hospital',
@@ -439,8 +439,9 @@ export class TuilesService {
     }],
   ];
 
-  constructor() {
-  }
+  constructor(
+    private perso: PersoService
+  ) {}
 
   getData = (name) => {
     const data = [];
@@ -521,7 +522,7 @@ export class TuilesService {
     for (const line of matrix) {
       if (line.length !== 10) {
         col = line.length;
-        line.push({name: tuiles[i].name, top: 64 * row, left: (row % 2) * 36 + 73 * col});
+        line.push({name: tuiles[i].name, top: 64 * row, left: (row % 2) * 36 + 73 * col, type: this.getType(this.perso.perso.localization)});
         tuiles.splice(i, 1);
         return {mat: matrix, ref: tuiles};
       } else {
