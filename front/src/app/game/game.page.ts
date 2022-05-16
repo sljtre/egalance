@@ -48,8 +48,7 @@ export class GamePage implements OnInit {
   public x = 13;
   public y = -20;
 
-  // public xWanted = 50;
-  // public yWanted = 150;
+  public isMoving = false;
 
   private xOnLoad = this.x;
   private yOnLoad = this.y;
@@ -213,29 +212,35 @@ export class GamePage implements OnInit {
 
   //Animation déplacement
   deplacementPlay = (x, y) => {
-    x += 13;
-    y -= 20;
-    this.positionPlayer = '';
-    let elt = document.querySelector('#player');
-    this.action = 'WalkingManPositive';
-
-    let start = 'translateX(' + this.x + 'px) translateY(' + this.y + 'px)'
-    let finish = 'translateX(' + x + 'px) translateY(' + y + 'px)';
-
-    this.deplacement = this.animationCtrl.create()
-    .addElement(elt)
-    .duration(25*(Math.abs(x-this.x)+Math.abs(y-this.y)))
-    .iterations(1)
-    .direction('alternate')
-    .keyframes([
-      {offset: 0, transform: start},
-      {offset: 1, transform: finish}
-    ]);
-
-    this.deplacement.play().then( () => {
+    if(!this.isMoving){
+      this.isMoving = true;
+      x += 13;
+      y -= 20;
+      this.positionPlayer = '';
+      let elt = document.querySelector('#player');
       this.action = 'WalkingManPositive';
-      this.x = x;
-      this.y = y;
-    });
+
+      let start = 'translateX(' + this.x + 'px) translateY(' + this.y + 'px)'
+      let finish = 'translateX(' + x + 'px) translateY(' + y + 'px)';
+
+      this.deplacement = this.animationCtrl.create()
+      .addElement(elt)
+      .duration(25*(Math.abs(x-this.x)+Math.abs(y-this.y)))
+      .iterations(1)
+      .direction('alternate')
+      .keyframes([
+        {offset: 0, transform: start},
+        {offset: 1, transform: finish}
+      ]);
+
+      this.deplacement.play().then( () => {
+        this.action = 'WalkingManPositive';
+        this.x = x;
+        this.y = y;
+        this.isMoving = false;
+      });
+    }
+    
+    
   }
 }
