@@ -1,18 +1,18 @@
-ion-grid{
-  width:100%;
+ion-grid {
+  width: 100%;
   background-size: 1200px;
 }
 
-ion-col{
-  text-align:center;
+ion-col {
+  text-align: center;
 }
 
-ion-img{
-  width:40px;
+ion-img {
+  width: 25px;
   position: absolute;
 }
 
-ion-img:hover{
+ion-img:hover {
   transform: scale(1.2, 1.2);
   cursor: pointer;
 }
