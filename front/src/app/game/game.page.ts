@@ -36,14 +36,16 @@ export class GamePage implements OnInit {
   public hoverDescription = '';
   public hoverActions = '';
 
+  public currentName = 'Town Hall';
+
   private importedTuiles;
   public currentSeason;
 
   public deplacement: Animation;
 
   public action = 'WalkingManPositive';
-  public x = 13;
-  public y = -20;
+  public x = 451;
+  public y = 108;
 
   public isMoving = false;
 
@@ -269,10 +271,13 @@ export class GamePage implements OnInit {
           ]);
 
         this.deplacement.play().then(() => {
+          const retour = this.tuiles.getInfo(name);
+          this.currentName = retour.name;
           this.action = 'WalkingManPositive';
           this.x = x;
           this.y = y;
           this.isMoving = false;
+
         });
       }
     }
