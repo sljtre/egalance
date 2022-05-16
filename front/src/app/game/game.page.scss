@@ -114,3 +114,10 @@ body {
   margin: 0;
   overflow: hidden;
 }
+
+#player{
+  border: solid 1px black;
+  width: auto;
+  height: 125px;
+  z-index: 5;
+}

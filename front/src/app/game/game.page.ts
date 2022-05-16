@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {TuilesService} from '../shared/services/tuiles.service';
 import {PersoService} from '../shared/services/perso.service';
 import {SaisonsComponent} from './saisons/saisons.component'
+import { Animation, AnimationController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-game',
@@ -36,9 +38,28 @@ export class GamePage implements OnInit {
 
   private importedTuiles;
 
+
+  //Animation déplacement
+  public deplacement: Animation;
+
+  public action = 'WalkingManPositive';
+  public x = 13;
+  public y = -20;
+
+  // public xWanted = 50;
+  // public yWanted = 150;
+
+  private xOnLoad = this.x;
+  private yOnLoad = this.y;
+  public positionPlayer = 'top:' + this.yOnLoad + 'px; left:' + this.xOnLoad + 'px;';
+
+
   constructor(
     private tuiles: TuilesService,
     public persoService: PersoService,
+
+    //Animation déplacement
+    private animationCtrl: AnimationController
   ) {}
 
   ngOnInit() {
@@ -178,5 +199,33 @@ export class GamePage implements OnInit {
 
   test = (top, left) => {
     console.log('coo : left = ', left, 'top = ', top);
+  }
+
+  //Animation déplacement
+  deplacementPlay = (x, y) => {
+    x += 13;
+    y -= 20;
+    this.positionPlayer = '';
+    let elt = document.querySelector('#player');
+    this.action = 'WalkingManPositive';
+
+    let start = 'translateX(' + this.x + 'px) translateY(' + this.y + 'px)'
+    let finish = 'translateX(' + x + 'px) translateY(' + y + 'px)';
+
+    this.deplacement = this.animationCtrl.create()
+    .addElement(elt)
+    .duration(25*(Math.abs(x-this.x)+Math.abs(y-this.y)))
+    .iterations(1)
+    .direction('alternate')
+    .keyframes([
+      {offset: 0, transform: start},
+      {offset: 1, transform: finish}
+    ]);
+
+    this.deplacement.play().then( () => {
+      this.action = 'WalkingManPositive';
+      this.x = x;
+      this.y = y;
+    });
   }
 }

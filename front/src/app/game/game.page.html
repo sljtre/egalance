@@ -24,20 +24,21 @@
     <ion-col size="9">
       <div class="main">
         <div class="container">
+          <ion-img id="player" [src]="'./assets/img/animatedMan/' + action + '.gif'" [style]="'position: absolute;' + positionPlayer + translate"></ion-img>
           <ion-img *ngFor="let col of matrix[0]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="test(col.left, col.top)" class="test"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top)" class="test"></ion-img>
           <br>
           <ion-img *ngFor="let col of matrix[1]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="test(col.left, col.top)" class="test"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top)" class="test"></ion-img>
           <br>
           <ion-img *ngFor="let col of matrix[2]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="test(col.left, col.top)" class="test"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top)" class="test"></ion-img>
           <br>
           <ion-img *ngFor="let col of matrix[3]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="test(col.left, col.top)" class="test"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top)" class="test"></ion-img>
           <br>
           <ion-img *ngFor="let col of matrix[4]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="test(col.left, col.top)" class="test"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top)" class="test"></ion-img>
         <ion-img src="./assets/img/mappoint.png" style="position:absolute; top:252px; left:365px;"></ion-img>
         </div>
       </div>
