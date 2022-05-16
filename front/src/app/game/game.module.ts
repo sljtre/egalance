@@ -10,14 +10,16 @@ import { GamePage } from './game.page';
 
 import {ComponentsModule} from '../shared/components/components.module';
 
+import {SaisonsComponent} from './saisons/saisons.component';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     GamePageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
   ],
-  declarations: [GamePage]
+  declarations: [GamePage, SaisonsComponent]
 })
 export class GamePageModule {}
