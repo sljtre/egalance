@@ -1,7 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {TuilesService} from '../shared/services/tuiles.service';
 import {PersoService} from '../shared/services/perso.service';
 import {RouletteService} from '../shared/services/roulette.service';
+import {SaisonsComponent} from './saisons/saisons.component'
+import { Animation, AnimationController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-game',
@@ -9,6 +12,8 @@ import {RouletteService} from '../shared/services/roulette.service';
   styleUrls: ['./game.page.scss'],
 })
 export class GamePage implements OnInit {
+
+  @ViewChild(SaisonsComponent) saisonsComponent: SaisonsComponent;
 
   public matrix = [[], [], [], [], []];
   public type = '';
@@ -26,68 +31,42 @@ export class GamePage implements OnInit {
   public displaySante;
   public displayFaim;
 
-  public tuileHover = '';
-
-  public currentSeason;
-  public changeSeason: (month) => void;
-  public snowflakes: any[];
-  public fallingLeaves: any[];
-  public flowers: any[];
+  public hoverName = '';
+  public hoverDescription = '';
+  public hoverActions = '';
 
   public position = {x: 100, y: 100};
 
   private importedTuiles;
+  public currentSeason;
+
+
+  //Animation déplacement
+  public deplacement: Animation;
+
+  public action = 'WalkingManPositive';
+  public x = 13;
+  public y = -20;
+
+  // public xWanted = 50;
+  // public yWanted = 150;
+
+  private xOnLoad = this.x;
+  private yOnLoad = this.y;
+  public positionPlayer = 'top:' + this.yOnLoad + 'px; left:' + this.xOnLoad + 'px;';
+
 
   constructor(
     private tuiles: TuilesService,
     public persoService: PersoService,
-    public roulette:RouletteService
-  ) {
-    this.changeSeason = (month) => {
-      const seasons = ['spring', 'summer', 'autumn', 'winter'];
-      const transitionDuration = [5000, 6000, 15000, 15000];
-      const previousSeason = this.currentSeason;
-      switch (month) {
-        case 12 || 1 || 2:
-          this.currentSeason = 'winter';
-          break;
-        case 3 || 4 || 5:
-          this.currentSeason = 'spring';
-          break;
-        case 6 || 7 || 8:
-          this.currentSeason = 'summer';
-          break;
-        case 9 || 10 || 11:
-          this.currentSeason = 'autumn';
-          break;
-      }
-      if (previousSeason !== this.currentSeason) {
-        const div = document.getElementById(this.currentSeason);
-        div.className = 'animated';
-        setTimeout(() => {
-          div.className = '';
-        }, this.currentSeason === 'spring' ? 7000 : 15000);
-        const bgElement = document.getElementById('animated-bg');
-        bgElement.className = 'bg-' + this.currentSeason;
-      }
-    };
-  }
+    public roulette:RouletteService,
+    private animationCtrl: AnimationController
+  ) {};
 
   async ngOnInit() {
 
     this.persoService.dev('Paris', 'judaisme', 'homme', '4', 'David Salomon');
     this.refreshAll();
-
-    setInterval(this.changeSeason, 7000);
-    this.snowflakes = new Array(200);
-    this.fallingLeaves = [];
-    for (let i = 1; i <= 48; i++) {
-      this.fallingLeaves.push(i);
-    }
-    this.flowers = [];
-    for (let i = 1; i <= 24; i++) {
-      this.flowers.push((Math.floor(Math.random() * 100) % 9) + 1);
-    }
 
     console.log(this.persoService.perso.localization);
     this.importedTuiles = this.tuiles.getData(this.persoService.perso.localization);
@@ -95,15 +74,15 @@ export class GamePage implements OnInit {
     for (let k = 0; k < 5; k++) {
       for (let i = 0; i < 10; i++) {
         if (!i && !k) {
-          this.matrix[k].push({name: 'aeroport'});
+          this.matrix[k].push({name: 'aeroport', left:0, top:0});
         } else if (i === 5 && k === 1) {
-          this.matrix[k].push({name: 'religion'});
+          this.matrix[k].push({name: 'religion', left:401, top:64});
         } else if (i === 6 && k === 2) {
-          this.matrix[k].push({name: 'mairie'});
+          this.matrix[k].push({name: 'mairie', left:438, top:128});
         } else if (i === 5 && k === 2) {
-          this.matrix[k].push({name: 'aeroport'});
+          this.matrix[k].push({name: 'aeroport', left:365, top:128});
         } else if (i === 5 && k === 3) {
-          this.matrix[k].push({name: 'justice'});
+          this.matrix[k].push({name: 'justice', left:301, top:192});
         } else {
           const retour = this.tuiles.chooseAleatTuile(this.matrix, this.importedTuiles);
           this.matrix = retour.mat;
@@ -129,10 +108,20 @@ export class GamePage implements OnInit {
   }
 
   hoverEnter = (name) => {
-    this.tuileHover = name;
+    const retour = this.tuiles.getInfo(name);
+    this.hoverName = retour.name;
+    this.hoverDescription = retour.description;
+    this.hoverActions = 'Possible actions here : '
+    for(const line of retour.actions){
+      this.hoverActions+=line + ' ';
+    }
   };
 
-  hoverLeave = () => this.tuileHover = '';
+  hoverLeave = () => {
+    this.hoverName = '';
+    this.hoverDescription = '';
+    this.hoverActions = '';
+  }
 
   calendar = () => {
     this.persoService.calculAll();
@@ -155,7 +144,7 @@ export class GamePage implements OnInit {
     if (this.day > 30) {
       this.day -= 30;
       this.month++;
-      this.changeSeason(this.month);
+      this.saisonsComponent.changeSeason(this.month);
       this.addTime(0);
     }
     if (this.month > 12) {
@@ -221,4 +210,34 @@ export class GamePage implements OnInit {
       this.clock = setInterval(this.calendar, Math.floor(this.delay / this.speed));
     }
   };
+
+  
+
+  //Animation déplacement
+  deplacementPlay = (x, y) => {
+    x += 13;
+    y -= 20;
+    this.positionPlayer = '';
+    let elt = document.querySelector('#player');
+    this.action = 'WalkingManPositive';
+
+    let start = 'translateX(' + this.x + 'px) translateY(' + this.y + 'px)'
+    let finish = 'translateX(' + x + 'px) translateY(' + y + 'px)';
+
+    this.deplacement = this.animationCtrl.create()
+    .addElement(elt)
+    .duration(25*(Math.abs(x-this.x)+Math.abs(y-this.y)))
+    .iterations(1)
+    .direction('alternate')
+    .keyframes([
+      {offset: 0, transform: start},
+      {offset: 1, transform: finish}
+    ]);
+
+    this.deplacement.play().then( () => {
+      this.action = 'WalkingManPositive';
+      this.x = x;
+      this.y = y;
+    });
+  }
 }

@@ -1,4 +1,5 @@
 <app-menu></app-menu>
+<app-saisons></app-saisons>
 
 <ion-modal trigger=popoverRoulette reference="event" (ionViewDidEnter)="chargeRoulette()">
   <ng-template>
@@ -12,55 +13,43 @@
 
 <ion-grid style="width:100%">
   <ion-row id="top">
-    <ion-col size="1">
-      <ion-button fill="clear" size="medium" title="Decrease time speed" (click)="clockSpeed('-')" class="tuile">
-        <ion-icon name="remove-circle" slot="icon-only" color="success"></ion-icon>
-      </ion-button>
-    </ion-col>
-    <ion-col size="1">
-      x{{speed}}
-    </ion-col>
-    <ion-col size="1">
-      <ion-button fill="clear" size="medium" title="Increase time speed" (click)="clockSpeed('+')">
-        <ion-icon name="add-circle" slot="icon-only" color="success"></ion-icon>
-      </ion-button>
+    <ion-col size="3">
+      <ion-icon name="remove-circle" color="success" (click)="clockSpeed('-')"></ion-icon>
+      <ion-badge color="light" style="margin: 0 10px">x {{speed}}</ion-badge>
+      <ion-icon name="add-circle" color="success" (click)="clockSpeed('+')"></ion-icon>
     </ion-col>
     <ion-col size="2">
       {{day}}/{{month}}/{{year}}
     </ion-col>
     <ion-col size="2">
-      <ion-button fill="clear" size="medium" title="Pause" (click)="pause()" *ngIf="!paused">
-        <ion-icon name="pause-circle" slot="icon-only" color="warning"></ion-icon>
-      </ion-button>
-      <ion-button fill="clear" size="medium" title="Resume" (click)="pause()" *ngIf="paused">
-        <ion-icon name="play-circle" slot="icon-only" color="success"></ion-icon>
-      </ion-button>
+      <ion-icon name="pause-circle" color="warning" (click)="pause()" *ngIf="!paused"></ion-icon>
+      <ion-icon name="play-circle" color="success" (click)="pause()" *ngIf="paused"></ion-icon>
     </ion-col>
     <ion-col size="4">
       {{persoService.perso.name}}, {{persoService.perso.localization}}
     </ion-col>
     <ion-col size="1"></ion-col>
   </ion-row>
-  <ion-row id="main" style="height:58%; border: none;">
+  <ion-row id="main" style="height:62%; border: none;">
     <ion-col size="9">
       <div class="main">
         <div class="container">
+          <ion-img id="player" [src]="'./assets/img/animatedMan/' + action + '.gif'" [style]="'position: absolute;' + positionPlayer + translate"></ion-img>
           <ion-img *ngFor="let col of matrix[0]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top)" class="test"></ion-img>
           <br>
           <ion-img *ngFor="let col of matrix[1]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top)" class="test"></ion-img>
           <br>
           <ion-img *ngFor="let col of matrix[2]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top)" class="test"></ion-img>
           <br>
           <ion-img *ngFor="let col of matrix[3]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top)" class="test"></ion-img>
           <br>
           <ion-img *ngFor="let col of matrix[4]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"></ion-img>
-          <ion-img src="./assets/img/mappoint.png"
-                   style="position:absolute; top:280px; left:80px; z-index: 5"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top)" class="test"></ion-img>
+        <ion-img src="./assets/img/mappoint.png" style="position:absolute; top:252px; left:365px;"></ion-img>
         </div>
       </div>
     </ion-col>
@@ -74,8 +63,16 @@
         <ion-col>
           <ion-row>
             <ion-title>
-              {{tuileHover}}
+              {{hoverName}}
             </ion-title>
+          </ion-row>
+          <ion-row>
+            <p>{{hoverDescription}}</p>
+          </ion-row>
+          <ion-row>
+            <ion-note color="primary">
+              {{hoverActions}}
+            </ion-note>
           </ion-row>
         </ion-col>
       </ion-row>
@@ -120,22 +117,3 @@
     </ion-col>
   </ion-row>
 </ion-grid>
-
-<div id="animated-bg" class="bg-winter" style="z-index: -1">
-  <span *ngFor="let el of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]"></span>
-</div>
-
-<div id="summer">
-  <ion-img src="./assets/img/sun.png"></ion-img>
-</div>
-<div id="autumn">
-  <ion-img *ngFor="let i of fallingLeaves" [src]="'./assets/img/leaves/leaf'+ ((i % 6) + 1) + '.png'"></ion-img>
-</div>
-<div id="winter">
-  <div *ngFor="let i of snowflakes"></div>
-</div>
-<div id="spring">
-  <ion-img *ngFor="let i of flowers" [src]="'./assets/img/spring/flower'+ i + '.png'"></ion-img>
-  <img class="grass" src="./assets/img/spring/grass.png" alt="grass"/>
-  <img class="bee" src="./assets/img/spring/bee.png" alt="bee">
-</div>
