@@ -49,15 +49,12 @@ export class GamePage implements OnInit {
 
   public isMoving = false;
 
-<<<<<<< HEAD
   public isHiddenSpin =false;
   public isHiddenValid = true;
   public isDisabledValid=true;
   public end;
 
-=======
   public positionPlayer = 'top:' + this.y + 'px; left:' + this.x+ 'px;';
->>>>>>> dee92aaf8d81241b6b48c6777a711c60d3ec2750
 
   constructor(
     private tuiles: TuilesService,
@@ -255,7 +252,11 @@ export class GamePage implements OnInit {
         y -= 20;
         this.positionPlayer = '';
         let elt = document.querySelector('#player');
-        this.action = 'WalkingManPositive';
+        if ((x - this.x) > 0) {
+          this.action = 'WalkingManPositive';
+        } else {
+          this.action = 'WalkingManNegative';
+        }
 
         let start = 'translateX(' + this.x + 'px) translateY(' + this.y + 'px)'
         let finish = 'translateX(' + x + 'px) translateY(' + y + 'px)';
