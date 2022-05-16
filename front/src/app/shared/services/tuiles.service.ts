@@ -439,7 +439,8 @@ export class TuilesService {
     }],
   ];
 
-  constructor() {}
+  constructor() {
+  }
 
   getData = (name) => {
     const data = [];
@@ -515,19 +516,24 @@ export class TuilesService {
 
   chooseAleatTuile = (matrix, tuiles) => {
     const i = Math.floor(Math.random() * tuiles.length);
+    let row = 0;
+    let col = 0;
     for (const line of matrix) {
       if (line.length !== 10) {
-        line.push({name: tuiles[i].name});
+        col = line.length;
+        line.push({name: tuiles[i].name, top: 64 * row, left: (row % 2) * 36 + 73 * col});
         tuiles.splice(i, 1);
         return {mat: matrix, ref: tuiles};
+      } else {
+        row += 1;
       }
     }
   };
 
   getInfo = (label) => {
-    for(const line of this.tuiles){
-      for(const el of line[0].labels){
-        if(el===label){
+    for (const line of this.tuiles) {
+      for (const el of line[0].labels) {
+        if (el === label) {
           return {name: line[0].name, description: line[0].description, actions: line[0].actions};
         }
       }

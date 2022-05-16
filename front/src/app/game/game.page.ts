@@ -52,15 +52,15 @@ export class GamePage implements OnInit {
     for (let k = 0; k < 5; k++) {
       for (let i = 0; i < 10; i++) {
         if (!i && !k) {
-          this.matrix[k].push({name: 'aeroport'});
+          this.matrix[k].push({name: 'aeroport', left:0, top:0});
         } else if (i === 5 && k === 1) {
-          this.matrix[k].push({name: 'religion'});
+          this.matrix[k].push({name: 'religion', left:401, top:64});
         } else if (i === 6 && k === 2) {
-          this.matrix[k].push({name: 'mairie'});
+          this.matrix[k].push({name: 'mairie', left:438, top:128});
         } else if (i === 5 && k === 2) {
-          this.matrix[k].push({name: 'aeroport'});
+          this.matrix[k].push({name: 'aeroport', left:365, top:128});
         } else if (i === 5 && k === 3) {
-          this.matrix[k].push({name: 'justice'});
+          this.matrix[k].push({name: 'justice', left:301, top:192});
         } else {
           const retour = this.tuiles.chooseAleatTuile(this.matrix, this.importedTuiles);
           this.matrix = retour.mat;
@@ -176,5 +176,7 @@ export class GamePage implements OnInit {
     }
   };
 
-  test = (data) => console.log(data)
+  test = (top, left) => {
+    console.log('coo : left = ', left, 'top = ', top);
+  }
 }
