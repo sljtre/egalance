@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TuilesService} from '../shared/services/tuiles.service';
 import {PersoService} from '../shared/services/perso.service';
+import {RouletteService} from '../shared/services/roulette.service';
 
 @Component({
   selector: 'app-game',
@@ -40,6 +41,7 @@ export class GamePage implements OnInit {
   constructor(
     private tuiles: TuilesService,
     public persoService: PersoService,
+    public roulette:RouletteService
   ) {
     this.changeSeason = (month) => {
       const seasons = ['spring', 'summer', 'autumn', 'winter'];
@@ -71,7 +73,7 @@ export class GamePage implements OnInit {
     };
   }
 
-  ngOnInit() {
+  async ngOnInit() {
 
     this.persoService.dev('Paris', 'judaisme', 'homme', '4', 'David Salomon');
     this.refreshAll();
@@ -111,6 +113,19 @@ export class GamePage implements OnInit {
     }
     console.log(this.persoService.perso.name);
     console.log(this.persoService.perso);
+    this.roulette.setRoulette(["Test","These","Nuts","Jhonny"],[0.3,0.2,0.4,0.1]);
+    
+  }
+
+  test=()=>{
+    console.log("Fonction test appele");
+    this.roulette.setRoulette(["Edgar","Simon","CJ","Paul","Nathan"],[0.1,0.1,0.1,0.6,0.1])
+    //this.roulette.drawRouletteWheel();
+  }
+
+  chargeRoulette=()=>{
+    console.log("Charge Roulette appele");
+    this.roulette.drawRouletteWheel();
   }
 
   hoverEnter = (name) => {
