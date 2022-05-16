@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TuilesService} from '../shared/services/tuiles.service';
 import {PersoService} from '../shared/services/perso.service';
+import { GameEventService} from '../shared/services/game-event.service';
 
 @Component({
   selector: 'app-game',
@@ -42,6 +43,7 @@ export class GamePage implements OnInit {
   constructor(
     private tuiles: TuilesService,
     public persoService: PersoService,
+    private eventService: GameEventService,
   ) {
     this.changeSeason = (month) => {
       const seasons = ['spring', 'summer', 'autumn', 'winter'];
