@@ -73,7 +73,7 @@ export class GamePage implements OnInit {
         } else if (i === 5 && k === 2) {
           this.matrix[k].push({name: this.persoService.perso.localization, left:365, top:128, type: 'culturel'});
         } else if (i === 5 && k === 3) {
-          this.matrix[k].push({name: 'justice', left:301, top:192, type: this.type});
+          this.matrix[k].push({name: 'justice', left:401, top:192, type: this.type});
         } else {
           const retour = this.tuiles.chooseAleatTuile(this.matrix, this.importedTuiles);
           this.matrix = retour.mat;
