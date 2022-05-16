@@ -274,7 +274,7 @@ export class GamePage implements OnInit {
         this.deplacement.play().then(() => {
           const retour = this.tuiles.getInfo(name);
           this.currentName = retour.name;
-          this.action = 'WalkingManPositive';
+          this.action = 'Sport';
           this.x = x;
           this.y = y;
           this.isMoving = false;
