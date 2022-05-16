@@ -93,7 +93,7 @@ export class GamePage implements OnInit {
     console.log(this.persoService.perso.name);
     console.log(this.persoService.perso);
     this.roulette.setRoulette(["Test","These","Nuts","Jhonny"],[0.3,0.2,0.4,0.1]);
-    
+
   }
 
   test=()=>{
@@ -210,8 +210,6 @@ export class GamePage implements OnInit {
       this.clock = setInterval(this.calendar, Math.floor(this.delay / this.speed));
     }
   };
-
-  
 
   //Animation déplacement
   deplacementPlay = (x, y) => {
