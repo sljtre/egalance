@@ -77,6 +77,8 @@ export class GamePage implements OnInit {
 
   ngOnInit() {
 
+    this.eventService.presentAlertMultipleButtons();
+
     this.persoService.dev('Paris', 'judaisme', 'homme', '4', 'David Salomon');
     this.refreshAll();
 
