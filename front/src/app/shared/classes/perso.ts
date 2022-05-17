@@ -1,6 +1,8 @@
 export class Perso {
 
   public localization = '';
+  public socioEcoStart ='';
+
 
   public religon = '';
   public gender = '';
@@ -19,13 +21,14 @@ export class Perso {
     this.localization=loc;
   }
 
-  customization = (religion, gender, skin, name,birthdayDay,birthdayMonth) => {
+  customization = (religion, gender, skin, name,birthdayDay,birthdayMonth,socioECoStart) => {
     this.religon = religion;
     this.skin = skin;
     this.gender = gender;
     this.name = name;
     this.birthdayDay=birthdayDay;
     this.birthdayMonth=birthdayMonth;
+    this.socioEcoStart=socioECoStart;
   };
 
   isBirthday=(day,month)=>{
