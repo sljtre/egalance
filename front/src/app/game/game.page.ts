@@ -44,8 +44,8 @@ export class GamePage implements OnInit {
   public deplacement: Animation;
 
   public action = 'WalkingManPositive';
-  public x = 451;
-  public y = 108;
+  public x = 430;
+  public y = 111;
 
   public isMoving = false;
 
@@ -57,7 +57,7 @@ export class GamePage implements OnInit {
   public positionPlayer = 'top:' + this.y + 'px; left:' + this.x+ 'px;';
 
   constructor(
-    private tuiles: TuilesService,
+    public tuiles: TuilesService,
     public persoService: PersoService,
     public roulette:RouletteService,
     private animationCtrl: AnimationController,
@@ -92,6 +92,8 @@ export class GamePage implements OnInit {
     }
     this.roulette.setRoulette(["Test","These","Nuts","Jhonny"],[0.3,0.2,0.4,0.1]);
 
+    console.log(this.tuiles.getActions('Town hall').includes('Buy any House'));
+
   }
 
   test=()=>{
@@ -100,15 +102,15 @@ export class GamePage implements OnInit {
     //this.roulette.drawRouletteWheel();
   }
 
-  spin=()=>{    
+  spin=()=>{
     this.roulette.spin();
     this.isHiddenSpin=true;
-    this.isHiddenValid=false;  
+    this.isHiddenValid=false;
     this.checkRouletteFin();
   }
 
   checkRouletteFin=()=>{
-    if(this.roulette.answer!=undefined){      
+    if(this.roulette.answer!=undefined){
       clearTimeout(this.end);
       this.isDisabledValid=false;
     }
@@ -118,7 +120,7 @@ export class GamePage implements OnInit {
   }
 
   resetRoulette=()=>{
-    this.roulette.answer=undefined;    
+    this.roulette.answer=undefined;
     this.roulette.drawRouletteWheel();
   }
 
@@ -126,7 +128,7 @@ export class GamePage implements OnInit {
     this.modalController.dismiss({
       'dismissed':true
     });
-    
+
   }
 
   buttonReset=()=>{
@@ -136,7 +138,7 @@ export class GamePage implements OnInit {
     this.isDisabledValid=true;
   }
 
-  
+
 
   hoverEnter = (name) => {
     const retour = this.tuiles.getInfo(name);
@@ -244,12 +246,14 @@ export class GamePage implements OnInit {
   //Animation déplacement
   deplacementPlay = (x, y, name) => {
 
-    if(Math.floor(Math.abs(this.x-13-x)/73)<2 && Math.floor(Math.abs(this.y+20-y)/64)<2
-      && Math.floor(Math.abs(this.x-13-x)/73)+Math.floor(Math.abs(this.y+20-y)/64)!== 2) {
+    if(Math.floor(Math.floor(Math.abs(this.x+8-x)/73)+Math.floor(Math.abs(this.y+12-y)/64)) < 2) {
       if (!this.isMoving) {
         this.isMoving = true;
-        x += 13;
-        y -= 20;
+
+        this.currentName = '';
+
+        x -= 8;
+        y -= 12;
         this.positionPlayer = '';
         let elt = document.querySelector('#player');
         if ((x - this.x) > 0) {
@@ -278,7 +282,6 @@ export class GamePage implements OnInit {
           this.x = x;
           this.y = y;
           this.isMoving = false;
-
         });
       }
     }
