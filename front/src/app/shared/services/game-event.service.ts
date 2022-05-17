@@ -8,7 +8,7 @@ import {AlertController} from '@ionic/angular';
 export class GameEventService {
 
   public alert;
-  private events = 'sdlkfjqsdlmfkj';
+  private events = [];
 
   constructor(public alertController: AlertController) {
   }
@@ -16,6 +16,9 @@ export class GameEventService {
 
   async presentAlertMultipleButtons() {
     const alert = await this.alertController.create({
+      cssClass: 'custom-alert',
+      mode: 'ios',
+      backdropDismiss: false,
       header: 'Alert',
       subHeader: 'Subtitle',
       message: 'This is an alert message.',
