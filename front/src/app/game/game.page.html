@@ -7,20 +7,18 @@
 
       <ion-row >
         <ion-col></ion-col>
-        <ion-col style="text-align:center;">          
+        <ion-col style="text-align:center;">
             <ion-button [hidden]=isHiddenSpin (click)="spin()" >Spin!</ion-button>
             <ion-button [hidden]=isHiddenValid [disabled]=isDisabledValid color="success" (click)="dismissModal()">OK!</ion-button>
         </ion-col>
         <ion-col></ion-col>
       </ion-row>
-
-      <ion-row>        
-        <ion-col>
-          <canvas id="canvas" height="500" width="500"></canvas>              
-        </ion-col>
-      </ion-row>
-      
     </ion-grid>
+
+    <ion-content>
+        <ion-button (click)="this.roulette.spin()">Spin!</ion-button>
+        <canvas id="canvas" height="500" width="500"></canvas>
+    </ion-content>
   </ng-template>
 </ion-modal>
 
@@ -67,7 +65,7 @@
         </div>
       </div>
     </ion-col>
-    <ion-col id="right-panel">
+    <ion-col id="right-panel" size="3">
       <ion-row style="height:50%;">
         <ion-col>
           <ion-row>
@@ -75,8 +73,8 @@
               {{currentName}}
             </ion-title>
           </ion-row>
-          <ion-row>
-<!--            HERE BUTTONS WITH NGIF-->
+          <ion-row *ngFor="let el of ['Mary', 'Rent', 'Shopping', 'Drink', 'Rest', 'Study', 'Heal', 'Watch', 'Pray', 'Eat', 'Practice', 'Deposit', 'Pull', 'Travel', 'Work']">
+            <ion-button *ngIf="tuiles.getActions(currentName).includes(el)" [id]="el">{{el}}</ion-button>
           </ion-row>
         </ion-col>
       </ion-row>
