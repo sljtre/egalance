@@ -53,7 +53,7 @@ export class CitySelectionPage implements OnInit {
         name: "IDH",
         states: {
           hover: {
-            color: "#BADA55"
+            color: "#001069"
           }
         },
         dataLabels: {

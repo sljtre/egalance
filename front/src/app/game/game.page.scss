@@ -121,3 +121,23 @@ body {
   height: 125px;
   z-index: 5;
 }
+
+#Pray{
+  --background:red;
+}
+
+#Rest, #Shopping, #Drink, #watch{
+  --background:blue;
+}
+
+#Pull, #Mary, #Heal, #Study, #Eat{
+  --background:green;
+}
+
+#Deposit, #Rent, #Travel, #Practice{
+  --background:yellow;
+}
+
+#work{
+  --background:orange;
+}

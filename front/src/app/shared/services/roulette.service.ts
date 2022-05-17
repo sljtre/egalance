@@ -122,7 +122,7 @@ getColor = (item, maxitem)=> {
       ctx.shadowBlur    = 0;
       ctx.shadowColor   = "rgb(220,220,220)";
       */
-     this.ctx.fillStyle = "black";
+     this.ctx.fillStyle = "white";
      this.ctx.translate(250 + Math.cos(angle + this.arcs[i] / 2) * textRadius, 
                         250 + Math.sin(angle + this.arcs[i] / 2) * textRadius);
       this.ctx.rotate(angle + this.arcs[i] / 2 + Math.PI / 2);
@@ -133,7 +133,7 @@ getColor = (item, maxitem)=> {
     } 
 
     //Arrow
-    this.ctx.fillStyle = "black";
+    this.ctx.fillStyle = "white";
     this.ctx.beginPath();
     this.ctx.moveTo(250 - 4, 250 - (outsideRadius + 5));
     this.ctx.lineTo(250 + 4, 250 - (outsideRadius + 5));
@@ -151,6 +151,7 @@ spin=()=> {
   this.spinTime = 0;
   this.spinTimeTotal = Math.random() * 3 + 4 * 1000;    
   this.rotateWheel();
+ 
 }
 
 rotateWheel=()=>{

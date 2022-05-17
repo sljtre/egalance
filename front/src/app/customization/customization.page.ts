@@ -15,6 +15,8 @@ export class CustomizationPage implements OnInit {
   public religion;
   public birthdayDay;
   public birthdayMonth;
+  public socioEcoStart;
+
 
   public height=window.screen.height
 
@@ -23,10 +25,12 @@ export class CustomizationPage implements OnInit {
   private listeEthnie=['1','2','3','4','5'];
   private listeGenre=['homme','femme'];
   private listeReligion=['christianisme','islam','judaisme','atheisme'];
+  private listeSocioEco=['1','2','3','4','5'];
 
   private indEthnie=0;
   private indGenre=0;
   private indReligion=0;
+  private indSocioEco=0;
 
   constructor(
     private persoService: PersoService,
@@ -37,6 +41,7 @@ export class CustomizationPage implements OnInit {
     this.ethnie = this.listeEthnie[0];
     this.genre = this.listeGenre[0];
     this.religion = this.listeReligion[0];
+    this.socioEcoStart=this.listeSocioEco[0];
    }
 
   funcEthnie = (move)=>{
@@ -55,6 +60,24 @@ export class CustomizationPage implements OnInit {
       }
     }
     this.ethnie=this.listeEthnie[this.indEthnie];
+  };
+
+  funcSocioEco = (move)=>{
+    if(move === 'left'){
+      if(this.indSocioEco === 0){
+        this.indSocioEco=this.listeSocioEco.length-1;
+      } else {
+        this.indSocioEco-=1;
+      }
+    }
+    if(move === 'right'){
+      if(this.indSocioEco === this.listeSocioEco.length-1){
+        this.indSocioEco=0;
+      } else{
+        this.indSocioEco+=1;
+      }
+    }
+    this.socioEcoStart=this.listeSocioEco[this.indSocioEco];
   };
 
   funcGenre = (move)=>{
@@ -96,6 +119,11 @@ export class CustomizationPage implements OnInit {
   randEthnie=()=>{
     this.indEthnie=Math.floor(Math.random() * (this.listeEthnie.length));
     this.ethnie=this.listeEthnie[this.indEthnie];
+  };
+
+  randSocioEco=()=>{
+    this.indSocioEco=Math.floor(Math.random() * (this.listeSocioEco.length));
+    this.socioEcoStart=this.listeSocioEco[this.indSocioEco];
   };
 
   randReligion=()=>{
@@ -146,10 +174,11 @@ export class CustomizationPage implements OnInit {
     this.randReligion();    
     await this.randFullName();
     this.randBirthday();
+    this.randSocioEco();
   };
 
   validatePerso = async () => {
-    this.persoService.custom(this.religion, this.genre, this.ethnie, this.fullName,this.birthdayDay,this.birthdayMonth);
+    this.persoService.custom(this.religion, this.genre, this.ethnie, this.fullName,this.birthdayDay,this.birthdayMonth,this.socioEcoStart);
     await this.router.navigateByUrl('/game');
   };
 }

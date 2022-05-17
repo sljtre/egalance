@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {PersoService} from './perso.service';
 
 @Injectable({
   providedIn: 'root'
@@ -94,7 +95,7 @@ export class TuilesService {
       }
     }],
     [{
-      name: 'Sao Paulo',
+      name: 'Rio de Janeiro',
       type: 'herbe',
       tuiles: {
         hopital: 2,
@@ -108,7 +109,7 @@ export class TuilesService {
         mairie: 1,
         culturel: 1,
         parc: 2,
-        habitation: 10,
+        habitation: 9,
         bureaux: 3,
         usine: 1,
         ferme: 1,
@@ -119,7 +120,7 @@ export class TuilesService {
         banque: 1,
         stade: 1,
         aeroport: 1,
-        vide: 10
+        vide: 11
       }
     }],
     [{
@@ -297,7 +298,6 @@ export class TuilesService {
       }
     }]
   ];
-
   public tuiles = [
     [{
       name: 'Hospital',
@@ -351,13 +351,7 @@ export class TuilesService {
       name: 'Town hall',
       labels: ['mairie'],
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      actions: ['Mary', 'Buy any building', 'Work']
-    }],
-    [{
-      name: 'Culture',
-      labels: ['culturel'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      actions: ['Rest']
+      actions: ['Mary', 'Rent', 'Work']
     }],
     [{
       name: 'Parc',
@@ -437,10 +431,71 @@ export class TuilesService {
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       actions: ['Rest']
     }],
+    [{
+      name: ' Hallgriùskirja',
+      labels: ['Reykjavik'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Rest']
+    }],
+    [{
+      name: 'Statue of Liberty',
+      labels: ['New York'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Rest']
+    }],
+    [{
+      name: 'Opera House',
+      labels: ['Sydney'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Rest']
+    }],
+    [{
+      name: 'Christ the Redeemer',
+      labels: ['Rio de Janeiro'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Rest']
+    }],
+    [{
+      name: 'Eiffel Tower',
+      labels: ['Paris'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Rest']
+    }],
+    [{
+      name: 'Saint Basil\'s Cathedral',
+      labels: ['Moscow'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Rest']
+    }],
+    [{
+      name: 'India Gate',
+      labels: ['New Delhi'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Rest']
+    }],
+    [{
+      name: 'Ouagadougou\' Cathedrale',
+      labels: ['Ouagadougou'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Rest']
+    }],
+    [{
+      name: 'Voortrekker Monument',
+      labels: ['Johannesburg'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Rest']
+    }],
+    [{
+      name: 'Great Wall of China',
+      labels: ['Beijing'],
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions: ['Rest']
+    }],
   ];
 
-  constructor() {
-  }
+  constructor(
+    private perso: PersoService
+  ) {}
 
   getData = (name) => {
     const data = [];
@@ -521,7 +576,7 @@ export class TuilesService {
     for (const line of matrix) {
       if (line.length !== 10) {
         col = line.length;
-        line.push({name: tuiles[i].name, top: 64 * row, left: (row % 2) * 36 + 73 * col});
+        line.push({name: tuiles[i].name, top: 64 * row, left: (row % 2) * 36 + 73 * col, type: this.getType(this.perso.perso.localization)});
         tuiles.splice(i, 1);
         return {mat: matrix, ref: tuiles};
       } else {
@@ -538,5 +593,18 @@ export class TuilesService {
         }
       }
     }
+  }
+
+  getActions = (name) => {
+    let tmp = '';
+    for(const line of this.tuiles){
+      if(line[0].name===name){
+        for(const el of line[0].actions){
+          tmp+=el + ' ';
+          console.log(el);
+        }
+      }
+    }
+    return tmp;
   }
 }

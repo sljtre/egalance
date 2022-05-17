@@ -1,8 +1,20 @@
 <app-menu></app-menu>
 <app-saisons></app-saisons>
 
-<ion-modal trigger=popoverRoulette reference="event" (ionViewDidEnter)="chargeRoulette()">
+<ion-modal trigger=popoverRoulette backdrop-dismiss=false reference="event" (ionViewDidEnter)="resetRoulette();" (ionViewDidLeave)="buttonReset()" style="--background:transparent !important;--border-style:none;--backdrop-opacity:0;border:none;">
   <ng-template>
+    <ion-grid>
+
+      <ion-row >
+        <ion-col></ion-col>
+        <ion-col style="text-align:center;">
+            <ion-button [hidden]=isHiddenSpin (click)="spin()" >Spin!</ion-button>
+            <ion-button [hidden]=isHiddenValid [disabled]=isDisabledValid color="success" (click)="dismissModal()">OK!</ion-button>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
+
     <ion-content>
         <ion-button (click)="this.roulette.spin()">Spin!</ion-button>
         <canvas id="canvas" height="500" width="500"></canvas>
@@ -36,27 +48,34 @@
         <div class="container">
           <ion-img id="player" [src]="'./assets/img/animatedMan/' + action + '.gif'" [style]="'position: absolute;' + positionPlayer"></ion-img>
 
-          <ion-img *ngFor="let col of matrix[0]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top)" class="tuile"></ion-img>
+          <ion-img *ngFor="let col of matrix[0]" [src]="'./assets/tuiles/' + col.type + '/' + col.name + '.png'"
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top, col.name)" class="tuile"></ion-img>
           <br>
-          <ion-img *ngFor="let col of matrix[1]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top)" class="tuile"></ion-img>
+          <ion-img *ngFor="let col of matrix[1]" [src]="'./assets/tuiles/' + col.type + '/' + col.name + '.png'"
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top, col.name)" class="tuile"></ion-img>
           <br>
-          <ion-img *ngFor="let col of matrix[2]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top)" class="tuile"></ion-img>
+          <ion-img *ngFor="let col of matrix[2]" [src]="'./assets/tuiles/' + col.type + '/' + col.name + '.png'"
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top, col.name)" class="tuile"></ion-img>
           <br>
-          <ion-img *ngFor="let col of matrix[3]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top)" class="tuile"></ion-img>
+          <ion-img *ngFor="let col of matrix[3]" [src]="'./assets/tuiles/' + col.type + '/' + col.name + '.png'"
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top, col.name)" class="tuile"></ion-img>
           <br>
-          <ion-img *ngFor="let col of matrix[4]" [src]="'./assets/tuiles/' + type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top)" class="tuile"></ion-img>
+          <ion-img *ngFor="let col of matrix[4]" [src]="'./assets/tuiles/' + col.type + '/' + col.name + '.png'"
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top, col.name)" class="tuile"></ion-img>
         </div>
       </div>
     </ion-col>
-    <ion-col id="right-panel">
+    <ion-col id="right-panel" size="3">
       <ion-row style="height:50%;">
         <ion-col>
-          infos case actuelle
+          <ion-row>
+            <ion-title>
+              {{currentName}}
+            </ion-title>
+          </ion-row>
+          <ion-row *ngFor="let el of ['Mary', 'Rent', 'Shopping', 'Drink', 'Rest', 'Study', 'Heal', 'Watch', 'Pray', 'Eat', 'Practice', 'Deposit', 'Pull', 'Travel', 'Work']">
+            <ion-button *ngIf="tuiles.getActions(currentName).includes(el)" [id]="el">{{el}}</ion-button>
+          </ion-row>
         </ion-col>
       </ion-row>
       <ion-row style="height:50%;">

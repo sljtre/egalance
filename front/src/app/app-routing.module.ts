@@ -50,7 +50,11 @@ const routes: Routes = [
   {
     path: 'customization',
     loadChildren: () => import('./customization/customization.module').then( m => m.CustomizationPageModule)
+  },  {
+    path: 'explanations',
+    loadChildren: () => import('./explanations/explanations.module').then( m => m.ExplanationsPageModule)
   },
+
 
 ];
 
