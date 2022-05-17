@@ -44,8 +44,8 @@ export class GamePage implements OnInit {
   public deplacement: Animation;
 
   public action = 'WalkingManPositive';
-  public x = 451;
-  public y = 108;
+  public x = 430;
+  public y = 111;
 
   public isMoving = false;
 
@@ -246,11 +246,14 @@ export class GamePage implements OnInit {
   //Animation déplacement
   deplacementPlay = (x, y, name) => {
 
-    if(Math.floor(Math.abs(this.x-13-x)/73)+Math.floor(Math.abs(this.y+20-y)/64)< 2) {
+    if(Math.floor(Math.floor(Math.abs(this.x+8-x)/73)+Math.floor(Math.abs(this.y+12-y)/64)) < 2) {
       if (!this.isMoving) {
         this.isMoving = true;
-        x += 13;
-        y -= 20;
+
+        this.currentName = '';
+
+        x -= 8;
+        y -= 12;
         this.positionPlayer = '';
         let elt = document.querySelector('#player');
         if ((x - this.x) > 0) {
@@ -279,7 +282,6 @@ export class GamePage implements OnInit {
           this.x = x;
           this.y = y;
           this.isMoving = false;
-
         });
       }
     }
