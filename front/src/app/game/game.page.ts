@@ -66,7 +66,7 @@ export class GamePage implements OnInit {
 
   async ngOnInit() {
 
-    this.eventService.presentAlertMultipleButtons();
+    this.eventService.eventAccident(1000, 100, 50);
 
     this.persoService.dev('Paris', 'judaisme', 'homme', '4', 'David Salomon');
     this.refreshAll();
@@ -244,7 +244,7 @@ export class GamePage implements OnInit {
         this.isMoving = false;
       });
     }
-    
-    
+
+
   }
 }
