@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {RouletteService} from '../shared/services/roulette.service';
-
 
 @Component({
   selector: 'app-welcome',
@@ -9,19 +7,7 @@ import {RouletteService} from '../shared/services/roulette.service';
 })
 export class WelcomePage implements OnInit {
 
-  constructor(
-    public roulette : RouletteService
-  ) { }
+  constructor() {}
 
-  async ngOnInit() {    
-    this.roulette.setRoulette(["Simon","Nathan","Paul","Edgar","JC"],[0.20,0.20,0.20,0.20,0.20]);
-    this.roulette.drawRouletteWheel();
-    
-  }
-
-  buttonFunc=()=>{
-    this.roulette.spin();
-  }
-
-
+  ngOnInit() {}
 }
