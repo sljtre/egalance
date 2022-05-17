@@ -10,6 +10,8 @@ export class TuilesService {
     [{
       name: 'Reykjavik',
       type: 'glace',
+      religion:'christianisme',
+      ethnie:'5',
       tuiles: {
         hopital: 4,
         supermarche: 2,
@@ -39,6 +41,8 @@ export class TuilesService {
     [{
       name: 'New York',
       type: 'urbain',
+      religion:'christianisme',
+      ethnie:'4',
       tuiles: {
         hopital: 3,
         supermarche: 4,
@@ -68,6 +72,8 @@ export class TuilesService {
     [{
       name: 'Sydney',
       type: 'sable',
+      religion:'christianisme',
+      ethnie:'4',
       tuiles: {
         hopital: 4,
         supermarche: 3,
@@ -97,6 +103,8 @@ export class TuilesService {
     [{
       name: 'Rio de Janeiro',
       type: 'herbe',
+      religion:'christianisme',
+      ethnie:'2',
       tuiles: {
         hopital: 2,
         supermarche: 2,
@@ -126,6 +134,8 @@ export class TuilesService {
     [{
       name: 'Paris',
       type: 'urbain',
+      religion:'atheisme',
+      ethnie:'5',
       tuiles: {
         hopital: 3,
         supermarche: 3,
@@ -155,6 +165,8 @@ export class TuilesService {
     [{
       name: 'Moscow',
       type: 'glace',
+      religion:'chirstianisme',
+      ethnie:'4',
       tuiles: {
         hopital: 4,
         supermarche: 2,
@@ -184,6 +196,8 @@ export class TuilesService {
     [{
       name: 'New Delhi',
       type: 'herbe',
+      religion:'islam',
+      ethnie:'2',
       tuiles: {
         hopital: 1,
         supermarche: 2,
@@ -213,6 +227,8 @@ export class TuilesService {
     [{
       name: 'Ouagadougou',
       type: 'sable',
+      religion:'islam',
+      ethnie:'1',
       tuiles: {
         hopital: 0,
         supermarche: 1,
@@ -242,6 +258,8 @@ export class TuilesService {
     [{
       name: 'Johannesburg',
       type: 'sable',
+      religion:'christianisme',
+      ethnie:'3',
       tuiles: {
         hopital: 1,
         supermarche: 3,
@@ -271,6 +289,8 @@ export class TuilesService {
     [{
       name: 'Beijing',
       type: 'urbain',
+      religion:'atheisme',
+      ethnie:'3',
       tuiles: {
         hopital: 2,
         supermarche: 2,
@@ -565,6 +585,22 @@ export class TuilesService {
     for (const line of this.cities) {
       if (line[0].name === name) {
         return line[0].type;
+      }
+    }
+  };
+
+  getReligion = (name) => {
+    for (const line of this.cities) {
+      if (line[0].name === name) {
+        return line[0].religion;
+      }
+    }
+  };
+
+  getEthnie = (name) => {
+    for (const line of this.cities) {
+      if (line[0].name === name) {
+        return line[0].ethnie;
       }
     }
   };

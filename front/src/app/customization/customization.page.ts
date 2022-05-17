@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PersoService} from '../shared/services/perso.service';
+import {TuilesService} from '../shared/services/tuiles.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -17,8 +18,8 @@ export class CustomizationPage implements OnInit {
   public birthdayMonth;
   public socioEcoStart;
 
-
-  public height=window.screen.height
+  public majoriteReligion;
+  public majoriteEthnie;
 
   private prenom = '';
   private nom = '';
@@ -32,8 +33,11 @@ export class CustomizationPage implements OnInit {
   private indReligion=0;
   private indSocioEco=0;
 
+
+
   constructor(
     private persoService: PersoService,
+    public tuilesService:TuilesService,
     private router: Router
   ) {}
 
@@ -42,7 +46,10 @@ export class CustomizationPage implements OnInit {
     this.genre = this.listeGenre[0];
     this.religion = this.listeReligion[0];
     this.socioEcoStart=this.listeSocioEco[0];
-   }
+
+    this.majoriteReligion=this.tuilesService.getReligion(this.persoService.perso.localization);
+    this.majoriteEthnie=this.tuilesService.getEthnie(this.persoService.perso.localization);      
+  }
 
   funcEthnie = (move)=>{
     if(move === 'left'){
