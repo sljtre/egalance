@@ -474,61 +474,61 @@ export class TuilesService {
     [{
       name: ' Hallgriùskirja',
       labels: ['Reykjavik'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Historical monument of the city',
       actions: ['Rest']
     }],
     [{
       name: 'Statue of Liberty',
       labels: ['New York'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Historical monument of the city',
       actions: ['Rest']
     }],
     [{
       name: 'Opera House',
       labels: ['Sydney'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Historical monument of the city',
       actions: ['Rest']
     }],
     [{
       name: 'Christ the Redeemer',
       labels: ['Rio de Janeiro'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Historical monument of the city',
       actions: ['Rest']
     }],
     [{
       name: 'Eiffel Tower',
       labels: ['Paris'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Historical monument of the city',
       actions: ['Rest']
     }],
     [{
       name: 'Saint Basil\'s Cathedral',
       labels: ['Moscow'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Historical monument of the city',
       actions: ['Rest']
     }],
     [{
       name: 'India Gate',
       labels: ['New Delhi'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Historical monument of the city',
       actions: ['Rest']
     }],
     [{
       name: 'Ouagadougou\' Cathedrale',
       labels: ['Ouagadougou'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Historical monument of the city',
       actions: ['Rest']
     }],
     [{
       name: 'Voortrekker Monument',
       labels: ['Johannesburg'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Historical monument of the city',
       actions: ['Rest']
     }],
     [{
       name: 'Great Wall of China',
       labels: ['Beijing'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Historical monument of the city',
       actions: ['Rest']
     }],
   ];
