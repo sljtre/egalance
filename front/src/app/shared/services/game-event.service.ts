@@ -25,12 +25,13 @@ export class GameEventService {
         {
           text: 'It\'s just a scratch, it will pass',
           handler: () => {
-            console.log('Confirm Cancel');
+            // TODO remove dammage to life
           }
         }, {
           text: `Pay ${careCost} healing`,
           handler: () => {
-            console.log('Confirm Ok');
+            // TODO remove dammage * (1-careEfficiency) to life
+            // remove careCost to money
           }
         }
       ]
@@ -38,6 +39,41 @@ export class GameEventService {
 
     this.presentAlert(data);
   }
+
+  // money result can be + or - to simulate a lose or a gain
+  async eventLottery(moneyResult) {
+    let data = {};
+    if (moneyResult > 0) { // win !
+      data = {
+        header: 'Yoo jackpot !',
+        subHeader: 'You won the lottery !',
+        message: `First try, first win, well done ! You earn ${moneyResult} money.`,
+        buttons: [
+          {
+            text: 'Thank you',
+            handler: () => {
+              // TODO give moneyResult
+            }
+          }]
+      };
+    } else {
+      data = {
+        header: 'Bad luck...',
+        //subHeader: '',
+        message: `Dy playing the lottery, you have lost .... ${moneyResult} money :-(`,
+        buttons: [
+          {
+            text: 'Bye bye money...',
+            handler: () => {
+              // TODO remove moneyResult
+            }
+          }]
+      };
+    }
+
+    this.presentAlert(data);
+  }
+
 
   presentAlert = async (alertData) => {
     alertData.cssClass = 'custom-alert';
