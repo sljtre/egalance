@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from '../shared/services/http.service';
+import {RouterService} from '../shared/services/router.service';
 
 @Component({
   selector: 'app-scoreboard',
@@ -15,6 +16,7 @@ export class ScoreboardPage implements OnInit {
 
   constructor(
     private http: HttpService,
+    public router: RouterService,
   ) {}
 
   async ngOnInit() {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PersoService} from '../shared/services/perso.service';
 import {TuilesService} from '../shared/services/tuiles.service';
-import {Router} from '@angular/router';
+import {RouterService} from '../shared/services/router.service';
 
 @Component({
   selector: 'app-customization',
@@ -38,7 +38,7 @@ export class CustomizationPage implements OnInit {
   constructor(
     private persoService: PersoService,
     public tuilesService:TuilesService,
-    private router: Router
+    private router: RouterService
   ) {}
 
   ngOnInit() {
@@ -48,7 +48,7 @@ export class CustomizationPage implements OnInit {
     this.socioEcoStart=this.listeSocioEco[0];
 
     this.majoriteReligion=this.tuilesService.getReligion(this.persoService.perso.localization);
-    this.majoriteEthnie=this.tuilesService.getEthnie(this.persoService.perso.localization);      
+    this.majoriteEthnie=this.tuilesService.getEthnie(this.persoService.perso.localization);
   }
 
   funcEthnie = (move)=>{
@@ -178,7 +178,7 @@ export class CustomizationPage implements OnInit {
   allRand = async () => {
     this.randEthnie();
     this.randGenre();
-    this.randReligion();    
+    this.randReligion();
     await this.randFullName();
     this.randBirthday();
     this.randSocioEco();
@@ -186,6 +186,6 @@ export class CustomizationPage implements OnInit {
 
   validatePerso = async () => {
     this.persoService.custom(this.religion, this.genre, this.ethnie, this.fullName,this.birthdayDay,this.birthdayMonth,this.socioEcoStart);
-    await this.router.navigateByUrl('/game');
+    await this.router.redirect('game');
   };
 }

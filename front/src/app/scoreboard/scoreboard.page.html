@@ -1,6 +1,8 @@
-<app-menu></app-menu>
-
 <ion-content>
+  <ion-button shape="round" color="success" (click)="router.redirect('welcome')"
+              style="position:absolute; top:3px; left:3px; z-index:5;">
+    <ion-icon slot="icon-only" name="arrow-undo-outline" color="light"></ion-icon>
+  </ion-button>
   <ion-grid>
     <ion-row>
       <ion-col style="flex-basis: 45%; border: none;">

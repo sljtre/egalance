@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RouterService} from '../shared/services/router.service';
 
 @Component({
   selector: 'app-explanations',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExplanationsPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    public router: RouterService,
+  ) {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit(){}
 }

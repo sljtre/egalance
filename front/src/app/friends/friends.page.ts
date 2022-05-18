@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {HttpService} from '../shared/services/http.service';
 import {DemandsComponent} from './demands/demands.component';
+import {RouterService} from '../shared/services/router.service';
 
 @Component({
   selector: 'app-friends',
@@ -17,6 +18,7 @@ export class FriendsPage implements OnInit {
 
   constructor(
     public httpService: HttpService,
+    public router: RouterService,
   ) {
   }
 

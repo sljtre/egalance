@@ -3,6 +3,7 @@ import {TuilesService} from '../shared/services/tuiles.service';
 import {PersoService} from '../shared/services/perso.service';
 import { GameEventService} from '../shared/services/game-event.service';
 import {RouletteService} from '../shared/services/roulette.service';
+import {RouterService} from '../shared/services/router.service';
 import {SaisonsComponent} from './saisons/saisons.component'
 import { Animation, AnimationController,ModalController } from '@ionic/angular';
 import { ObjectUnsubscribedError } from 'rxjs';
@@ -63,7 +64,8 @@ export class GamePage implements OnInit {
     private eventService: GameEventService,
     public roulette:RouletteService,
     private animationCtrl: AnimationController,
-    public modalController:ModalController
+    public modalController:ModalController,
+    public router: RouterService,
   ) {};
 
   async ngOnInit() {
