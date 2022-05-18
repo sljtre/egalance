@@ -12,6 +12,8 @@ export class TuilesService {
       type: 'glace',
       religion:'christianisme',
       ethnie:'5',
+      inhabitants: '122 853',
+      difficulty: '0.63',
       tuiles: {
         hopital: 4,
         supermarche: 2,
@@ -43,6 +45,8 @@ export class TuilesService {
       type: 'urbain',
       religion:'christianisme',
       ethnie:'4',
+      inhabitants: '8 389 581',
+      difficulty: '0.29',
       tuiles: {
         hopital: 3,
         supermarche: 4,
@@ -74,6 +78,8 @@ export class TuilesService {
       type: 'sable',
       religion:'christianisme',
       ethnie:'4',
+      inhabitants: '5 312 947',
+      difficulty: '0',
       tuiles: {
         hopital: 4,
         supermarche: 3,
@@ -105,6 +111,8 @@ export class TuilesService {
       type: 'herbe',
       religion:'christianisme',
       ethnie:'2',
+      inhabitants: '6 748 518',
+      difficulty: '0.46',
       tuiles: {
         hopital: 2,
         supermarche: 2,
@@ -136,6 +144,8 @@ export class TuilesService {
       type: 'urbain',
       religion:'atheisme',
       ethnie:'5',
+      inhabitants: '2 161 063',
+      difficulty: '0.5',
       tuiles: {
         hopital: 3,
         supermarche: 3,
@@ -165,8 +175,10 @@ export class TuilesService {
     [{
       name: 'Moscow',
       type: 'glace',
-      religion:'chirstianisme',
+      religion:'christianisme',
       ethnie:'4',
+      inhabitants: '11 921 683',
+      difficulty: '0.13',
       tuiles: {
         hopital: 4,
         supermarche: 2,
@@ -198,6 +210,8 @@ export class TuilesService {
       type: 'herbe',
       religion:'islam',
       ethnie:'2',
+      inhabitants: '32 066 901',
+      difficulty: '0.63',
       tuiles: {
         hopital: 1,
         supermarche: 2,
@@ -229,6 +243,8 @@ export class TuilesService {
       type: 'sable',
       religion:'islam',
       ethnie:'1',
+      inhabitants: '2 453 117',
+      difficulty: '1',
       tuiles: {
         hopital: 0,
         supermarche: 1,
@@ -260,6 +276,8 @@ export class TuilesService {
       type: 'sable',
       religion:'christianisme',
       ethnie:'3',
+      inhabitants: '5 635 092',
+      difficulty: '0.46',
       tuiles: {
         hopital: 1,
         supermarche: 3,
@@ -291,6 +309,8 @@ export class TuilesService {
       type: 'urbain',
       religion:'atheisme',
       ethnie:'3',
+      inhabitants: '21 546 210',
+      difficulty: '0',
       tuiles: {
         hopital: 2,
         supermarche: 2,
@@ -642,5 +662,21 @@ export class TuilesService {
       }
     }
     return tmp;
-  }
+  };
+
+  getPopulation = (name) => {
+    for(const line of this.cities){
+      if(line[0].name === name){
+        return line[0].inhabitants;
+      }
+    }
+  };
+
+  getDifficulty = (name) => {
+    for(const line of this.cities){
+      if(line[0].name === name){
+        return line[0].difficulty;
+      }
+    }
+  };
 }

@@ -16,3 +16,13 @@ ion-img:hover {
   transform: scale(1.2, 1.2);
   cursor: pointer;
 }
+
+#hover{
+  position: absolute;
+  height:200px;
+  width:300px;
+  border: solid 1px white;
+  bottom:20px;
+  left:20px;
+  border-radius:10px;
+}
