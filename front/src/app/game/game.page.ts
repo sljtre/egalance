@@ -68,7 +68,7 @@ export class GamePage implements OnInit {
 
   async ngOnInit() {
 
-    this.eventService.eventAccident(1000, 100, 50);
+    // this.eventService.eventAccident();
 
     this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon');
     this.refreshAll();

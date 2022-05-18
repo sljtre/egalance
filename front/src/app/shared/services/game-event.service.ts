@@ -14,12 +14,14 @@ export class GameEventService {
   }
 
 
-  async eventAccident(dammage, careCost, careEfficiency) {
+  async eventAccident() {
+    const dammage = 0.3;
+    const careCost = 500;
     const data = {
       header: 'Accident !',
       subHeader: 'Everything was going so well until you were hit by this *** car',
       message: `Your leg is bleeding profusely and your broken arm hurts like hell...
-       you will lose ${dammage} points of life.
+       you will lose points of life.
        Immediate care could help you... but it is expensive`,
       buttons: [
         {
