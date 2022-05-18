@@ -342,133 +342,133 @@ export class TuilesService {
     [{
       name: 'Hospital',
       labels: ['hopital'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: '    Come here to heal yourself or to work as a doctor',
       actions: ['Heal', 'Work']
     }],
     [{
       name: 'School',
       labels: ['ecole'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Study in order to get better jobs or work here as a teacher',
       actions: ['Study', 'Work']
     }],
     [{
       name: 'College',
       labels: ['ecoleSup'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Learn advanced knowledge or work here as a senior teacher',
       actions: ['Study', 'Work']
     }],
     [{
       name: 'Supermarket',
       labels: ['supermarche'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'You can buy a bunch of different articles in the supermarket or work as a cashier',
       actions: ['Shopping', 'Work']
     }],
     [{
       name: 'Cinema',
       labels: ['cinema'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Relax yourself and release the pressure by watching a movie or work as a cleaner.',
       actions: ['Watch', 'Work']
     }],
     [{
       name: 'Bar',
       labels: ['bar'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'You can eat at the bar and drink a mysterious yellow drink, but beware of its effects ! Servers can be employed',
       actions: ['Drink', 'Eat', 'Work']
     }],
     [{
       name: 'Religion',
       labels: ['religion'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: ' Come to repent and confess to your God by praying',
       actions: ['Pray']
     }], //work ?
     [{
       name: 'Justice',
       labels: ['justice'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Judge or be judged',
       actions: ['Work']
     }], //se défendre ? donc truc illégaux ?
     [{
       name: 'Town hall',
       labels: ['mairie'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Carry out your administrative procedures or try to become the respectful mayor',
       actions: ['Mary', 'Rent', 'Work']
     }],
     [{
       name: 'Parc',
       labels: ['parc'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Take a walk to get some fresh air ',
       actions: ['Rest']
     }],
     [{
       name: 'House',
       labels: ['habitation0', 'habitation1', 'habitation2', 'habitation3'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'You can make this house your home',
       actions: ['Rest', 'Pray', 'Eat']
     }],
     [{
       name: 'Office',
       labels: ['bureaux'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'The office allows you to work ',
       actions: ['Work']
     }],
     [{
       name: 'Factory',
       labels: ['usine'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'There are some factory worker jobs ',
       actions: ['Work']
     }],
     [{
       name: 'Farm',
       labels: ['ferme'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Find fresh healthy food from the farm, or get on the tractor to plow the fields ',
       actions: ['Eat', 'Work']
     }],
     [{
       name: 'Library',
       labels: ['bibliotheque'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'The library is the place of all knowledge ',
       actions: ['Study', 'Work']
     }],
     [{
       name: 'Gymnasium',
       labels: ['gymnase'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Get fit to remain healthy or coach some sportsmen',
       actions: ['Practice', 'Work']
     }],
     [{
       name: 'Museum',
       labels: ['musee'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'What is art? Come to the museum to get your answer ',
       actions: ['Rest', 'Study', 'Work']
     }],
     [{
       name: 'Restaurant',
       labels: ['restaurant'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Have a meal here or work as a cook with the chief "Paul" ',
       actions: ['Eat', 'Work']
     }],
     [{
       name: 'Bank',
       labels: ['banque'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Put your money in the bank for safekeeping',
       actions: ['Deposit', 'Pull', 'Work']
     }],
     [{
       name: 'Stadium',
       labels: ['stade'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'Play with a sport team, watch a match or work as a security guard ',
       actions: ['Practice', 'Rest', 'Work']
     }],
     [{
       name: 'Airport',
       labels: ['aeroport'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'the airport opens the field of possibilities for you ',
       actions: ['Travel', 'Work']
     }],
     [{
       name: 'Empty',
       labels: ['vide'],
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      description: 'There is not much to see here ',
       actions: ['Rest']
     }],
     [{
