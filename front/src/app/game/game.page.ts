@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {TuilesService} from '../shared/services/tuiles.service';
 import {PersoService} from '../shared/services/perso.service';
+import { GameEventService} from '../shared/services/game-event.service';
 import {RouletteService} from '../shared/services/roulette.service';
 import {SaisonsComponent} from './saisons/saisons.component'
 import { Animation, AnimationController,ModalController } from '@ionic/angular';
@@ -59,12 +60,15 @@ export class GamePage implements OnInit {
   constructor(
     public tuiles: TuilesService,
     public persoService: PersoService,
+    private eventService: GameEventService,
     public roulette:RouletteService,
     private animationCtrl: AnimationController,
     public modalController:ModalController
   ) {};
 
   async ngOnInit() {
+
+    // this.eventService.eventAccident();
 
     this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon');
     this.refreshAll();
