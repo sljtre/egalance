@@ -70,6 +70,13 @@ export class GamePage implements OnInit {
 
   async ngOnInit() {
 
+    // add event to prevent refresh
+    window.addEventListener('beforeunload', e => {
+      const confirmationMessage = '\o/';
+      e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
+      return confirmationMessage;              // Gecko, WebKit, Chrome <34
+    });
+
     // this.eventService.eventAccident();
 
     this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon');
