@@ -62,7 +62,7 @@ export class GameEventService {
       data = {
         header: 'Bad luck...',
         //subHeader: '',
-        message: `Dy playing the lottery, you have lost .... ${moneyResult} money :-(`,
+        message: `By playing the lottery, you have lost .... ${moneyResult} money :-(`,
         buttons: [
           {
             text: 'Bye bye money...',

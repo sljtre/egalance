@@ -15,7 +15,7 @@ export class GameActionsService {
   private actionChosen;
 
   constructor(
-    public persoSerivce: PersoService,
+    public persoService: PersoService,
     public tuilesService:TuilesService,
     public eventService:GameEventService,
     public rouletteService:RouletteService
@@ -34,11 +34,12 @@ export class GameActionsService {
         break;
       case 'Rest':
         result=this.restHandler();
+      case 'Work':
+        result=this.workHandler();
         break;
       default:break;
     }
     return result;
-
   }
 
   actionsResponseHandler=(answer)=>{
@@ -53,7 +54,20 @@ export class GameActionsService {
 
   }
 
-  workHandler=()=>{  }
+  
+  workHandler=()=>{
+    const coefStudies = this.tuilesService.getIncomeMultiplicator(this.tuileActuelle, this.persoService.perso.instructionLevel);
+    const tolerance = 1-this.tuilesService.getTolerance(this.persoService.perso.localization);
+    let differenceScore = Math.abs(Number(this.tuilesService.getEthnie(this.persoService.perso.localization))
+      -Number(this.persoService.perso.skin));
+    if(this.persoService.perso.religion!==this.tuilesService.getReligion(this.persoService.perso.localization)){
+      differenceScore++;
+    }
+    console.log('difference : ', differenceScore);
+    const coefSalaire = 1-tolerance*0.2*differenceScore;
+    this.persoService.perso.wallet+= this.tuilesService.getSalaire(this.persoService.perso.localization)*coefSalaire;
+    return 30;
+  }
 
   workResponseHandler=()=>{
     console.log("hi");
@@ -66,9 +80,9 @@ export class GameActionsService {
   shoppingHandler=()=>{  }
 
   drinkHandler=()=>{
-    this.persoSerivce.perso.faim+=0.08;  
-    this.persoSerivce.perso.fatigue-=0.01;      
-    this.persoSerivce.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.5; 
+    this.persoService.perso.faim+=0.08;  
+    this.persoService.perso.fatigue-=0.01;      
+    this.persoService.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.5; 
     return 5;
    }
 
@@ -76,26 +90,26 @@ export class GameActionsService {
     let timeAdd;
     if (this.tuileActuelle==='Parc'){
       //Cest gratuit dans un parc on touche pas au wallet
-      this.persoSerivce.perso.fatigue+=0.15;
+      this.persoService.perso.fatigue+=0.15;
       timeAdd=2;
     }
     else if(this.tuileActuelle==='House'){
       //Cest gratuit dans un parc on touche pas au wallet
-      this.persoSerivce.perso.fatigue+=0.25;
+      this.persoService.perso.fatigue+=0.25;
       timeAdd=1;
     }
     else if(this.tuileActuelle==='Museum'){
-      this.persoSerivce.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.02; 
-      this.persoSerivce.perso.fatigue+=0.30;
+      this.persoService.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.02; 
+      this.persoService.perso.fatigue+=0.30;
       timeAdd=1;
     }
     else if(this.tuileActuelle==='Stadium'){
-      this.persoSerivce.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*2; 
-      this.persoSerivce.perso.fatigue+=0.40;
+      this.persoService.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*2; 
+      this.persoService.perso.fatigue+=0.40;
       timeAdd=3;
     }
     else if(this.tuileActuelle==='Empty'){
-      this.persoSerivce.perso.fatigue+=0.1;
+      this.persoService.perso.fatigue+=0.1;
       timeAdd=1;
     }
     return timeAdd;
@@ -106,8 +120,8 @@ export class GameActionsService {
   healHandler=()=>{
     switch(this.actionCity){
     case'Paris':
-      this.persoSerivce.perso.sante+=0;
-      this.persoSerivce.perso.faim+=0;
+      this.persoService.perso.sante+=0;
+      this.persoService.perso.faim+=0;
     case 'Reykjavik':
     case 'New York':
     case 'Sydney':
@@ -126,13 +140,13 @@ export class GameActionsService {
   prayHandler=()=>{
     switch(this.tuileActuelle){
     case 'Religion':
-      this.persoSerivce.perso.sante+=0.10;
-      this.persoSerivce.perso.fatigue-=0.10;
-      this.persoSerivce.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01; 
+      this.persoService.perso.sante+=0.10;
+      this.persoService.perso.fatigue-=0.10;
+      this.persoService.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01; 
       return 3;
     case'House':
-      this.persoSerivce.perso.sante+=0.05;
-      this.persoSerivce.perso.fatigue-=0.02;
+      this.persoService.perso.sante+=0.05;
+      this.persoService.perso.fatigue-=0.02;
       return 2;    
     }
     
@@ -149,25 +163,25 @@ export class GameActionsService {
   eatHandler=()=>{
     switch(this.tuileActuelle){
     case 'Bar':     
-      this.persoSerivce.perso.faim+=0.1;  
-      this.persoSerivce.perso.fatigue-=0.01;      
-      this.persoSerivce.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.8; 
+      this.persoService.perso.faim+=0.1;  
+      this.persoService.perso.fatigue-=0.01;      
+      this.persoService.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.8; 
       return 3;     
     case 'Farm':
-      this.persoSerivce.perso.faim+=0.5;  
-      this.persoSerivce.perso.fatigue-=0.05;
-      this.persoSerivce.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.2; 
+      this.persoService.perso.faim+=0.5;  
+      this.persoService.perso.fatigue-=0.05;
+      this.persoService.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.2; 
       // this.eventService.eventAccident();
       return 8;
     case 'House':
-      this.persoSerivce.perso.faim+=0.14;  
-      this.persoSerivce.perso.fatigue-=0.014;
-      this.persoSerivce.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.5; 
+      this.persoService.perso.faim+=0.14;  
+      this.persoService.perso.fatigue-=0.014;
+      this.persoService.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.5; 
       return 5;      
     case 'Restaurant':
-      this.persoSerivce.perso.faim+=0.3;  
-      this.persoSerivce.perso.fatigue-=0.03;
-      this.persoSerivce.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*1.6; 
+      this.persoService.perso.faim+=0.3;  
+      this.persoService.perso.fatigue-=0.03;
+      this.persoService.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*1.6; 
       return 3;      
     }    
   }

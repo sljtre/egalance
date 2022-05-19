@@ -1,36 +1,46 @@
 <app-menu></app-menu>
 <app-saisons></app-saisons>
 
+<<<<<<< HEAD
 <ion-button shape="round" color="success" (click)="router.redirect('welcome')"
             style="position:absolute; top:3px; left:3px; z-index:5;">
   <ion-icon slot="icon-only" name="arrow-undo-outline" color="light"></ion-icon>
 </ion-button>
 
 <ion-modal [isOpen]=isRouletteOpen backdrop-dismiss=false reference="event" (ionViewDidEnter)="resetRoulette();" (ionViewDidLeave)="buttonReset()" style="--background:transparent !important;--border-style:none;--backdrop-opacity:0;border:none;">
+=======
+<ion-modal trigger=popoverRoulette backdrop-dismiss=false reference="event" (ionViewDidEnter)="resetRoulette();"
+           (ionViewDidLeave)="buttonReset()"
+           style="--background:transparent !important;--border-style:none;--backdrop-opacity:0;border:none;">
+>>>>>>> 95f4115a18829b3913f0ce742e526490e749e578
   <ng-template>
     <ion-grid>
-      <ion-row >
+      <ion-row>
         <ion-col></ion-col>
         <ion-col style="text-align:center;">
-            <ion-button [hidden]=isHiddenSpin (click)="spin()" >Spin!</ion-button>
-            <ion-button [hidden]=isHiddenValid [disabled]=isDisabledValid color="success" (click)="dismissModal()">OK!</ion-button>
+          <ion-button [hidden]=isHiddenSpin (click)="spin()">Spin!</ion-button>
+          <ion-button [hidden]=isHiddenValid [disabled]=isDisabledValid color="success" (click)="dismissModal()">OK!
+          </ion-button>
         </ion-col>
         <ion-col></ion-col>
       </ion-row>
 
-    <ion-row>
-      <ion-col>
-        <canvas id="canvas" height="500" width="500"></canvas>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+      <ion-row>
+        <ion-col>
+          <canvas id="canvas" height="500" width="500"></canvas>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ng-template>
 </ion-modal>
 
 
 <ion-grid style="width:100%">
   <ion-row id="top">
-    <ion-col size="3">
+    <ion-col size="1">
+      <ion-icon name="arrow-undo-circle" color="success" (click)="router.redirect('welcome')"></ion-icon>
+    </ion-col>
+    <ion-col size="2">
       <ion-icon name="remove-circle" color="success" (click)="clockSpeed('-')"></ion-icon>
       <ion-badge color="light" style="margin: 0 10px">x {{speed}}</ion-badge>
       <ion-icon name="add-circle" color="success" (click)="clockSpeed('+')"></ion-icon>
@@ -51,22 +61,28 @@
     <ion-col size="9">
       <div class="main">
         <div class="container">
-          <ion-img id="player" [src]="'./assets/img/animatedMan/' + action + '.gif'" [style]="'position: absolute;' + positionPlayer"></ion-img>
+          <ion-img id="player" [src]="'./assets/img/animatedMan/' + action + '.gif'"
+                   [style]="'position: absolute;' + positionPlayer"></ion-img>
 
           <ion-img *ngFor="let col of matrix[0]" [src]="'./assets/tuiles/' + col.type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top, col.name)" class="tuile"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"
+                   (click)="deplacementPlay(col.left, col.top, col.name)" class="tuile"></ion-img>
           <br>
           <ion-img *ngFor="let col of matrix[1]" [src]="'./assets/tuiles/' + col.type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top, col.name)" class="tuile"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"
+                   (click)="deplacementPlay(col.left, col.top, col.name)" class="tuile"></ion-img>
           <br>
           <ion-img *ngFor="let col of matrix[2]" [src]="'./assets/tuiles/' + col.type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top, col.name)" class="tuile"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"
+                   (click)="deplacementPlay(col.left, col.top, col.name)" class="tuile"></ion-img>
           <br>
           <ion-img *ngFor="let col of matrix[3]" [src]="'./assets/tuiles/' + col.type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top, col.name)" class="tuile"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"
+                   (click)="deplacementPlay(col.left, col.top, col.name)" class="tuile"></ion-img>
           <br>
           <ion-img *ngFor="let col of matrix[4]" [src]="'./assets/tuiles/' + col.type + '/' + col.name + '.png'"
-                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()" (click)="deplacementPlay(col.left, col.top, col.name)" class="tuile"></ion-img>
+                   (mouseenter)="hoverEnter(col.name)" (mouseleave)="hoverLeave()"
+                   (click)="deplacementPlay(col.left, col.top, col.name)" class="tuile"></ion-img>
         </div>
       </div>
     </ion-col>
@@ -142,7 +158,9 @@
             </div>
           </ion-row>
           <ion-row>
-            <ion-img [src]="'./assets/img/persos/skin'+persoService.perso.skin+'-'+persoService.perso.gender+'-'+persoService.perso.religion+'.png'" style="width:50px;"></ion-img>
+            <ion-img
+              [src]="'./assets/img/persos/skin'+persoService.perso.skin+'-'+persoService.perso.gender+'-'+persoService.perso.religion+'.png'"
+              style="width:50px;"></ion-img>
           </ion-row>
         </ion-col>
         <ion-col size="1">
@@ -152,8 +170,15 @@
             </div>
           </ion-row>
           <ion-row>
-            <ion-img [src]="'./assets/img/persos/skin'+tuiles.getEthnie(persoService.perso.localization)+'-'+ persoService.perso.gender +'-'+tuiles.getReligion(persoService.perso.localization)+'.png'" style="width:50px; margin-left:3px;"></ion-img>
+            <ion-img
+              [src]="'./assets/img/persos/skin'+tuiles.getEthnie(persoService.perso.localization)+'-'+ persoService.perso.gender +'-'+tuiles.getReligion(persoService.perso.localization)+'.png'"
+              style="width:50px; margin-left:3px;"></ion-img>
           </ion-row>
+        </ion-col>
+        <ion-col size="3">
+          <p style="margin-left:5px;">
+            {{persoService.perso.wallet}}
+          </p>
         </ion-col>
       </ion-row>
     </ion-col>

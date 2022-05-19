@@ -12,5 +12,5 @@ export class WelcomePage implements OnInit {
     public router: RouterService,
   ) {}
 
-  ngOnInit() {}
+  async ngOnInit() {}
 }
