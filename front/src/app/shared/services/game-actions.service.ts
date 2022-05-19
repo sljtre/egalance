@@ -6,23 +6,23 @@ import {PersoService} from '../services/perso.service'
 })
 export class GameActionsService {
 
-  private eventLocation;
-  private tuileActuel;
+  private actionCity;
+  private tuileActuelle;
 
   constructor(
     public persoSerivce: PersoService,
-  ) { 
-    
+  ) {
+
   }
 
-  eventHandler=(action,localization,tuileActuel)=>{    
-    this.eventLocation=localization;
-    this.tuileActuel=tuileActuel;
+  actionHandler=(action,localization,tuileActuelle)=>{
+    this.actionCity=localization;
+    this.tuileActuelle=tuileActuelle;
     console.log(action);
-    console.log(tuileActuel);
+    console.log(tuileActuelle);
 
   }
-  
+
   workHandler=()=>{  }
 
   marryHandler=()=>{  }
@@ -55,22 +55,22 @@ export class GameActionsService {
   travelHandler=()=>{}
 
   eatHandler=()=>{
-    if (this.tuileActuel==='Bar'){
+    if (this.tuileActuelle==='Bar'){
       //cost some time
       this.persoSerivce.perso.faim+=0;  //need to add some food smartly
       this.persoSerivce.perso.Wallet-=0;  //TODO : cout en fonction du salaire moen du pays
 
     }
-    else if (this.tuileActuel==='Farm'){
+    else if (this.tuileActuelle==='Farm'){
 
     }
-    else if (this.tuileActuel==='House'){
+    else if (this.tuileActuelle==='House'){
 
     }
-    else if (this.tuileActuel==='Restaurant'){
+    else if (this.tuileActuelle==='Restaurant'){
 
     }
   }
 
-  
+
 }
