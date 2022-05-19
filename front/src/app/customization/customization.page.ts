@@ -14,9 +14,9 @@ export class CustomizationPage implements OnInit {
   public ethnie;
   public genre;
   public religion;
-  public birthdayDay;
-  public birthdayMonth;
-  public socioEcoStart;
+  public birthdayDay = 1;
+  public birthdayMonth = 1;
+  public socioEcoStart = '1';
 
   public majoriteReligion;
   public majoriteEthnie;
@@ -32,8 +32,6 @@ export class CustomizationPage implements OnInit {
   private indGenre=0;
   private indReligion=0;
   private indSocioEco=0;
-
-
 
   constructor(
     private persoService: PersoService,

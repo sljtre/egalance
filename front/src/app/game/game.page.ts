@@ -81,7 +81,7 @@ export class GamePage implements OnInit {
 
     // this.eventService.eventAccident();
 
-    this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon');
+    this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon', 5, 2, '2');
     this.refreshAll();
 
     this.importedTuiles = this.tuiles.getData(this.persoService.perso.localization);
@@ -105,7 +105,7 @@ export class GamePage implements OnInit {
         }
       }
     }
-    this.roulette.setRoulette(["Test","These","Nuts","Jhonny"],[0.3,0.2,0.4,0.1]);
+    this.roulette.setRoulette(["Test","These","Nuts","Johnny"],[0.3,0.2,0.4,0.1]);
 
     console.log(this.tuiles.getActions('Town hall').includes('Buy any House'));
 
@@ -120,7 +120,7 @@ export class GamePage implements OnInit {
     this.isHiddenSpin=true;
     this.isHiddenValid=false;
     this.checkRouletteFin();
-  }
+  };
 
   checkRouletteFin=()=>{
     if(this.roulette.answer!=undefined){
@@ -130,12 +130,12 @@ export class GamePage implements OnInit {
     else{
       this.end =setTimeout(this.checkRouletteFin,200);
     }
-  }
+  };
 
   resetRoulette=()=>{
     this.roulette.answer=undefined;
     this.roulette.drawRouletteWheel();
-  }
+  };
 
   dismissModal=()=>{
     this.modalController.dismiss({
@@ -149,7 +149,7 @@ export class GamePage implements OnInit {
     this.isHiddenSpin=false;
     this.isHiddenValid=true;
     this.isDisabledValid=true;
-  }
+  };
 
 
 
