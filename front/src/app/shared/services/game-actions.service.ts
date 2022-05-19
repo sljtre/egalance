@@ -19,10 +19,16 @@ export class GameActionsService {
   }
 
   actionHandler=(action,localization,tuileActuelle)=>{
+    let result;
     this.actionCity=localization;
     this.tuileActuelle=tuileActuelle;
-    console.log(action);
-    console.log(tuileActuelle);
+    switch(action){
+      case 'Eat':
+        result=this.eatHandler();
+        break;
+      default:break;
+    }
+    return result;
 
   }
 
@@ -35,7 +41,7 @@ export class GameActionsService {
   shoppingHandler=()=>{  }
 
   drinkHandler=()=>{
-    this.persoSerivce.perso.faim+=0.1
+    this.persoSerivce.perso.faim+=0.1;
 
    }
 
