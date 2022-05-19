@@ -79,7 +79,7 @@
             </ion-title>
           </ion-row>
           <ion-row *ngFor="let el of ['Mary', 'Rent', 'Shopping', 'Drink', 'Rest', 'Study', 'Heal', 'Watch', 'Pray', 'Eat', 'Practice', 'Deposit', 'Withdraw', 'Travel', 'Work']">
-            <ion-button *ngIf="tuiles.getActions(currentName).includes(el)" [id]="el" (click)="gameActions.eventHandler(el,persoService.perso.localization,currentName)">{{el}}</ion-button>
+            <ion-button *ngIf="tuiles.getActions(currentName).includes(el)" [id]="el" (click)="actionClicked(el)">{{el}}</ion-button>
           </ion-row>
         </ion-col>
       </ion-row>

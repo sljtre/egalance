@@ -108,10 +108,11 @@ export class GamePage implements OnInit {
     this.roulette.setRoulette(["Test","These","Nuts","Johnny"],[0.3,0.2,0.4,0.1]);
 
     console.log(this.tuiles.getActions('Town hall').includes('Buy any House'));
-
   }
 
-  setRouletteForModal=()=>{    
+  actionClicked = (action) => this.addTime(this.gameActions.actionHandler(action,this.persoService.perso.localization,this.currentName));
+
+  setRouletteForModal=()=>{
     this.roulette.setRoulette(["Edgar","Simon","CJ","Paul","Nathan"],[0.1,0.1,0.1,0.6,0.1])
   }
 
@@ -257,46 +258,48 @@ export class GamePage implements OnInit {
   };
 
   //Animation déplacement
-  deplacementPlay = (x, y, name) => {
+  deplacementPlay = async (x, y, name) => {
 
-    if(Math.floor(Math.floor(Math.abs(this.x+8-x)/73)+Math.floor(Math.abs(this.y+12-y)/64)) < 2) {
-      if (!this.isMoving) {
-        this.isMoving = true;
+    if (!this.paused) {
+      if (Math.floor(Math.floor(Math.abs(this.x + 8 - x) / 73) + Math.floor(Math.abs(this.y + 12 - y) / 64)) < 2) {
+        if (!this.isMoving) {
+          this.isMoving = true;
 
-        this.currentName = '';
+          this.currentName = '';
 
-        x -= 8;
-        y -= 12;
-        this.positionPlayer = '';
-        let elt = document.querySelector('#player');
-        if ((x - this.x) > 0) {
-          this.action = 'WalkingManPositive';
-        } else {
-          this.action = 'WalkingManNegative';
+          x -= 8;
+          y -= 12;
+          this.positionPlayer = '';
+          let elt = document.querySelector('#player');
+          if ((x - this.x) > 0) {
+            this.action = 'WalkingManPositive';
+          } else {
+            this.action = 'WalkingManNegative';
+          }
+
+          let start = 'translateX(' + this.x + 'px) translateY(' + this.y + 'px)'
+          let finish = 'translateX(' + x + 'px) translateY(' + y + 'px)';
+
+          this.deplacement = this.animationCtrl.create()
+            .addElement(elt)
+            .duration((25 * (Math.abs(x - this.x) + Math.abs(y - this.y)))*(1-this.speed/10))
+            .iterations(1)
+            .direction('alternate')
+            .keyframes([
+              {offset: 0, transform: start},
+              {offset: 1, transform: finish}
+            ]);
+
+          await this.deplacement.play().then(() => {
+            const retour = this.tuiles.getInfo(name);
+            this.currentName = retour.name;
+            this.action = 'Sport';
+            this.x = x;
+            this.y = y;
+            this.isMoving = false;
+          });
         }
-
-        let start = 'translateX(' + this.x + 'px) translateY(' + this.y + 'px)'
-        let finish = 'translateX(' + x + 'px) translateY(' + y + 'px)';
-
-        this.deplacement = this.animationCtrl.create()
-          .addElement(elt)
-          .duration(25 * (Math.abs(x - this.x) + Math.abs(y - this.y)))
-          .iterations(1)
-          .direction('alternate')
-          .keyframes([
-            {offset: 0, transform: start},
-            {offset: 1, transform: finish}
-          ]);
-
-        this.deplacement.play().then(() => {
-          const retour = this.tuiles.getInfo(name);
-          this.currentName = retour.name;
-          this.action = 'Sport';
-          this.x = x;
-          this.y = y;
-          this.isMoving = false;
-        });
       }
     }
   }
-}
+};
