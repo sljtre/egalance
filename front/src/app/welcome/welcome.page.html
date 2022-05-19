@@ -1,1 +1,10 @@
-<app-menu></app-menu>
+<ion-img src="./assets/img/EgalanceLogo.png" style="width:1350px; z-index:-1;"></ion-img>
+
+<ion-button shape="round" color="success" size="large" (click)="router.redirect('city-selection')"
+            id="top-left">Enter game</ion-button>
+<ion-button shape="round" color="success" size="large" (click)="router.redirect('scoreboard')"
+            id="top-right">Scoreboard</ion-button>
+<ion-button shape="round" color="success" size="large" (click)="router.redirect('friends')"
+            id="bottom-left">Friends</ion-button>
+<ion-button shape="round" color="success" size="large" (click)="router.redirect('explanations')"
+            id="bottom-right">Our algorithms</ion-button>

@@ -1,0 +1,26 @@
+$side:80px;
+$height:40px;
+
+ion-button{
+  position:absolute;
+}
+
+#top-left{
+  top:$height;
+  left:$side;
+}
+
+#top-right{
+  top:$height;
+  right:$side;
+}
+
+#bottom-left{
+  bottom:$height;
+  left:$side;
+}
+
+#bottom-right{
+  bottom:$height;
+  right:$side;
+}

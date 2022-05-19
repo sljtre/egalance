@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActionSheetController} from '@ionic/angular';
-import {Router} from '@angular/router';
+import {RouterService} from '../shared/services/router.service';
 import {PersoService} from '../shared/services/perso.service';
+import {TuilesService} from '../shared/services/tuiles.service';
 import Highcharts from 'highcharts/highmaps';
 import worldMap from '@highcharts/map-collection/custom/world.geo.json';
 
@@ -12,13 +13,29 @@ import worldMap from '@highcharts/map-collection/custom/world.geo.json';
 })
 export class CitySelectionPage implements OnInit {
 
+  public cityName = '';
+  public ethnie = '';
+  public religion = '';
+  public population = '';
+  public difficulty = '';
+
   constructor(
     private actionSheet: ActionSheetController,
-    private router: Router,
-    private perso: PersoService,
+    public router: RouterService,
+    public perso: PersoService,
+    private tuiles: TuilesService,
   ) { }
 
   ngOnInit() {}
+
+  setInfos = (name) => {
+    this.cityName = name;
+    this.ethnie = this.tuiles.getEthnie(name);
+    this.religion = this.tuiles.getReligion(name);
+    this.population = this.tuiles.getPopulation(name);
+    this.difficulty = this.tuiles.getDifficulty(name);
+    console.log('./assets/img/persos/skin'+this.ethnie+'-'+'homme-'+this.religion+'.png');
+  };
 
   Highcharts: typeof Highcharts = Highcharts;
   chartConstructor = "mapChart";
@@ -272,7 +289,7 @@ export class CitySelectionPage implements OnInit {
         icon: 'airplane',
         handler: () => {
           this.perso.createPerso(city);
-          this.router.navigateByUrl('/customization');
+          this.router.redirect('customization');
         }
       }, {
         text: 'No',

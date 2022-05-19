@@ -1,4 +1,7 @@
-<app-menu></app-menu>
+<ion-button shape="round" color="success" (click)="router.redirect('welcome')"
+            style="position:absolute; top:3px; left:3px; z-index:5;">
+  <ion-icon slot="icon-only" name="arrow-undo-outline" color="light"></ion-icon>
+</ion-button>
 
 <ion-grid style="width:100%;">
   <ion-row style="height: 500px;">
@@ -10,14 +13,40 @@
       </highcharts-chart>
     </ion-col>
   </ion-row>
-  <ion-img src="./assets/img/mappoint.png" style="top: 171px; left: 583px;" title="Paris" (click)="select('Paris')"></ion-img>
-  <ion-img src="./assets/img/mappoint.png" style="top: 102px; left: 512px;" title="Reykjavik" (click)="select('Reykjavik')"></ion-img>
-  <ion-img src="./assets/img/mappoint.png" style="top: 195px; left: 355px;" title="New York" (click)="select('New York')"></ion-img>
-  <ion-img src="./assets/img/mappoint.png" style="top: 425px; left: 1015px;" title="Sydney" (click)="select('Sydney')"></ion-img>
-  <ion-img src="./assets/img/mappoint.png" style="top: 397px; left: 430px;" title="Rio de Janeiro" (click)="select('Rio de Janeiro')"></ion-img>
-  <ion-img src="./assets/img/mappoint.png" style="top: 150px; left: 685px;" title="Moscow" (click)="select('Moscow')"></ion-img>
-  <ion-img src="./assets/img/mappoint.png" style="top: 245px; left: 800px;" title="New Delhi" (click)="select('New Delhi')"></ion-img>
-  <ion-img src="./assets/img/mappoint.png" style="top: 285px; left: 571px;" title="Ouagadougou" (click)="select('Ouagadougou')"></ion-img>
-  <ion-img src="./assets/img/mappoint.png" style="top: 400px; left: 657px;" title="Johannesburg" (click)="select('Johannesburg')"></ion-img>
-  <ion-img src="./assets/img/mappoint.png" style="top: 202px; left: 914px;" title="Beijing" (click)="select('Beijing')"></ion-img>
+  <ion-img src="./assets/img/mappoint.png" style="top: 171px; left: 583px;" title="Paris" (click)="select('Paris')" (mouseenter)="setInfos('Paris')" (mouseleave)="setInfos('')"></ion-img>
+  <ion-img src="./assets/img/mappoint.png" style="top: 102px; left: 512px;" title="Reykjavik" (click)="select('Reykjavik')" (mouseenter)="setInfos('Reykjavik')" (mouseleave)="setInfos('')"></ion-img>
+  <ion-img src="./assets/img/mappoint.png" style="top: 195px; left: 355px;" title="New York" (click)="select('New York')" (mouseenter)="setInfos('New York')" (mouseleave)="setInfos('')"></ion-img>
+  <ion-img src="./assets/img/mappoint.png" style="top: 425px; left: 1015px;" title="Sydney" (click)="select('Sydney')" (mouseenter)="setInfos('Sydney')" (mouseleave)="setInfos('')"></ion-img>
+  <ion-img src="./assets/img/mappoint.png" style="top: 397px; left: 430px;" title="Rio de Janeiro" (click)="select('Rio de Janeiro')" (mouseenter)="setInfos('Rio de Janeiro')" (mouseleave)="setInfos('')"></ion-img>
+  <ion-img src="./assets/img/mappoint.png" style="top: 150px; left: 685px;" title="Moscow" (click)="select('Moscow')" (mouseenter)="setInfos('Moscow')" (mouseleave)="setInfos('')"></ion-img>
+  <ion-img src="./assets/img/mappoint.png" style="top: 245px; left: 800px;" title="New Delhi" (click)="select('New Delhi')" (mouseenter)="setInfos('New Delhi')" (mouseleave)="setInfos('')"></ion-img>
+  <ion-img src="./assets/img/mappoint.png" style="top: 285px; left: 571px;" title="Ouagadougou" (click)="select('Ouagadougou')" (mouseenter)="setInfos('Ouagadougou')" (mouseleave)="setInfos('')"></ion-img>
+  <ion-img src="./assets/img/mappoint.png" style="top: 400px; left: 657px;" title="Johannesburg" (click)="select('Johannesburg')" (mouseenter)="setInfos('Johannesburg')" (mouseleave)="setInfos('')"></ion-img>
+  <ion-img src="./assets/img/mappoint.png" style="top: 202px; left: 914px;" title="Beijing" (click)="select('Beijing')" (mouseenter)="setInfos('Beijing')" (mouseleave)="setInfos('')"></ion-img>
 </ion-grid>
+
+<div id="hover" *ngIf="cityName">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-title style="text-decoration: underline">{{cityName}}</ion-title>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-img [src]="'./assets/img/persos/skin'+ethnie+'-'+'homme-'+religion+'.png'" style="width:65px"></ion-img>
+      </ion-col>
+      <ion-col>
+        <ion-row style="height:50%; text-align:center;">
+          <p>{{population}} inhabitants</p>
+        </ion-row>
+        <ion-row style="height:50%;">
+          <div style="margin-top:30px; margin-left:30px;">
+          Difficulty :
+          <ion-progress-bar id="progFatigue" value={{difficulty}} color="warning" style="margin-top:5px;"></ion-progress-bar>
+          </div>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

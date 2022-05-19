@@ -1,8 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {TuilesService} from '../shared/services/tuiles.service';
 import {PersoService} from '../shared/services/perso.service';
+import { GameEventService} from '../shared/services/game-event.service';
 import {RouletteService} from '../shared/services/roulette.service';
 import {GameActionsService} from '../shared/services/game-actions.service'
+import {RouterService} from '../shared/services/router.service';
 import {SaisonsComponent} from './saisons/saisons.component'
 import { Animation, AnimationController,ModalController } from '@ionic/angular';
 import { ObjectUnsubscribedError } from 'rxjs';
@@ -60,13 +62,24 @@ export class GamePage implements OnInit {
   constructor(
     public tuiles: TuilesService,
     public persoService: PersoService,
+    private eventService: GameEventService,
     public roulette:RouletteService,
     public gameActions:GameActionsService,
     private animationCtrl: AnimationController,
-    public modalController:ModalController
+    public modalController:ModalController,
+    public router: RouterService,
   ) {};
 
   async ngOnInit() {
+
+    // add event to prevent refresh
+    window.addEventListener('beforeunload', e => {
+      const confirmationMessage = '\o/';
+      e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
+      return confirmationMessage;              // Gecko, WebKit, Chrome <34
+    });
+
+    // this.eventService.eventAccident();
 
     this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon');
     this.refreshAll();
