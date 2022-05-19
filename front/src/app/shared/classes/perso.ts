@@ -12,6 +12,11 @@ export class Perso {
   public birthdayMonth = 1;
   public age = 0;
   public currentSickness=0;   //Facteur entre 0 et 1 qui vient affecter la sante
+  public educationLevel=0;
+  
+  public monthlyIncome=0;
+  public Wallet=0;
+
 
   public fatigue=0;
   public sante=1;
@@ -55,9 +60,10 @@ export class Perso {
     }
   }
 
+  //On plus de faim a partir de 60 jours sans rien faire
   calculFaim=()=>{
     if(this.faim>0){
-      this.faim-=0.05;
+      this.faim-=0.017;
     }
     //Pour eviter de faire des dépassements de borne
     if(this.faim<0){
@@ -65,7 +71,9 @@ export class Perso {
     }
   };
 
+  //On perd de la fatigue seuelemnt au cours des actions
   calculFatigue=()=>{
+    /*
     if(this.fatigue<1){
       this.fatigue+=(1-this.faim)+this.age/1000;
     }
@@ -73,10 +81,12 @@ export class Perso {
     //Dépassements de borne
     if(this.fatigue>1){
       this.fatigue=1;
-    }
+    }*/
   };
 
+  //On perd de la sante seulement si on a plus d'energie ou de faim ou si on est malade
   calculSante=()=>{
+    /*
     if(this.sante>0){
       this.sante-= 0.01 - this.fatigue*this.age/1000 - this.currentSickness;
     }
@@ -84,7 +94,7 @@ export class Perso {
     //Dépassement de borne
     if(this.sante<0){
       this.sante=0;
-    }
+    }*/
   };
 
   fallSick=()=>{

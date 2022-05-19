@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {TuilesService} from '../shared/services/tuiles.service';
 import {PersoService} from '../shared/services/perso.service';
 import {RouletteService} from '../shared/services/roulette.service';
+import {GameActionsService} from '../shared/services/game-actions.service'
 import {SaisonsComponent} from './saisons/saisons.component'
 import { Animation, AnimationController,ModalController } from '@ionic/angular';
 import { ObjectUnsubscribedError } from 'rxjs';
@@ -60,6 +61,7 @@ export class GamePage implements OnInit {
     public tuiles: TuilesService,
     public persoService: PersoService,
     public roulette:RouletteService,
+    public gameActions:GameActionsService,
     private animationCtrl: AnimationController,
     public modalController:ModalController
   ) {};
@@ -96,10 +98,8 @@ export class GamePage implements OnInit {
 
   }
 
-  test=()=>{
-    console.log("Fonction test appele");
+  setRouletteForModal=()=>{    
     this.roulette.setRoulette(["Edgar","Simon","CJ","Paul","Nathan"],[0.1,0.1,0.1,0.6,0.1])
-    //this.roulette.drawRouletteWheel();
   }
 
   spin=()=>{

@@ -636,8 +636,7 @@ export class TuilesService {
     for(const line of this.tuiles){
       if(line[0].name===name){
         for(const el of line[0].actions){
-          tmp+=el + ' ';
-          console.log(el);
+          tmp+=el + ' ';          
         }
       }
     }

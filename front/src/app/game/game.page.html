@@ -74,8 +74,8 @@
               {{currentName}}
             </ion-title>
           </ion-row>
-          <ion-row *ngFor="let el of ['Mary', 'Rent', 'Shopping', 'Drink', 'Rest', 'Study', 'Heal', 'Watch', 'Pray', 'Eat', 'Practice', 'Deposit', 'Pull', 'Travel', 'Work']">
-            <ion-button *ngIf="tuiles.getActions(currentName).includes(el)" [id]="el">{{el}}</ion-button>
+          <ion-row *ngFor="let el of ['Mary', 'Rent', 'Shopping', 'Drink', 'Rest', 'Study', 'Heal', 'Watch', 'Pray', 'Eat', 'Practice', 'Deposit', 'Withdraw', 'Travel', 'Work']">
+            <ion-button *ngIf="tuiles.getActions(currentName).includes(el)" [id]="el" (click)="gameActions.eventHandler(el,persoService.perso.localization,currentName)">{{el}}</ion-button>
           </ion-row>
         </ion-col>
       </ion-row>
@@ -131,7 +131,7 @@
     </ion-col>
     <ion-col size="8">
       INV + INFOS PERSO
-      <ion-button id=popoverRoulette (click)="test()">
+      <ion-button id=popoverRoulette (click)="setRouletteForModal()">
           ROULETTE
       </ion-button>
     </ion-col>
