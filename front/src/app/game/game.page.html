@@ -1,18 +1,12 @@
 <app-menu></app-menu>
 <app-saisons></app-saisons>
 
-<<<<<<< HEAD
 <ion-button shape="round" color="success" (click)="router.redirect('welcome')"
             style="position:absolute; top:3px; left:3px; z-index:5;">
   <ion-icon slot="icon-only" name="arrow-undo-outline" color="light"></ion-icon>
 </ion-button>
 
 <ion-modal [isOpen]=isRouletteOpen backdrop-dismiss=false reference="event" (ionViewDidEnter)="resetRoulette();" (ionViewDidLeave)="buttonReset()" style="--background:transparent !important;--border-style:none;--backdrop-opacity:0;border:none;">
-=======
-<ion-modal trigger=popoverRoulette backdrop-dismiss=false reference="event" (ionViewDidEnter)="resetRoulette();"
-           (ionViewDidLeave)="buttonReset()"
-           style="--background:transparent !important;--border-style:none;--backdrop-opacity:0;border:none;">
->>>>>>> 95f4115a18829b3913f0ce742e526490e749e578
   <ng-template>
     <ion-grid>
       <ion-row>
