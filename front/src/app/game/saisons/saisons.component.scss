@@ -70,6 +70,7 @@
   right: 0;
   width: calc(90vh + 200px);
   transform-origin: right;
+  z-index: 10;
 
   &.animated {
     animation: 6s 1 cubic-bezier(0.25, 0.35, 0.76, -0.25) move;
@@ -231,6 +232,7 @@ div#autumn {
 }
 
 div#spring {
+  z-index: 10;
   position: absolute;
   width: 100vw;
   height: 100vh;
