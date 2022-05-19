@@ -17,12 +17,43 @@ ion-img:hover {
   cursor: pointer;
 }
 
-#hover{
+#hover {
   position: absolute;
-  height:200px;
-  width:300px;
+  height: 200px;
+  width: 300px;
   border: solid 1px white;
-  bottom:20px;
-  left:20px;
-  border-radius:10px;
+  bottom: 20px;
+  left: 20px;
+  border-radius: 10px;
+  background: #001069;
+
+  #city-infos {
+    padding-right: 15px;
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+
+    ion-chip {
+      padding-left: 20px;
+
+      #difficulty-bar {
+        width: calc(100% - 24px);
+        height: 7px;
+        background: linear-gradient(90deg, rgba(255, 0, 0, 1) 0%, rgba(255, 255, 0, 1) 50%, rgba(0, 255, 0, 1) 100%);
+        position: relative;
+      }
+
+      #difficulty-indicator {
+        position: absolute;
+        transform: translateY(-10px) translateX(-7px);
+        top: 0;
+      }
+
+      ion-progress-bar {
+        width: 100%;
+      }
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActionSheetController} from '@ionic/angular';
 import {Router} from '@angular/router';
 import {PersoService} from '../shared/services/perso.service';
@@ -24,9 +24,11 @@ export class CitySelectionPage implements OnInit {
     public router: Router,
     public perso: PersoService,
     private tuiles: TuilesService,
-  ) { }
+  ) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   setInfos = (name) => {
     this.cityName = name;
@@ -34,19 +36,20 @@ export class CitySelectionPage implements OnInit {
     this.religion = this.tuiles.getReligion(name);
     this.population = this.tuiles.getPopulation(name);
     this.difficulty = this.tuiles.getDifficulty(name);
-    console.log('./assets/img/persos/skin'+this.ethnie+'-'+'homme-'+this.religion+'.png');
+    console.log(this.difficulty);
+    console.log('./assets/img/persos/skin' + this.ethnie + '-' + 'homme-' + this.religion + '.png');
   };
 
   Highcharts: typeof Highcharts = Highcharts;
   chartConstructor = "mapChart";
-  chartData = [{ code3: "ABW", z: 105 }, { code3: "AFG", z: 35530 }];
+  chartData = [{code3: "ABW", z: 105}, {code3: "AFG", z: 35530}];
 
   chartOptions: Highcharts.Options = {
     chart: {
       map: worldMap,
-      backgroundColor:'transparent',
-      width:1200,
-      height:600
+      backgroundColor: 'transparent',
+      width: 1200,
+      height: 600
     },
     title: {
       text: ''
@@ -62,7 +65,7 @@ export class CitySelectionPage implements OnInit {
     },
     colorAxis: {
       min: 0,
-      max:1,
+      max: 1,
     },
     series: [
       {
