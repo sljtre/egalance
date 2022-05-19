@@ -286,7 +286,7 @@ export class TuilesService {
       ethnie:'3',
       inhabitants: '5 635 092',
       difficulty: '0.46',
-      salaireMoyen:'',
+      salaireMoyen:'1400',
       tuiles: {
         hopital: 1,
         supermarche: 3,
@@ -320,6 +320,7 @@ export class TuilesService {
       ethnie:'3',
       inhabitants: '21 546 210',
       difficulty: '0',
+      salaireMoyen:'731',
       tuiles: {
         hopital: 2,
         supermarche: 2,
@@ -630,6 +631,14 @@ export class TuilesService {
     for (const line of this.cities) {
       if (line[0].name === name) {
         return line[0].ethnie;
+      }
+    }
+  };
+
+  getSalaire = (name) => {
+    for (const line of this.cities) {
+      if (line[0].name === name) {
+        return line[0].salaireMoyen;
       }
     }
   };
