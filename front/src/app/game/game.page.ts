@@ -23,6 +23,7 @@ export class GamePage implements OnInit {
   public type = '';
   public clock;
   public paused = true;
+  public timeToAdd=0;
 
   public day = 1;
   public month = 1;
@@ -55,7 +56,7 @@ export class GamePage implements OnInit {
   public isRouletteOpen=false;
   public isHiddenSpin =false;
   public isHiddenValid = true;
-  public isDisabledValid=true;
+  public isDisabledValid=true;  
   public end;
 
   public positionPlayer = 'top:' + this.y + 'px; left:' + this.x+ 'px;';
@@ -112,14 +113,9 @@ export class GamePage implements OnInit {
   }
 
   actionClicked = (action) => {
-    this.addTime(this.gameActions.actionHandler(action,this.persoService.perso.localization,this.currentName));
+    this.timeToAdd=this.gameActions.actionHandler(action,this.persoService.perso.localization,this.currentName);
     this.isRouletteOpen=true;
-  }
-
-  /*
-  setRouletteForModal=()=>{
-    this.roulette.setRoulette(["Edgar","Simon","CJ","Paul","Nathan"],[0.1,0.1,0.1,0.6,0.1])
-  }*/
+  }  
 
   spin=()=>{
     this.roulette.spin();
@@ -132,6 +128,8 @@ export class GamePage implements OnInit {
     if(this.roulette.answer!=undefined){
       this.gameActions.actionsResponseHandler(this.roulette.answer);
       clearTimeout(this.end);
+      this.addTime(this.timeToAdd);
+      this.timeToAdd=0;
       this.isDisabledValid=false;
     }
     else{

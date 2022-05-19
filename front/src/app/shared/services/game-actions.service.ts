@@ -45,9 +45,10 @@ export class GameActionsService {
   actionsResponseHandler=(answer)=>{
     switch(this.actionChosen){
       case 'Eat':
+        this.eatResponseHandler(answer);
         break;
       case 'Work':
-        this.workResponseHandler();
+        this.workResponseHandler(answer);
         break;
       default:break;
     }
@@ -69,7 +70,7 @@ export class GameActionsService {
     return 30;
   }
 
-  workResponseHandler=()=>{
+  workResponseHandler=(answer)=>{
     console.log("hi");
   }
 
@@ -184,6 +185,12 @@ export class GameActionsService {
       this.persoService.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*1.6; 
       return 3;      
     }    
+  }
+
+  eatResponseHandler=(answer)=>{
+    switch(this.actionChosen){
+
+    }
   }
 
 
