@@ -47,7 +47,7 @@ export class GameActionsService {
       case 'Eat':
         break;
       case 'Work':
-        this.workResponseHandler();
+        this.workResponseHandler(answer);
         break;
       default:break;
     }
@@ -64,14 +64,12 @@ export class GameActionsService {
       differenceScore++;
     }
     const coefSalaire = 1-tolerance*0.2*differenceScore;
-    const salaire = this.tuilesService.getSalaire(this.persoService.perso.localization)*coefSalaire;
+    const salaire = Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)*coefSalaire);
     this.rouletteService.setRoulette([salaire, 0, salaire*3, salaire*0.6, salaire*1.5, salaire*1.2, salaire*0.8],[0.5,0.01,0.01,0.1,0.1,0.14,0.14]);
     return 30;
   }
 
-  workResponseHandler=()=>{
-    console.log("hi");
-  }
+  workResponseHandler=(answer)=>this.persoService.perso.wallet+=answer;
 
   marryHandler=()=>{  }
 
