@@ -113,7 +113,7 @@ export class GamePage implements OnInit {
   actionClicked = (action) => this.addTime(this.gameActions.actionHandler(action,this.persoService.perso.localization,this.currentName));
 
   setRouletteForModal=()=>{
-    this.roulette.setRoulette(["Edgar","Simon","CJ","Paul","Nathan"],[0.1,0.1,0.1,0.6,0.1])
+    this.roulette.setRoulette(["Edgar","Simon","CJ","Paul","Nathan"],[0.7,0.1,0.1,0.1,0.1])
   }
 
   spin=()=>{
