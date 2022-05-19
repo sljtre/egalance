@@ -14,6 +14,7 @@ export class TuilesService {
       ethnie:'5',
       inhabitants: '122 853',
       difficulty: '0.63',
+      salaireMoyen:'2176',
       tuiles: {
         hopital: 4,
         supermarche: 2,
@@ -47,6 +48,7 @@ export class TuilesService {
       ethnie:'4',
       inhabitants: '8 389 581',
       difficulty: '0.29',
+      salaireMoyen:'6507',
       tuiles: {
         hopital: 3,
         supermarche: 4,
@@ -80,6 +82,7 @@ export class TuilesService {
       ethnie:'4',
       inhabitants: '5 312 947',
       difficulty: '0',
+      salaireMoyen:'3780',
       tuiles: {
         hopital: 4,
         supermarche: 3,
@@ -113,6 +116,7 @@ export class TuilesService {
       ethnie:'2',
       inhabitants: '6 748 518',
       difficulty: '0.46',
+      salaireMoyen:'757',
       tuiles: {
         hopital: 2,
         supermarche: 2,
@@ -146,6 +150,7 @@ export class TuilesService {
       ethnie:'5',
       inhabitants: '2 161 063',
       difficulty: '0.5',
+      salaireMoyen:'2761',
       tuiles: {
         hopital: 3,
         supermarche: 3,
@@ -179,6 +184,7 @@ export class TuilesService {
       ethnie:'4',
       inhabitants: '11 921 683',
       difficulty: '0.13',
+      salaireMoyen:'686',
       tuiles: {
         hopital: 4,
         supermarche: 2,
@@ -212,6 +218,7 @@ export class TuilesService {
       ethnie:'2',
       inhabitants: '32 066 901',
       difficulty: '0.63',
+      salaireMoyen:'452',
       tuiles: {
         hopital: 1,
         supermarche: 2,
@@ -245,6 +252,7 @@ export class TuilesService {
       ethnie:'1',
       inhabitants: '2 453 117',
       difficulty: '1',
+      salaireMoyen:'400',
       tuiles: {
         hopital: 0,
         supermarche: 1,
@@ -278,6 +286,7 @@ export class TuilesService {
       ethnie:'3',
       inhabitants: '5 635 092',
       difficulty: '0.46',
+      salaireMoyen:'',
       tuiles: {
         hopital: 1,
         supermarche: 3,
