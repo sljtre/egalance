@@ -18,7 +18,7 @@ export class Perso {
   public Wallet=0;
 
 
-  public fatigue = 0;
+  public fatigue = 1;
   public sante = 1;
   public faim = 1;
 
@@ -62,6 +62,9 @@ export class Perso {
 
   //On plus de faim a partir de 60 jours sans rien faire
   calculFaim=()=>{
+    if(this.faim>1){
+      this.faim=1;
+    }
     if(this.faim>0){
       this.faim-=0.017;
     }

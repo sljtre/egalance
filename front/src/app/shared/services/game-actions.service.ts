@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import {PersoService} from '../services/perso.service'
 import {TuilesService} from '../services/tuiles.service'
-import { time } from 'highcharts';
+import {GameEventService} from '../services/game-event.service'
+import {RouletteService} from '../services/roulette.service'
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +12,13 @@ export class GameActionsService {
 
   private actionCity;
   private tuileActuelle;
+  private actionChosen;
 
   constructor(
     public persoSerivce: PersoService,
-    public tuilesService:TuilesService
+    public tuilesService:TuilesService,
+    public eventService:GameEventService,
+    public rouletteService:RouletteService
   ) {
 
   }
@@ -22,9 +27,13 @@ export class GameActionsService {
     let result;
     this.actionCity=localization;
     this.tuileActuelle=tuileActuelle;
+    this.actionChosen=action;
     switch(action){
       case 'Eat':
         result=this.eatHandler();
+        break;
+      case 'Rest':
+        result=this.restHandler();
         break;
       default:break;
     }
@@ -32,7 +41,23 @@ export class GameActionsService {
 
   }
 
+  actionsResponseHandler=(answer)=>{
+    switch(this.actionChosen){
+      case 'Eat':
+        break;
+      case 'Work':
+        this.workResponandler();
+        break;
+      default:break;
+    }
+
+  }
+
   workHandler=()=>{  }
+
+  workResponseHandler=()=>{
+    console.log("hi");
+  }
 
   marryHandler=()=>{  }
 
@@ -41,19 +66,77 @@ export class GameActionsService {
   shoppingHandler=()=>{  }
 
   drinkHandler=()=>{
-    this.persoSerivce.perso.faim+=0.1;
-
+    this.persoSerivce.perso.faim+=0.08;  
+    this.persoSerivce.perso.fatigue-=0.01;      
+    this.persoSerivce.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.5; 
+    return 5;
    }
 
-  restHandler=()=>{ }
+  restHandler=()=>{
+    let timeAdd;
+    if (this.tuileActuelle==='Parc'){
+      //Cest gratuit dans un parc on touche pas au wallet
+      this.persoSerivce.perso.fatigue+=0.15;
+      timeAdd=2;
+    }
+    else if(this.tuileActuelle==='House'){
+      //Cest gratuit dans un parc on touche pas au wallet
+      this.persoSerivce.perso.fatigue+=0.25;
+      timeAdd=1;
+    }
+    else if(this.tuileActuelle==='Museum'){
+      this.persoSerivce.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.02; 
+      this.persoSerivce.perso.fatigue+=0.30;
+      timeAdd=1;
+    }
+    else if(this.tuileActuelle==='Stadium'){
+      this.persoSerivce.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*2; 
+      this.persoSerivce.perso.fatigue+=0.40;
+      timeAdd=3;
+    }
+    else if(this.tuileActuelle==='Empty'){
+      this.persoSerivce.perso.fatigue+=0.1;
+      timeAdd=1;
+    }
+    return timeAdd;
+   }
 
   studyHandler=()=>{}
 
-  healHandler=()=>{ }
+  healHandler=()=>{
+    switch(this.actionCity){
+    case'Paris':
+      this.persoSerivce.perso.sante+=0;
+      this.persoSerivce.perso.faim+=0;
+    case 'Reykjavik':
+    case 'New York':
+    case 'Sydney':
+    case 'Rio de Janeiro':
+    case 'Moscow':
+    case 'New Delhi':
+    case 'Ouagadougou':
+    case 'Reykjavik':
+    case 'Johannesburg':
+    case 'Beijing':
+   }
+  }
 
   watchHandler=()=>{}
 
-  prayHandler=()=>{}
+  prayHandler=()=>{
+    switch(this.tuileActuelle){
+    case 'Religion':
+      this.persoSerivce.perso.sante+=0.10;
+      this.persoSerivce.perso.fatigue-=0.10;
+      this.persoSerivce.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01; 
+      return 3;
+    case'House':
+      this.persoSerivce.perso.sante+=0.05;
+      this.persoSerivce.perso.fatigue-=0.02;
+      return 2;    
+    }
+    
+  }
 
   practiceHandler=()=>{}
 
@@ -64,44 +147,29 @@ export class GameActionsService {
   travelHandler=()=>{}
 
   eatHandler=()=>{
-    let timeadd=0;                    //time in days
-    if (this.tuileActuelle==='Bar'){
-      //cost some time
-      //need to add some food smartly
+    switch(this.tuileActuelle){
+    case 'Bar':     
       this.persoSerivce.perso.faim+=0.1;  
-      this.persoSerivce.perso.fatigue-=0.01;
-      //TODO : cout en fonction du salaire moen du pays
+      this.persoSerivce.perso.fatigue-=0.01;      
       this.persoSerivce.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.8; 
-      timeadd=3;
-
-    }
-    else if (this.tuileActuelle==='Farm'){
-      //need to add some food smartly
+      return 3;     
+    case 'Farm':
       this.persoSerivce.perso.faim+=0.5;  
       this.persoSerivce.perso.fatigue-=0.05;
-      //TODO : cout en fonction du salaire moen du pays
       this.persoSerivce.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.2; 
-      timeadd=8;
-
-    }
-    else if (this.tuileActuelle==='House'){
-      //need to add some food smartly
+      // this.eventService.eventAccident();
+      return 8;
+    case 'House':
       this.persoSerivce.perso.faim+=0.14;  
       this.persoSerivce.perso.fatigue-=0.014;
-      //TODO : cout en fonction du salaire moen du pays
       this.persoSerivce.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.5; 
-      timeadd=5;
-
-    }
-    else if (this.tuileActuelle==='Restaurant'){
-      //need to add some food smartly
+      return 5;      
+    case 'Restaurant':
       this.persoSerivce.perso.faim+=0.3;  
       this.persoSerivce.perso.fatigue-=0.03;
-      //TODO : cout en fonction du salaire moen du pays
       this.persoSerivce.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*1.6; 
-      timeadd=3;
-    }
-    return timeadd;
+      return 3;      
+    }    
   }
 
 

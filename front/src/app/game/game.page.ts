@@ -52,6 +52,7 @@ export class GamePage implements OnInit {
 
   public isMoving = false;
 
+  public isRouletteOpen=false;
   public isHiddenSpin =false;
   public isHiddenValid = true;
   public isDisabledValid=true;
@@ -110,11 +111,15 @@ export class GamePage implements OnInit {
     console.log(this.tuiles.getActions('Town hall').includes('Buy any House'));
   }
 
-  actionClicked = (action) => this.addTime(this.gameActions.actionHandler(action,this.persoService.perso.localization,this.currentName));
+  actionClicked = (action) => {
+    this.addTime(this.gameActions.actionHandler(action,this.persoService.perso.localization,this.currentName));
+    this.isRouletteOpen=true;
+  }
 
+  /*
   setRouletteForModal=()=>{
     this.roulette.setRoulette(["Edgar","Simon","CJ","Paul","Nathan"],[0.1,0.1,0.1,0.6,0.1])
-  }
+  }*/
 
   spin=()=>{
     this.roulette.spin();
@@ -125,6 +130,7 @@ export class GamePage implements OnInit {
 
   checkRouletteFin=()=>{
     if(this.roulette.answer!=undefined){
+      this.gameActions.actionsResponseHandler(this.roulette.answer);
       clearTimeout(this.end);
       this.isDisabledValid=false;
     }
@@ -134,19 +140,15 @@ export class GamePage implements OnInit {
   };
 
   resetRoulette=()=>{
-    this.roulette.answer=undefined;
+    this.roulette.answer=undefined;    
     this.roulette.drawRouletteWheel();
   };
 
   dismissModal=()=>{
-    this.modalController.dismiss({
-      'dismissed':true
-    });
-
+    this.isRouletteOpen=false;
   }
 
   buttonReset=()=>{
-    console.log("hello we left the modal !");
     this.isHiddenSpin=false;
     this.isHiddenValid=true;
     this.isDisabledValid=true;
