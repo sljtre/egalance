@@ -83,7 +83,7 @@ export class GamePage implements OnInit {
     // this.eventService.eventAccident();
 
     this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon', 5, 2, '2');
-    this.refreshAll();
+    // this.refreshAll();
 
     this.importedTuiles = this.tuiles.getData(this.persoService.perso.localization);
     this.type = this.tuiles.getType(this.persoService.perso.localization);
@@ -140,7 +140,7 @@ export class GamePage implements OnInit {
   };
 
   resetRoulette=()=>{
-    this.roulette.answer=undefined;    
+    this.roulette.answer=undefined;
     this.roulette.drawRouletteWheel();
   };
 
