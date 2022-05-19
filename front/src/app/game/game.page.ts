@@ -108,8 +108,9 @@ export class GamePage implements OnInit {
     this.roulette.setRoulette(["Test","These","Nuts","Johnny"],[0.3,0.2,0.4,0.1]);
 
     console.log(this.tuiles.getActions('Town hall').includes('Buy any House'));
-
   }
+
+  actionClicked = (action) => this.addTime(this.gameActions.actionHandler(action,this.persoService.perso.localization,this.currentName));
 
   setRouletteForModal=()=>{
     this.roulette.setRoulette(["Edgar","Simon","CJ","Paul","Nathan"],[0.1,0.1,0.1,0.6,0.1])
