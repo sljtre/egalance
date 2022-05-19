@@ -113,6 +113,9 @@ export class GamePage implements OnInit {
   }
 
   actionClicked = (action) => {
+    if(!this.paused){
+      this.pause();
+    }    
     this.timeToAdd=this.gameActions.actionHandler(action,this.persoService.perso.localization,this.currentName);
     this.isRouletteOpen=true;
   }  
@@ -126,10 +129,8 @@ export class GamePage implements OnInit {
 
   checkRouletteFin=()=>{
     if(this.roulette.answer!=undefined){
-      this.gameActions.actionsResponseHandler(this.roulette.answer);
-      clearTimeout(this.end);
-      this.addTime(this.timeToAdd);
-      this.timeToAdd=0;
+      
+      clearTimeout(this.end);     
       this.isDisabledValid=false;
     }
     else{
@@ -144,6 +145,10 @@ export class GamePage implements OnInit {
 
   dismissModal=()=>{
     this.isRouletteOpen=false;
+    this.gameActions.actionsResponseHandler(this.roulette.answer);
+    this.addTime(this.timeToAdd);
+    this.timeToAdd=0;
+    this.pause();
   }
 
   buttonReset=()=>{
