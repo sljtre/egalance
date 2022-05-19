@@ -28,10 +28,6 @@ const routes: Routes = [
     loadChildren: () => import('./scoreboard/scoreboard.module').then( m => m.ScoreboardPageModule)
   },
   {
-    path: 'rules',
-    loadChildren: () => import('./rules/rules.module').then( m => m.RulesPageModule)
-  },
-  {
     path: 'reset-password',
     loadChildren: () => import('./reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
   },
@@ -40,17 +36,14 @@ const routes: Routes = [
     loadChildren: () => import('./conf-account/conf-account.module').then( m => m.ConfAccountPageModule)
   },
   {
-    path: 'dev-map',
-    loadChildren: () => import('./dev-map/dev-map.module').then( m => m.DevMapPageModule)
-  },
-  {
     path: 'city-selection',
     loadChildren: () => import('./city-selection/city-selection.module').then( m => m.CitySelectionPageModule)
   },
   {
     path: 'customization',
     loadChildren: () => import('./customization/customization.module').then( m => m.CustomizationPageModule)
-  },  {
+  },
+  {
     path: 'explanations',
     loadChildren: () => import('./explanations/explanations.module').then( m => m.ExplanationsPageModule)
   },

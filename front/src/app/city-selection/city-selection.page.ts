@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActionSheetController} from '@ionic/angular';
-import {RouterService} from '../shared/services/router.service';
+import {Router} from '@angular/router';
 import {PersoService} from '../shared/services/perso.service';
 import {TuilesService} from '../shared/services/tuiles.service';
 import Highcharts from 'highcharts/highmaps';
@@ -21,7 +21,7 @@ export class CitySelectionPage implements OnInit {
 
   constructor(
     private actionSheet: ActionSheetController,
-    public router: RouterService,
+    public router: Router,
     public perso: PersoService,
     private tuiles: TuilesService,
   ) { }
@@ -289,7 +289,7 @@ export class CitySelectionPage implements OnInit {
         icon: 'airplane',
         handler: () => {
           this.perso.createPerso(city);
-          this.router.redirect('customization');
+          this.router.navigateByUrl('/customization');
         }
       }, {
         text: 'No',

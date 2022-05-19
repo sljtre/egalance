@@ -18,9 +18,9 @@ export class PersoService {
     this.perso.customization(religion, gender, skin, name,birthdayDay,birthdayMonth,socioEcoStart);
   };
 
-  dev = (loc, religion, gender, skin, name) => {
+  dev = (loc, religion, gender, skin, name, birthdayDay, birthdayMonth, socioEcoStart) => {
     this.perso = new Perso(loc);
-    this.perso.customization(religion, gender, skin, name);
+    this.perso.customization(religion, gender, skin, name, birthdayDay, birthdayMonth, socioEcoStart);
   };
 
   faim=()=>{
