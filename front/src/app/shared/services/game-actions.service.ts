@@ -46,7 +46,7 @@ export class GameActionsService {
       case 'Eat':
         break;
       case 'Work':
-        this.workResponandler();
+        this.workResponseHandler();
         break;
       default:break;
     }
