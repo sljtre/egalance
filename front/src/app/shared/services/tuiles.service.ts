@@ -16,6 +16,8 @@ export class TuilesService {
       difficulty: '0.63',
       salaireMoyen:2176,
       tolerance:0.97,
+      healEfficiency:0.95,
+      healCost:1,
       tuiles: {
         hopital: 4,
         supermarche: 2,
@@ -51,6 +53,8 @@ export class TuilesService {
       difficulty: '0.29',
       tolerance:0.91,
       salaireMoyen:6507,
+      healEfficiency:0.95,
+      healCost:1,
       tuiles: {
         hopital: 3,
         supermarche: 4,
@@ -86,6 +90,8 @@ export class TuilesService {
       difficulty: '0',
       salaireMoyen:3780,
       tolerance:0.85,
+      healEfficiency:0.95,
+      healCost:1,
       tuiles: {
         hopital: 4,
         supermarche: 3,
@@ -121,6 +127,8 @@ export class TuilesService {
       difficulty: '0.46',
       tolerance:0.54,
       salaireMoyen:757,
+      healEfficiency:0.95,
+      healCost:1,
       tuiles: {
         hopital: 2,
         supermarche: 2,
@@ -156,6 +164,8 @@ export class TuilesService {
       difficulty: '0.5',
       salaireMoyen:2761,
       tolerance:0.79,
+      healEfficiency:0.95,
+      healCost:1,
       tuiles: {
         hopital: 3,
         supermarche: 3,
@@ -191,6 +201,8 @@ export class TuilesService {
       difficulty: '0.13',
       salaireMoyen:686,
       tolerance:0.46,
+      healEfficiency:0.95,
+      healCost:1,
       tuiles: {
         hopital: 4,
         supermarche: 2,
@@ -226,6 +238,8 @@ export class TuilesService {
       difficulty: '0.63',
       salaireMoyen:452,
       tolerance:0.53,
+      healEfficiency:0.95,
+      healCost:1,
       tuiles: {
         hopital: 1,
         supermarche: 2,
@@ -261,6 +275,8 @@ export class TuilesService {
       difficulty: '1',
       salaireMoyen:400,
       tolerance:0.67,
+      healEfficiency:0.95,
+      healCost:1,
       tuiles: {
         hopital: 0,
         supermarche: 1,
@@ -296,6 +312,8 @@ export class TuilesService {
       difficulty: '0.46',
       salaireMoyen:1400,
       tolerance:0.62,
+      healEfficiency:0.95,
+      healCost:1,
       tuiles: {
         hopital: 1,
         supermarche: 3,
@@ -331,6 +349,8 @@ export class TuilesService {
       difficulty: '0.19',
       salaireMoyen:731,
       tolerance:0.41,
+      healEfficiency:0.95,
+      healCost:1,
       tuiles: {
         hopital: 2,
         supermarche: 2,
@@ -843,6 +863,22 @@ export class TuilesService {
     for(const line of this.cities){
       if(line[0].name===name){
         return line[0].tolerance;
+      }
+    }
+  }
+
+  getHealEfficiency=(name)=>{
+    for(const line of this.cities){
+      if(line[0].name===name){
+        return line[0].healEfficiency;
+      }
+    }
+  }
+
+  getHealCost=(name)=>{
+    for(const line of this.cities){
+      if(line[0].name===name){
+        return line[0].healCost;
       }
     }
   }

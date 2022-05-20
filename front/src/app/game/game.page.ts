@@ -118,7 +118,13 @@ export class GamePage implements OnInit {
     }
     this.action = action;
     this.timeToAdd=this.gameActions.actionHandler(action,this.persoService.perso.localization,this.currentName);
-    this.isRouletteOpen=true;
+    if(this.timeToAdd==0){
+      this.eventService.eventNoMoney();
+    }
+    else if(this.timeToAdd<0){
+      this.addTime(-this.timeToAdd);
+    }
+    else{this.isRouletteOpen=true;}
   }  
 
   spin=()=>{

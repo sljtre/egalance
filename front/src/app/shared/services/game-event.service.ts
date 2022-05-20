@@ -76,6 +76,22 @@ export class GameEventService {
     this.presentAlert(data);
   }
 
+  async eventNoMoney(){
+    let data={
+      header:'No money...',
+      message:'You dont have no money to spend bucko back off before we call the cop chump.',
+      buttons:[
+        {
+          text:'I understand',
+          handler:()=>{
+            //Do nothing cuz there is nothing to do with no money this is just a warning
+          }
+        }]
+    };
+
+    this.presentAlert(data);
+  }
+
 
   presentAlert = async (alertData) => {
     alertData.cssClass = 'custom-alert';

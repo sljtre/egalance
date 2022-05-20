@@ -38,6 +38,12 @@ export class GameActionsService {
       case 'Work':
         result=this.workHandler();
         break;
+      case 'Heal':
+        result=this.healHandler();
+        break;
+      case 'Pray':
+        result=this.prayHandler();
+        break;
       default:break;
     }
     return result;
@@ -134,6 +140,12 @@ export class GameActionsService {
   studyHandler=()=>{}
 
   healHandler=()=>{
+    console.log("We are in healHandler");
+    if(this.persoService.perso.wallet<0)return 0;
+    let baseHeal=0.5;
+    this.persoService.perso.sante+=baseHeal*this.tuilesService.getHealEfficiency(this.actionCity);
+    this.persoService.perso.wallet-=this.tuilesService.getSalaire(this.actionCity)*this.tuilesService.getHealCost(this.actionCity);
+    /*
     switch(this.actionCity){
     case'Paris':
       this.persoService.perso.sante+=0;
@@ -145,27 +157,128 @@ export class GameActionsService {
     case 'Moscow':
     case 'New Delhi':
     case 'Ouagadougou':
-    case 'Reykjavik':
+    
     case 'Johannesburg':
     case 'Beijing':
-   }
+   }*/
+
+   return -6;//We return a negative to warn us taht we dont need to do a roulette spin 
+   //TODO NEED TO UPDATE ADD TIME TO take the absolute value then 
   }
+
+  /*Dont need a response handler if there isnt a roulette to spin for the answer :)
+  healResponseHandler=()=>{
+  }
+  */
+
+  
 
   watchHandler=()=>{}
 
   prayHandler=()=>{
     switch(this.tuileActuelle){
     case 'Religion':
-      this.persoService.perso.sante+=0.10;
-      this.persoService.perso.fatigue-=0.10;
-      this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01;
+      if(this.persoService.perso.wallet<0)return 0;
+      switch(this.persoService.perso.religion){
+        case 'christianisme':
+          this.rouletteService.setRoulette(['Feel God','Feel Jesus','Feel Mary','Feel nothing'],[0.2,0.2,0.2,0.4]);
+          break;
+        case 'judaisme':
+          this.rouletteService.setRoulette(['Meet God','Feel His presence'],[]);
+          break;
+        case 'islam':
+          this.rouletteService.setRoulette(['1 rak\'ah','2 rak\'ah','3 rak\'ah','4 rak\'ah'],[0.2,0.3,0.3,0.2]);
+          break;
+        case 'atheisme':
+          this.rouletteService.setRoulette(['Why you here lol'],[1]);
+          break;
+        default:console.log("Faute de frappe dans la religion du personnage");break;
+      }      
       return 3;
     case'House':
-      this.persoService.perso.sante+=0.05;
-      this.persoService.perso.fatigue-=0.02;
+      this.rouletteService.setRoulette(['Morning Prayer','Lunch Prayer','Afternoon Prayer','Evening Prayer'],[0.25,0.25,0.25,0.25]);      
       return 2;
     }
+  }
 
+  //TODO Balance it all out xD
+  prayResponseHandler=(answer)=>{
+    switch(answer){
+      //For the chirstians
+      case 'Feel God':
+        this.persoService.perso.sante+=0.10;
+        this.persoService.perso.fatigue-=0.10;
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        break;
+      case 'Feel Jesus':
+        this.persoService.perso.sante+=0.10;
+        this.persoService.perso.fatigue-=0.10;
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        break;
+      case 'Feel Mary':
+        this.persoService.perso.sante+=0.10;
+        this.persoService.perso.fatigue-=0.10;
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        break;
+      case 'Feel nothing':
+        this.persoService.perso.sante+=0.10;
+        this.persoService.perso.fatigue-=0.10;
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        break;
+      //For the jews
+      case 'Meet God':
+        this.persoService.perso.sante+=0.10;
+        this.persoService.perso.fatigue-=0.10;
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        break;
+      case 'Feel His presence':
+        this.persoService.perso.sante+=0.10;
+        this.persoService.perso.fatigue-=0.10;
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        break;
+      //For the muslims
+      case '1 rak\'ah':
+        this.persoService.perso.sante+=0.10;
+      this.persoService.perso.fatigue-=0.10;
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        break;
+      case '2 rak\'ah':
+        this.persoService.perso.sante+=0.10;
+        this.persoService.perso.fatigue-=0.10;
+      this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        break;
+      case '3 rak\'ah':
+        this.persoService.perso.sante+=0.10;
+        this.persoService.perso.fatigue-=0.10;
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        break;
+      case '4 rak\'ah':
+        this.persoService.perso.sante+=0.10;
+        this.persoService.perso.fatigue-=0.10;
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        break;
+      //For the atheists
+      case 'Why you here lol':
+        break;
+      //For at home praying
+      case 'Morning Prayer':
+        this.persoService.perso.sante+=0.10;
+        this.persoService.perso.fatigue-=0.10;
+        break;
+      case 'Lunch Prayer':
+        this.persoService.perso.sante+=0.10;
+        this.persoService.perso.fatigue-=0.10;
+        break;
+      case 'Afternoon Prayer':
+        this.persoService.perso.sante+=0.10;
+        this.persoService.perso.fatigue-=0.10;
+        break;
+      case 'Evening Prayer':
+        this.persoService.perso.sante+=0.10;
+        this.persoService.perso.fatigue-=0.10;
+        break;
+      default:console.log("I swear to god im sane");break;
+    }
   }
 
   practiceHandler=()=>{}
@@ -177,13 +290,14 @@ export class GameActionsService {
   travelHandler=()=>{}
 
   eatHandler=()=>{
+    //The return is the amount of days each action cost
+    if(this.persoService.perso.wallet<0)return 0;
     switch(this.tuileActuelle){
     case 'Bar':      
       this.rouletteService.setRoulette(['Good meal','Bad meal','????'],[0.4,0.4,0.2]);     
       return 1;
     case 'Farm':
       this.rouletteService.setRoulette(['Bountiful harvest','Average harvest','Damaged harvest','????'],[0.4,0.2,0.1,0.3]);
-      // this.eventService.eventAccident();
       return 3;
     case 'House':
       this.rouletteService.setRoulette(['Burnt Meal','Leftovers','Soup','Empty fridge','Full meal'],[0.125,0.3,0.2,0.125,0.25]);
@@ -195,6 +309,7 @@ export class GameActionsService {
   }
 
   eatResponseHandler=(answer)=>{
+    //Remember every day you lose 0.017 so build around that
     switch(this.tuileActuelle){
       case 'Bar':
         switch(answer){
@@ -229,42 +344,49 @@ export class GameActionsService {
           default:console.log("Error in roulette options");break;
         }
         this.persoService.perso.fatigue-=0.1;
-        this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.2;
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.2);
         break;
       case 'House':
         switch(answer){
           case 'Burnt Meal':
               this.persoService.perso.faim+=0.02;
+              this.persoService.perso.sante-=0.1
             break;
           case 'Leftovers':
+              this.persoService.perso.faim+=0.04;
             break;
           case 'Soup':
+              this.persoService.perso.faim+=0.03;
             break;
           case 'Empty fridge':
+              this.persoService.perso.faim+=0.00;
             break;
           case 'Full meal':
+              this.persoService.perso.faim+=0.05;
             break;
           default:console.log("Error in roulette options");break;
-        }
-        
+        }        
         this.persoService.perso.fatigue-=0.014;
-        this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.5;
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.5);
         break;
       case 'Restaurant':
         switch(answer){
           case 'Five course meal':
+              this.persoService.perso.faim+=0.3;
             break;
           case 'Hair in your meal':
+              this.persoService.perso.faim+=0.2;
+              this.persoService.perso.sante-=0.1
             break;
           case 'Lobster still alive':
+            this.persoService.perso.faim+=0.15
             break;
           default:console.log("Error in roulette options");break;
-        }
-        this.persoService.perso.faim+=0.3;
-        this.persoService.perso.fatigue-=0.03;
-        this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*1.6;
+        }        
+        this.persoService.perso.fatigue-=0.01;
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*1.6);
         break;
-      default:break;
+      default:console.log("Error in tiles");break;
 
     }
   }
