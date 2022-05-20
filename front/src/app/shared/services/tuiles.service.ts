@@ -16,6 +16,7 @@ export class TuilesService {
       difficulty: '0.63',
       salaireMoyen:2176,
       tolerance:0.97,
+      studyPrice:5000,
       tuiles: {
         hopital: 4,
         supermarche: 2,
@@ -51,6 +52,7 @@ export class TuilesService {
       difficulty: '0.29',
       tolerance:0.91,
       salaireMoyen:6507,
+      studyPrice:24914,
       tuiles: {
         hopital: 3,
         supermarche: 4,
@@ -86,6 +88,7 @@ export class TuilesService {
       difficulty: '0',
       salaireMoyen:3780,
       tolerance:0.85,
+      studyPrice:24081,
       tuiles: {
         hopital: 4,
         supermarche: 3,
@@ -121,6 +124,7 @@ export class TuilesService {
       difficulty: '0.46',
       tolerance:0.54,
       salaireMoyen:757,
+      studyPrice:59,
       tuiles: {
         hopital: 2,
         supermarche: 2,
@@ -156,6 +160,7 @@ export class TuilesService {
       difficulty: '0.5',
       salaireMoyen:2761,
       tolerance:0.79,
+      studyPrice:247,
       tuiles: {
         hopital: 3,
         supermarche: 3,
@@ -191,6 +196,7 @@ export class TuilesService {
       difficulty: '0.13',
       salaireMoyen:686,
       tolerance:0.46,
+      studyPrice:6500,
       tuiles: {
         hopital: 4,
         supermarche: 2,
@@ -226,6 +232,7 @@ export class TuilesService {
       difficulty: '0.63',
       salaireMoyen:452,
       tolerance:0.53,
+      studyPrice:581,
       tuiles: {
         hopital: 1,
         supermarche: 2,
@@ -261,6 +268,7 @@ export class TuilesService {
       difficulty: '1',
       salaireMoyen:400,
       tolerance:0.67,
+      studyPrice:38,
       tuiles: {
         hopital: 0,
         supermarche: 1,
@@ -296,6 +304,7 @@ export class TuilesService {
       difficulty: '0.46',
       salaireMoyen:1400,
       tolerance:0.62,
+      studyPrice:1600,
       tuiles: {
         hopital: 1,
         supermarche: 3,
@@ -331,6 +340,7 @@ export class TuilesService {
       difficulty: '0.19',
       salaireMoyen:731,
       tolerance:0.41,
+      studyPrice:3844,
       tuiles: {
         hopital: 2,
         supermarche: 2,
