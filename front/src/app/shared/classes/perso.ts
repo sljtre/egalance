@@ -12,7 +12,11 @@ export class Perso {
   public birthdayMonth = 1;
   public age = 0;
   public currentSickness=0;   //Facteur entre 0 et 1 qui vient affecter la sante
+
   public instructionLevel=0;
+  public studyCriticalBoost=0;
+  public studyBoost=0;
+  public grade='None';
 
   public monthlyIncome=0;
   public wallet=0;

@@ -117,7 +117,7 @@ body {
 
 #player{
   border: solid 1px transparent;
-  width: auto;
+  width: 75px;
   height: 125px;
   z-index: 5;
 }
@@ -138,6 +138,6 @@ body {
   --background:yellow;
 }
 
-#work{
+.Work{
   --background:orange;
 }
