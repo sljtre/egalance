@@ -116,7 +116,8 @@ export class GamePage implements OnInit {
   actionClicked = (action) => {
     if(!this.paused){
       this.pause();
-    }    
+    }
+    this.action = action;
     this.timeToAdd=this.gameActions.actionHandler(action,this.persoService.perso.localization,this.currentName);
     this.isRouletteOpen=true;
   }  
