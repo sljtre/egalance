@@ -525,7 +525,7 @@ export class TuilesService {
       name: 'Bank',
       labels: ['banque'],
       description: 'Put your money in the bank for safekeeping',
-      actions: ['Deposit', 'Pull', 'Work'],
+      actions: ['Deposit', 'Withdraw', 'Work'],
       studyLevel:[2,3],
       incomeMultiplicator:[1.5,1.9],
       energyCost:[0.56,0.49],
