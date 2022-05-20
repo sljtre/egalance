@@ -806,7 +806,11 @@ export class TuilesService {
   getStudyLevel = (name) => {
     for(const line of this.tuiles){
       if(line[0].name===name){
-        return line[0].studyLevel;
+        let tmp = '';
+        for(const col of line[0].studyLevel){
+          tmp+=col+' ';
+        }
+        return tmp;
       }
     }
   };

@@ -89,8 +89,11 @@
               {{currentName}}
             </ion-title>
           </ion-row>
-          <ion-row *ngFor="let el of ['Mary', 'Rent', 'Shopping', 'Drink', 'Rest', 'Study', 'Heal', 'Watch', 'Pray', 'Eat', 'Practice', 'Deposit', 'Withdraw', 'Travel', 'Work']">
+          <ion-row *ngFor="let el of ['Mary', 'Rent', 'Shopping', 'Drink', 'Rest', 'Study', 'Heal', 'Watch', 'Pray', 'Eat', 'Practice', 'Deposit', 'Withdraw', 'Travel']">
             <ion-button *ngIf="tuiles.getActions(currentName).includes(el)" [id]="el" (click)="actionClicked(el)">{{el}}</ion-button>
+          </ion-row>
+          <ion-row>
+            <ion-button *ngIf="tuiles.getActions(currentName).includes('Work') && tuiles.getStudyLevel(currentName).includes(persoService.perso.instructionLevel)" id="Work" (click)="actionClicked('Work')">Work</ion-button>
           </ion-row>
         </ion-col>
       </ion-row>
