@@ -107,8 +107,7 @@ export class GamePage implements OnInit {
           this.importedTuiles = retour.ref;
         }
       }
-    }
-    this.roulette.setRoulette(["Test","These","Nuts","Johnny"],[0.3,0.2,0.4,0.1]);
+    }  
 
     console.log(this.tuiles.getActions('Town hall').includes('Buy any House'));
   }
@@ -141,6 +140,7 @@ export class GamePage implements OnInit {
 
   resetRoulette=()=>{
     this.roulette.answer=undefined;
+    this.roulette.setRoulette([],[]);
     this.roulette.drawRouletteWheel();
   };
 

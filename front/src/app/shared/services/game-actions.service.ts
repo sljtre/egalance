@@ -24,6 +24,7 @@ export class GameActionsService {
   }
 
   actionHandler=(action,localization,tuileActuelle)=>{
+    this.rouletteService.resetOptionsAndChances();
     let result;
     this.actionCity=localization;
     this.tuileActuelle=tuileActuelle;
@@ -66,6 +67,7 @@ export class GameActionsService {
     }
     const coefSalaire = 1-tolerance*0.2*differenceScore;
     const salaire = this.tuilesService.getSalaire(this.persoService.perso.localization)*coefSalaire;
+    
     this.rouletteService.setRoulette([Math.floor(salaire), 0, Math.floor(salaire*3), Math.floor(salaire*0.6), Math.floor(salaire*1.5), Math.floor(salaire*1.2), Math.floor(salaire*0.8)],[0.5,0.03,0.03,0.1,0.1,0.12,0.12]);
     return 30;
   }
@@ -96,7 +98,7 @@ export class GameActionsService {
   drinkHandler=()=>{
     this.persoService.perso.faim+=0.08;
     this.persoService.perso.fatigue-=0.01;
-    this.persoService.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.5;
+    this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.5;
     return 5;
    }
 
@@ -113,12 +115,12 @@ export class GameActionsService {
       timeAdd=1;
     }
     else if(this.tuileActuelle==='Museum'){
-      this.persoService.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.02;
+      this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.02;
       this.persoService.perso.fatigue+=0.30;
       timeAdd=1;
     }
     else if(this.tuileActuelle==='Stadium'){
-      this.persoService.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*2;
+      this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*2;
       this.persoService.perso.fatigue+=0.40;
       timeAdd=3;
     }
@@ -156,7 +158,7 @@ export class GameActionsService {
     case 'Religion':
       this.persoService.perso.sante+=0.10;
       this.persoService.perso.fatigue-=0.10;
-      this.persoService.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01;
+      this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01;
       return 3;
     case'House':
       this.persoService.perso.sante+=0.05;
@@ -176,32 +178,93 @@ export class GameActionsService {
 
   eatHandler=()=>{
     switch(this.tuileActuelle){
-    case 'Bar':
-      this.persoService.perso.faim+=0.1;
-      this.persoService.perso.fatigue-=0.01;
-      this.persoService.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.8;
-      return 3;
+    case 'Bar':      
+      this.rouletteService.setRoulette(['Good meal','Bad meal','????'],[0.4,0.4,0.2]);     
+      return 1;
     case 'Farm':
-      this.persoService.perso.faim+=0.5;
-      this.persoService.perso.fatigue-=0.05;
-      this.persoService.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.2;
+      this.rouletteService.setRoulette(['Bountiful harvest','Average harvest','Damaged harvest','????'],[0.4,0.2,0.1,0.3]);
       // this.eventService.eventAccident();
-      return 8;
+      return 3;
     case 'House':
-      this.persoService.perso.faim+=0.14;
-      this.persoService.perso.fatigue-=0.014;
-      this.persoService.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.5;
+      this.rouletteService.setRoulette(['Burnt Meal','Leftovers','Soup','Empty fridge','Full meal'],[0.125,0.3,0.2,0.125,0.25]);
       return 5;
     case 'Restaurant':
-      this.persoService.perso.faim+=0.3;
-      this.persoService.perso.fatigue-=0.03;
-      this.persoService.perso.Wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*1.6;
+      this.rouletteService.setRoulette(['Five course meal','Hair in your meal','Lobster still alive'],[0.7,0.2,0.1]);
       return 3;
     }
   }
 
   eatResponseHandler=(answer)=>{
-    switch(this.actionChosen){
+    switch(this.tuileActuelle){
+      case 'Bar':
+        switch(answer){
+          case 'Good meal':
+              this.persoService.perso.faim+=0.25;              
+              break;
+          case 'Bad meal':
+              this.persoService.perso.faim+=0.25;
+              break;
+          case '????':
+            //TODO chose a random event linked to this
+            break;
+          default:break;
+        }
+        this.persoService.perso.fatigue-=0.01;              
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.8);
+        break;
+      case 'Farm':
+        switch(answer){
+          case 'Bountiful harvest':
+            this.persoService.perso.faim+=0.5;            
+            break;
+          case 'Average harvest':
+            this.persoService.perso.faim+=0.3;            
+            break;
+          case 'Damaged harvest':
+            this.persoService.perso.faim+=0.2;            
+            break;
+          case '????':
+            //TODO call an event here why not
+            break;
+          default:console.log("Error in roulette options");break;
+        }
+        this.persoService.perso.fatigue-=0.1;
+        this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.2;
+        break;
+      case 'House':
+        switch(answer){
+          case 'Burnt Meal':
+              this.persoService.perso.faim+=0.02;
+            break;
+          case 'Leftovers':
+            break;
+          case 'Soup':
+            break;
+          case 'Empty fridge':
+            break;
+          case 'Full meal':
+            break;
+          default:console.log("Error in roulette options");break;
+        }
+        
+        this.persoService.perso.fatigue-=0.014;
+        this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.5;
+        break;
+      case 'Restaurant':
+        switch(answer){
+          case 'Five course meal':
+            break;
+          case 'Hair in your meal':
+            break;
+          case 'Lobster still alive':
+            break;
+          default:console.log("Error in roulette options");break;
+        }
+        this.persoService.perso.faim+=0.3;
+        this.persoService.perso.fatigue-=0.03;
+        this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*1.6;
+        break;
+      default:break;
 
     }
   }
