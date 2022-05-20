@@ -65,14 +65,27 @@ export class GameActionsService {
       differenceScore++;
     }
     const coefSalaire = 1-tolerance*0.2*differenceScore;
-    const salaire = this.tuilesService.getSalaire(this.persoService.perso.localization)*coefSalaire;
+    const salaire = Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)*coefSalaire);
     this.rouletteService.setRoulette([salaire, 0, salaire*3, salaire*0.6, salaire*1.5, salaire*1.2, salaire*0.8],[0.5,0.01,0.01,0.1,0.1,0.14,0.14]);
     return 30;
   }
 
   workResponseHandler=(answer)=>{
-    console.log("hi");
-  }
+    this.persoService.perso.wallet+=answer;
+    this.persoService.perso.fatigue-=this.tuilesService.getEnergyCost(this.tuileActuelle, this.persoService.perso.instructionLevel);
+    if(this.persoService.perso.fatigue<0){
+      this.persoService.perso.sante-=this.persoService.perso.fatigue/2;
+      this.persoService.perso.fatigue=0;
+    }
+    this.persoService.perso.faim-=0.51
+    if(this.persoService.perso.faim<0){
+      this.persoService.perso.sante-=this.persoService.perso.faim/2;
+      this.persoService.perso.faim=0;
+    }
+    if(this.persoService.perso.sante<0){
+      //MORT
+    }
+  };
 
   marryHandler=()=>{  }
 

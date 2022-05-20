@@ -73,6 +73,7 @@ export class GamePage implements OnInit {
   ) {};
 
   async ngOnInit() {
+    
 
     // add event to prevent refresh
     window.addEventListener('beforeunload', e => {
@@ -84,7 +85,7 @@ export class GamePage implements OnInit {
     // this.eventService.eventAccident();
 
     this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon', 5, 2, '2');
-    // this.refreshAll();
+    this.refreshAll();
 
     this.importedTuiles = this.tuiles.getData(this.persoService.perso.localization);
     this.type = this.tuiles.getType(this.persoService.perso.localization);
