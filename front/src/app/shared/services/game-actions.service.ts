@@ -38,6 +38,9 @@ export class GameActionsService {
       case 'Work':
         result=this.workHandler();
         break;
+      case 'Study':
+        result=this.studyHandler();
+        break;
       default:break;
     }
     return result;
@@ -51,6 +54,8 @@ export class GameActionsService {
       case 'Work':
         this.workResponseHandler(answer);
         break;
+      case 'Study':
+        this.studyResponseHandler(answer);
       default:break;
     }
 
@@ -67,10 +72,10 @@ export class GameActionsService {
     }
     const coefSalaire = 1-tolerance*0.2*differenceScore;
     const salaire = this.tuilesService.getSalaire(this.persoService.perso.localization)*coefSalaire;
-    
+
     this.rouletteService.setRoulette([Math.floor(salaire), 0, Math.floor(salaire*3), Math.floor(salaire*0.6), Math.floor(salaire*1.5), Math.floor(salaire*1.2), Math.floor(salaire*0.8)],[0.5,0.03,0.03,0.1,0.1,0.12,0.12]);
     return 30;
-  }
+  };
 
   workResponseHandler=(answer)=>{
     this.persoService.perso.wallet+=answer;
@@ -89,18 +94,18 @@ export class GameActionsService {
     }
   };
 
-  marryHandler=()=>{  }
+  marryHandler=()=>{  };
 
-  rentHandler=()=>{  }
+  rentHandler=()=>{  };
 
-  shoppingHandler=()=>{  }
+  shoppingHandler=()=>{  };
 
   drinkHandler=()=>{
     this.persoService.perso.faim+=0.08;
     this.persoService.perso.fatigue-=0.01;
     this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.5;
     return 5;
-   }
+   };
 
   restHandler=()=>{
     let timeAdd;
@@ -129,9 +134,85 @@ export class GameActionsService {
       timeAdd=1;
     }
     return timeAdd;
-   }
+   };
 
-  studyHandler=()=>{}
+  studyHandler=()=>{
+    if(this.tuileActuelle==='House'){
+      this.rouletteService.setRoulette(['Success','Fail'],[0.7,0.3]);
+      return 90;
+    }else if(this.tuileActuelle==='Library'){
+      if(this.persoService.perso.wallet>0) {
+        this.rouletteService.setRoulette(['Success','Fail'],[0.65,0.35]);
+        this.persoService.perso.wallet-=this.tuilesService.getSalaire(this.persoService.perso.localization)*0.03;
+        return 60;
+      }else{
+        //TRIGGER EVENT PAS D'ARGENT
+        return 0;
+      }
+    }else if(this.tuileActuelle==='Museum'){
+      if(this.persoService.perso.wallet>0) {
+        this.rouletteService.setRoulette(['Success','Fail'],[0.6,0.4]);
+        this.persoService.perso.wallet-=this.tuilesService.getSalaire(this.persoService.perso.localization)*0.05;
+        return 60;
+      }else{
+        //TRIGGER EVENT PAS D'ARGENT
+        return 0;
+      }
+    }else{
+      const tolerance = 1-this.tuilesService.getTolerance(this.persoService.perso.localization);
+      let differenceScore = Math.abs(Number(this.tuilesService.getEthnie(this.persoService.perso.localization))
+        -Number(this.persoService.perso.skin));
+      if(this.persoService.perso.religion!==this.tuilesService.getReligion(this.persoService.perso.localization)){
+        differenceScore++;
+      }
+      const coefPassExam = 1-tolerance*0.2*differenceScore;
+      if(this.tuileActuelle==='School'){
+        const critical = 0.03+this.persoService.perso.studyCriticalBoost;
+        const success = 0.72*(coefPassExam)+this.persoService.perso.studyBoost;
+        this.rouletteService.setRoulette(['++','Success','Fail'], [critical, success, 1-critical-success]);
+      }else if(this.tuileActuelle==='College'){
+        const critical = 0.01+this.persoService.perso.studyCriticalBoost;
+        const success = 0.67*(coefPassExam)+this.persoService.perso.studyBoost;
+        this.rouletteService.setRoulette(['++','Success','Fail'], [critical, success, 1-critical-success]);
+      }
+      return 360;
+    }
+
+
+  };
+
+  studyResponseHandler=(answer)=>{
+    switch(this.tuileActuelle){
+      case 'House':
+        this.persoService.perso.fatigue-=0.018*90;
+        if(answer==='Success'){
+          this.persoService.perso.studyBoost+=0.04;
+        }
+        break;
+      case 'Museum':
+        this.persoService.perso.faim-=0.018*90;
+        this.persoService.perso.fatigue-=0.018*90;
+        //ARGENT
+        if(answer==='Success'){
+          this.persoService.perso.studyBoost+=0.05;
+          this.persoService.perso.studyCriticalBoost+=0.03;
+        }
+        break;
+      case 'Library':
+        this.persoService.perso.faim-=0.018*90;
+        this.persoService.perso.fatigue-=0.018*90;
+        //ARGENT
+        if(answer==='Success'){
+          this.persoService.perso.studyBoost+=0.03;
+          this.persoService.perso.studyCriticalBoost+=0.01;
+        }
+        break;
+      case 'School':
+        
+        break;
+      default: break;
+    }
+  };
 
   healHandler=()=>{
     switch(this.actionCity){
@@ -149,9 +230,9 @@ export class GameActionsService {
     case 'Johannesburg':
     case 'Beijing':
    }
-  }
+  };
 
-  watchHandler=()=>{}
+  watchHandler=()=>{};
 
   prayHandler=()=>{
     switch(this.tuileActuelle){
@@ -166,20 +247,20 @@ export class GameActionsService {
       return 2;
     }
 
-  }
+  };
 
-  practiceHandler=()=>{}
+  practiceHandler=()=>{};
 
-  depositHandler=()=>{}
+  depositHandler=()=>{};
 
-  withdrawHandler=()=>{}
+  withdrawHandler=()=>{};
 
-  travelHandler=()=>{}
+  travelHandler=()=>{};
 
   eatHandler=()=>{
     switch(this.tuileActuelle){
-    case 'Bar':      
-      this.rouletteService.setRoulette(['Good meal','Bad meal','????'],[0.4,0.4,0.2]);     
+    case 'Bar':
+      this.rouletteService.setRoulette(['Good meal','Bad meal','????'],[0.4,0.4,0.2]);
       return 1;
     case 'Farm':
       this.rouletteService.setRoulette(['Bountiful harvest','Average harvest','Damaged harvest','????'],[0.4,0.2,0.1,0.3]);
@@ -192,14 +273,14 @@ export class GameActionsService {
       this.rouletteService.setRoulette(['Five course meal','Hair in your meal','Lobster still alive'],[0.7,0.2,0.1]);
       return 3;
     }
-  }
+  };
 
   eatResponseHandler=(answer)=>{
     switch(this.tuileActuelle){
       case 'Bar':
         switch(answer){
           case 'Good meal':
-              this.persoService.perso.faim+=0.25;              
+              this.persoService.perso.faim+=0.25;
               break;
           case 'Bad meal':
               this.persoService.perso.faim+=0.25;
@@ -209,19 +290,19 @@ export class GameActionsService {
             break;
           default:break;
         }
-        this.persoService.perso.fatigue-=0.01;              
+        this.persoService.perso.fatigue-=0.01;
         this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.8);
         break;
       case 'Farm':
         switch(answer){
           case 'Bountiful harvest':
-            this.persoService.perso.faim+=0.5;            
+            this.persoService.perso.faim+=0.5;
             break;
           case 'Average harvest':
-            this.persoService.perso.faim+=0.3;            
+            this.persoService.perso.faim+=0.3;
             break;
           case 'Damaged harvest':
-            this.persoService.perso.faim+=0.2;            
+            this.persoService.perso.faim+=0.2;
             break;
           case '????':
             //TODO call an event here why not
@@ -246,7 +327,7 @@ export class GameActionsService {
             break;
           default:console.log("Error in roulette options");break;
         }
-        
+
         this.persoService.perso.fatigue-=0.014;
         this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.5;
         break;
@@ -267,7 +348,7 @@ export class GameActionsService {
       default:break;
 
     }
-  }
+  };
 
 
 }
