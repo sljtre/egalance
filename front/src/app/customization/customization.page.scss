@@ -1,24 +1,45 @@
-.imgPerso{
-  width:50px;
-  height:60px;
-  margin:auto;
-
+.imgPerso {
+  width: 50px;
+  height: 60px;
+  margin: auto;
 }
 
-.imgPersoMajorite{
+.imgPersoMajorite {
   filter: drop-shadow(0 0 1rem rgb(67, 142, 228));
-  width:50px;
-  height:60px;
-  margin:auto;
+  width: 50px;
+  height: 60px;
+  margin: auto;
   background-color: transparent;
 }
 
-ion-col{
-  margin-left:auto;
-  margin-right:auto;
-  text-align:center;
+ion-grid > ion-row {
+  height: 100%;
+
+  ion-col {
+    align-items: center;
+
+    ion-icon {
+      font-size: 26px;
+      cursor: pointer;
+    }
+  }
 }
 
-ion-item{
-  border-radius:30px;
+ion-col {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: flex;
+}
+
+ion-item {
+  border-radius: 30px;
+}
+
+#customisation-form {
+  background: rgba(0, 0, 0, 0.56);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }

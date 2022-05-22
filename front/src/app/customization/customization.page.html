@@ -6,65 +6,66 @@
 </ion-button>
 
 <ion-grid>
-  <!--editeur pour le nom prenom-->
-  <ion-row >
+  <ion-row>
 
-    <ion-col size="5">
-      <ion-row>
+    <ion-col size="6">
+      <div id="customisation-form">
+        <!--editeur pour le nom prenom-->
+        <ion-row>
+          <ion-col size="1">
+            <ion-icon name="dice-outline" color="white" (click)="randFullName()" ></ion-icon>
+          </ion-col>
 
-        <ion-col size="2">
-          <ion-button (click)="randFullName()" fill="clear">
-            <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
+          <ion-col size="9">
+            <ion-item>
+              <ion-input [(ngModel)]="fullName" placeholder="First name / Last name"
+                         style="text-align:center;"></ion-input>
+            </ion-item>
+          </ion-col>
 
-        <ion-col size="9">
-          <ion-item>
-            <ion-input [(ngModel)]="fullName" placeholder="First name / Last name" style="text-align:center;"></ion-input>
-          </ion-item>
-        </ion-col>
+          <ion-col size="1">
+            <ion-button fill="clear" color="warning" id="popOverFullName">
+              <ion-icon name="information-circle-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
 
-        <ion-col size="1">
-          <ion-button fill="clear" color="warning" id="popOverFullName">
-            <ion-icon name="information-circle-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
+          <ion-popover trigger="popOverFullName">
+            <ng-template>
+              <ion-content> Le nom et prénom de votre personnage!</ion-content>
+            </ng-template>
+          </ion-popover>
 
-        <ion-popover trigger="popOverFullName">
-          <ng-template>
-            <ion-content> Le nom et prénom de votre personnage!</ion-content>
-          </ng-template>
-        </ion-popover>
+        </ion-row>
 
-      </ion-row>
+        <!--editeur pour l'ethnie-->
+        <ion-row>
 
-      <!--editeur pour l'ethnie-->
-      <ion-row>
+          <ion-col size="2">
+            <ion-button (click)="randEthnie()" fill="clear">
+              <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
 
-        <ion-col size="2">
-          <ion-button (click)="randEthnie()" fill="clear">
-            <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
+          <ion-col size="2">
+            <ion-button (click)="funcEthnie('left')" shape="round" fill="clear">
+              <ion-icon name="arrow-back-circle-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
 
-        <ion-col size="2">
-          <ion-button (click)="funcEthnie('left')" shape="round" fill="clear">
-            <ion-icon name="arrow-back-circle-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
+          <ion-col size="5">
+            <ion-img *ngIf="majoriteEthnie==ethnie" class="imgPersoMajorite"
+                     [src]="'./assets/img/skin/skin'+ethnie+'.png'"></ion-img>
+            <ion-img *ngIf="majoriteEthnie!=ethnie" class="imgPerso"
+                     [src]="'./assets/img/skin/skin'+ethnie+'.png'"></ion-img>
+          </ion-col>
 
-        <ion-col size="5">
-          <ion-img *ngIf="majoriteEthnie==ethnie"class="imgPersoMajorite" [src]="'./assets/img/skin/skin'+ethnie+'.png'"></ion-img>
-          <ion-img *ngIf="majoriteEthnie!=ethnie"class="imgPerso" [src]="'./assets/img/skin/skin'+ethnie+'.png'"></ion-img>
-        </ion-col>
+          <ion-col size="2">
+            <ion-button (click)="funcEthnie('right')" shape="round" fill="clear">
+              <ion-icon name="arrow-forward-circle-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
 
-        <ion-col size="2">
-          <ion-button (click)="funcEthnie('right')" shape="round" fill="clear">
-            <ion-icon name="arrow-forward-circle-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
-
-        <ion-col size="1">
+          <ion-col size="1">
             <ion-button fill="clear" color="warning" id="popOverEthnie">
               <ion-icon name="information-circle-outline" slot="icon-only"></ion-icon>
             </ion-button>
@@ -72,38 +73,40 @@
 
           <ion-popover trigger="popOverEthnie">
             <ng-template>
-              <ion-content> Votre choix de couleur de peau vas influencer les probabiltes de succes de vos action en fonction de la majorité persenete dans le pays.</ion-content>
+              <ion-content> Votre choix de couleur de peau vas influencer les probabiltes de succes de vos action en
+                fonction de la majorité persenete dans le pays.
+              </ion-content>
             </ng-template>
           </ion-popover>
 
-      </ion-row>
+        </ion-row>
 
-      <!--editeur pour le genre-->
-      <ion-row >
+        <!--editeur pour le genre-->
+        <ion-row>
 
-        <ion-col size="2">
-          <ion-button (click)="randGenre()" fill="clear">
-            <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
+          <ion-col size="2">
+            <ion-button (click)="randGenre()" fill="clear">
+              <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
 
-        <ion-col size="2">
-          <ion-button (click)="funcGenre('left')" shape="round" fill="clear">
-            <ion-icon name="arrow-back-circle-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
+          <ion-col size="2">
+            <ion-button (click)="funcGenre('left')" shape="round" fill="clear">
+              <ion-icon name="arrow-back-circle-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
 
-        <ion-col size="5">
+          <ion-col size="5">
             <ion-img class="imgPerso" [src]="'./assets/img/'+genre+'.png'"></ion-img>
-        </ion-col>
+          </ion-col>
 
-        <ion-col size="2">
-          <ion-button (click)="funcGenre('right')" shape="round" fill="clear">
-            <ion-icon name="arrow-forward-circle-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
+          <ion-col size="2">
+            <ion-button (click)="funcGenre('right')" shape="round" fill="clear">
+              <ion-icon name="arrow-forward-circle-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
 
-        <ion-col size="1">
+          <ion-col size="1">
             <ion-button fill="clear" color="warning" id="popOverGenre">
               <ion-icon name="information-circle-outline" slot="icon-only"></ion-icon>
             </ion-button>
@@ -111,39 +114,42 @@
 
           <ion-popover trigger="popOverGenre">
             <ng-template>
-              <ion-content> Le genre va affecter quelles types d'event aléatoires que vous pourrez rencontrez.</ion-content>
+              <ion-content> Le genre va affecter quelles types d'event aléatoires que vous pourrez rencontrez.
+              </ion-content>
             </ng-template>
           </ion-popover>
 
-      </ion-row>
+        </ion-row>
 
-      <!--editeur pour la religion-->
-      <ion-row >
+        <!--editeur pour la religion-->
+        <ion-row>
 
-        <ion-col size="2">
-          <ion-button (click)="randReligion()" fill="clear">
+          <ion-col size="2">
+            <ion-button (click)="randReligion()" fill="clear">
               <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
+            </ion-button>
+          </ion-col>
 
-        <ion-col size="2">
-          <ion-button (click)="funcReligion('left')" shape="round" fill="clear"   >
+          <ion-col size="2">
+            <ion-button (click)="funcReligion('left')" shape="round" fill="clear">
               <ion-icon name="arrow-back-circle-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
+            </ion-button>
+          </ion-col>
 
-        <ion-col size="5">
-          <ion-img *ngIf="majoriteReligion==religion;" class="imgPersoMajorite" [src]="'./assets/img/religion/'+religion+'.png'"></ion-img>
-          <ion-img *ngIf="majoriteReligion!=religion;"class="imgPerso" [src]="'./assets/img/religion/'+religion+'.png'"></ion-img>
-        </ion-col>
+          <ion-col size="5">
+            <ion-img *ngIf="majoriteReligion==religion;" class="imgPersoMajorite"
+                     [src]="'./assets/img/religion/'+religion+'.png'"></ion-img>
+            <ion-img *ngIf="majoriteReligion!=religion;" class="imgPerso"
+                     [src]="'./assets/img/religion/'+religion+'.png'"></ion-img>
+          </ion-col>
 
-        <ion-col size="2">
-          <ion-button (click)="funcReligion('right')" shape="round" fill="clear" >
+          <ion-col size="2">
+            <ion-button (click)="funcReligion('right')" shape="round" fill="clear">
               <ion-icon name="arrow-forward-circle-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
+            </ion-button>
+          </ion-col>
 
-        <ion-col size="1">
+          <ion-col size="1">
             <ion-button fill="clear" color="warning" id="popOverReligion">
               <ion-icon name="information-circle-outline" slot="icon-only"></ion-icon>
             </ion-button>
@@ -151,110 +157,115 @@
 
           <ion-popover trigger="popOverReligion">
             <ng-template>
-              <ion-content> Votre choix de religion va affecter vos chances de réussite en fonction de la religion principale. Dans votre choix actuel la religion majoritaire est le (vrai truc a mettre ici).</ion-content>
+              <ion-content> Votre choix de religion va affecter vos chances de réussite en fonction de la religion
+                principale. Dans votre choix actuel la religion majoritaire est le (vrai truc a mettre ici).
+              </ion-content>
             </ng-template>
           </ion-popover>
 
-      </ion-row>
+        </ion-row>
 
-      <!--Choix heritage de départ-->
-      <ion-row>
+        <!--Choix heritage de départ-->
+        <ion-row>
 
-        <ion-col size="2">
+          <ion-col size="2">
             <ion-button (click)="randSocioEco()" fill="clear">
-                <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
+              <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
             </ion-button>
-        </ion-col>
+          </ion-col>
 
-        <ion-col size="2">
-          <ion-button (click)="funcSocioEco('left')" shape="round" fill="clear"   >
-            <ion-icon name="arrow-back-circle-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
+          <ion-col size="2">
+            <ion-button (click)="funcSocioEco('left')" shape="round" fill="clear">
+              <ion-icon name="arrow-back-circle-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
 
-        <ion-col size="5">
-          <ion-img class="imgPerso" [src]="'./assets/img/dollarsigns/dollarsign'+socioEcoStart+'.png'"></ion-img>
-        </ion-col>
+          <ion-col size="5">
+            <ion-img class="imgPerso" [src]="'./assets/img/dollarsigns/dollarsign'+socioEcoStart+'.png'"></ion-img>
+          </ion-col>
 
-        <ion-col size="2">
-          <ion-button (click)="funcSocioEco('right')" shape="round" fill="clear" >
-            <ion-icon name="arrow-forward-circle-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
+          <ion-col size="2">
+            <ion-button (click)="funcSocioEco('right')" shape="round" fill="clear">
+              <ion-icon name="arrow-forward-circle-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
 
-        <ion-col size="1">
-          <ion-button fill="clear" color="warning" id="socioEco">
-            <ion-icon name="information-circle-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
+          <ion-col size="1">
+            <ion-button fill="clear" color="warning" id="socioEco">
+              <ion-icon name="information-circle-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
 
-        <ion-popover trigger="socioEco">
-          <ng-template>
-            <ion-content> Vous pouvez choisir entre 5 options de démarrage pour une situation socio-économique. Elle est calculé par rapport au salaire moyen du pays.</ion-content>
-          </ng-template>
-        </ion-popover>
+          <ion-popover trigger="socioEco">
+            <ng-template>
+              <ion-content> Vous pouvez choisir entre 5 options de démarrage pour une situation socio-économique. Elle
+                est calculé par rapport au salaire moyen du pays.
+              </ion-content>
+            </ng-template>
+          </ion-popover>
 
-      </ion-row>
+        </ion-row>
 
-      <!--choix de l'anniversaire-->
-      <ion-row >
+        <!--choix de l'anniversaire-->
+        <ion-row>
 
-        <ion-col size="2">
+          <ion-col size="2">
             <ion-button (click)="randBirthday()" fill="clear">
-                <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
+              <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
             </ion-button>
-        </ion-col>
+          </ion-col>
 
-        <ion-col size="4">
-          <ion-item>
-            <ion-label>Day</ion-label>
-            <ion-input [(ngModel)]="birthdayDay" type="number" max=30 min=1></ion-input>
-          </ion-item>
-        </ion-col>
+          <ion-col size="4">
+            <ion-item>
+              <ion-label>Day</ion-label>
+              <ion-input [(ngModel)]="birthdayDay" type="number" max=30 min=1></ion-input>
+            </ion-item>
+          </ion-col>
 
-        <ion-col size="5">
-          <ion-item>
-            <ion-label>Month</ion-label>
-            <ion-input [(ngModel)]="birthdayMonth" type="number" max=12 min=1></ion-input>
-          </ion-item>
-        </ion-col>
+          <ion-col size="5">
+            <ion-item>
+              <ion-label>Month</ion-label>
+              <ion-input [(ngModel)]="birthdayMonth" type="number" max=12 min=1></ion-input>
+            </ion-item>
+          </ion-col>
 
-        <ion-col size="1">
-          <ion-button fill="clear" color="warning" id="popOverBirthday">
-            <ion-icon name="information-circle-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
+          <ion-col size="1">
+            <ion-button fill="clear" color="warning" id="popOverBirthday">
+              <ion-icon name="information-circle-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
 
-        <ion-popover trigger="popOverBirthday">
-          <ng-template>
-            <ion-content> Votre date d'anniversaire pour recevior des cadeaux(ou pas) dans le jeu !</ion-content>
-          </ng-template>
-        </ion-popover>
+          <ion-popover trigger="popOverBirthday">
+            <ng-template>
+              <ion-content> Votre date d'anniversaire pour recevior des cadeaux(ou pas) dans le jeu !</ion-content>
+            </ng-template>
+          </ion-popover>
 
-      </ion-row>
+        </ion-row>
 
-      <!-- rand global et validation-->
-      <ion-row >
+        <!-- rand global et validation-->
+        <ion-row>
 
-        <ion-col size="6">
-          <ion-button (click)="allRand()">
-            <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
+          <ion-col size="6">
+            <ion-button (click)="allRand()">
+              <ion-icon name="dice-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
 
-        <ion-col size="6">
-          <ion-button color="success" shape="round" (click)="validatePerso()">
-            <ion-icon name="checkbox-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
+          <ion-col size="6">
+            <ion-button color="success" shape="round" (click)="validatePerso()">
+              <ion-icon name="checkbox-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
 
-      </ion-row>
+        </ion-row>
+      </div>
     </ion-col>
-    <ion-col size=2></ion-col>
-    <ion-col size="5">
-
+    <ion-col size="2"></ion-col>
+    <ion-col size="3">
       <ion-img [src]="'./assets/img/persos/skin'+ethnie+'-'+genre+'-'+religion+'.png'"></ion-img>
     </ion-col>
+    <ion-col size=""></ion-col>
   </ion-row>
 </ion-grid>
 
