@@ -40,6 +40,7 @@ export class Perso {
     this.socioEcoStart = socioECoStart;
   };
 
+  /*
   isBirthday = (day, month) => {
     if (this.birthdayDay === day && this.birthdayMonth === month) {
       this.age += 1;
@@ -62,7 +63,7 @@ export class Perso {
           break;
       }
     }
-  };
+  };*/
 
   //On plus de faim a partir de 60 jours sans rien faire
   calculFaim=()=>{

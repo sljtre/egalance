@@ -85,18 +85,17 @@ export class GameActionsService {
   workResponseHandler=(answer)=>{
     this.persoService.perso.wallet+=answer;
     this.persoService.perso.fatigue-=this.tuilesService.getEnergyCost(this.tuileActuelle, this.persoService.perso.instructionLevel);
-    if(this.persoService.perso.fatigue<0){
-      this.persoService.perso.sante-=this.persoService.perso.fatigue/2;
-      this.persoService.perso.fatigue=0;
-    }
     this.persoService.perso.faim-=0.51
+    //Comme c deja des nombres négatis on a besoin de farie un += pour soustraire correctement @Paul 
+    if(this.persoService.perso.fatigue<0){
+      this.persoService.perso.sante+=this.persoService.perso.fatigue/2;
+      this.persoService.perso.fatigue=0;
+    }    
     if(this.persoService.perso.faim<0){
-      this.persoService.perso.sante-=this.persoService.perso.faim/2;
+      this.persoService.perso.sante+=this.persoService.perso.faim/2;
       this.persoService.perso.faim=0;
     }
-    if(this.persoService.perso.sante<0){
-      //MORT
-    }
+    
   };
 
   marryHandler=()=>{  };
