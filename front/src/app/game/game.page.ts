@@ -83,7 +83,7 @@ export class GamePage implements OnInit {
     });
     
     
-    //this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon', 5, 2, '2');   
+    this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon', 5, 2, '2');   
 
     //Initialzation du jeu au donnes du joueur
     this.day=this.persoService.perso.birthdayDay;
