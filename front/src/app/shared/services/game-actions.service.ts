@@ -85,18 +85,17 @@ export class GameActionsService {
   workResponseHandler=(answer)=>{
     this.persoService.perso.wallet+=answer;
     this.persoService.perso.fatigue-=this.tuilesService.getEnergyCost(this.tuileActuelle, this.persoService.perso.instructionLevel);
-    if(this.persoService.perso.fatigue<0){
-      this.persoService.perso.sante-=this.persoService.perso.fatigue/2;
-      this.persoService.perso.fatigue=0;
-    }
     this.persoService.perso.faim-=0.51
+    //Comme c deja des nombres négatis on a besoin de farie un += pour soustraire correctement @Paul 
+    if(this.persoService.perso.fatigue<0){
+      this.persoService.perso.sante+=this.persoService.perso.fatigue/2;
+      this.persoService.perso.fatigue=0;
+    }    
     if(this.persoService.perso.faim<0){
-      this.persoService.perso.sante-=this.persoService.perso.faim/2;
+      this.persoService.perso.sante+=this.persoService.perso.faim/2;
       this.persoService.perso.faim=0;
     }
-    if(this.persoService.perso.sante<0){
-      //MORT
-    }
+    
   };
 
   marryHandler=()=>{  };
@@ -113,32 +112,31 @@ export class GameActionsService {
    };
 
   restHandler=()=>{
-    let timeAdd;
-    if (this.tuileActuelle==='Parc'){
-      //Cest gratuit dans un parc on touche pas au wallet
-      this.persoService.perso.fatigue+=0.15;
-      timeAdd=2;
+    switch(this.tuileActuelle){
+      case'Parc':
+        this.rouletteService.setRoulette(['Sunny day','Rainy day','Windy day'],[0.33,0.33,0.33]);
+        //Cest gratuit dans un parc on touche pas au wallet
+        //this.persoService.perso.fatigue+=0.15;
+      return 2;      
+      case'House':
+        this.rouletteService.setRoulette(['Watch your favorite show','Neighbor mowing lawn','Spill your drink','Chill vibes'],[0.3,0.2,0.1,0.4]);
+        //Cest gratuit dans un parc on touche pas au wallet
+        //this.persoService.perso.fatigue+=0.25;
+        return 1;
+      case 'Museum':
+        this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.02;
+        this.persoService.perso.fatigue+=0.30;
+        return 1;
+    
+      case 'Stadium':
+        this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*2;
+        this.persoService.perso.fatigue+=0.40;
+        return 3;
+      case'Empty':
+        this.persoService.perso.fatigue+=0.1;
+        return 1;
+      default:console.log("Not the right tile buckaroo");
     }
-    else if(this.tuileActuelle==='House'){
-      //Cest gratuit dans un parc on touche pas au wallet
-      this.persoService.perso.fatigue+=0.25;
-      timeAdd=1;
-    }
-    else if(this.tuileActuelle==='Museum'){
-      this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.02;
-      this.persoService.perso.fatigue+=0.30;
-      timeAdd=1;
-    }
-    else if(this.tuileActuelle==='Stadium'){
-      this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*2;
-      this.persoService.perso.fatigue+=0.40;
-      timeAdd=3;
-    }
-    else if(this.tuileActuelle==='Empty'){
-      this.persoService.perso.fatigue+=0.1;
-      timeAdd=1;
-    }
-    return timeAdd;
    };
 
   studyHandler=()=>{

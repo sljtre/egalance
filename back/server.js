@@ -111,6 +111,14 @@ function preventDisconnect() {
             app.post('/getScoreboard', function (req, res) {
                 account.getScoreboard(con, res);
             });
+
+            app.post('/pushScore', function (req, res) {
+                account.pushScore(req.body.username, req.body.score, req.body.vie, req.body.fatigue, req.body.faim, con, res);
+            });
+
+            app.post('/getScore', function (req, res) {
+                account.pushScore(req.body.username, con, res);
+            });
         }
     });
 
