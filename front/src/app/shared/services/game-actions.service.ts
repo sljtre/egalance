@@ -186,19 +186,19 @@ export class GameActionsService {
         break;
       case 'Take a sunbath':
           this.persoService.perso.fatigue+=0.1;
-          this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
+          //this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
         break;
       case 'Enjoy a drink':
           this.persoService.perso.fatigue+=0.1;
-          this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
+          //this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
         break;
       case 'Take a walk':
           this.persoService.perso.fatigue+=0.1;
-          this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
+          //this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
         break;
       case 'Yoga outside':
           this.persoService.perso.fatigue+=0.1;
-          this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
+          //this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
         break;
 
      }
