@@ -287,6 +287,8 @@ export class GamePage implements OnInit {
             this.action = 'WalkingManNegative';
           }
 
+          this.persoService.perso.fatigue -= 0.02;
+
           let start = 'translateX(' + this.x + 'px) translateY(' + this.y + 'px)'
           let finish = 'translateX(' + x + 'px) translateY(' + y + 'px)';
 
