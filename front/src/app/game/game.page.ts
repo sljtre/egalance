@@ -75,16 +75,26 @@ export class GamePage implements OnInit {
 
   async ngOnInit() {
 
-
     // add event to prevent refresh
     window.addEventListener('beforeunload', e => {
       const confirmationMessage = '\o/';
       e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
       return confirmationMessage;              // Gecko, WebKit, Chrome <34
     });
+    
+    
+    //this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon', 5, 2, '2');   
 
-    this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon', 5, 2, '2');
+    //Initialzation du jeu au donnes du joueur
+    this.day=this.persoService.perso.birthdayDay;
+    this.month=this.persoService.perso.birthdayMonth;
+    console.log(this.tuiles.getSalaire(this.persoService.perso.localization)*this.persoService.perso.socioEcoStart);
+    this.persoService.perso.wallet=this.tuiles.getSalaire(this.persoService.perso.localization)*this.persoService.perso.socioEcoStart;
+
     this.refreshAll();
+
+
+    
 
     this.importedTuiles = this.tuiles.getData(this.persoService.perso.localization);
     this.type = this.tuiles.getType(this.persoService.perso.localization);
