@@ -40,6 +40,7 @@ export class Perso {
     this.socioEcoStart = socioECoStart;
   };
 
+  /*
   isBirthday = (day, month) => {
     if (this.birthdayDay === day && this.birthdayMonth === month) {
       this.age += 1;
@@ -62,18 +63,19 @@ export class Perso {
           break;
       }
     }
-  };
+  };*/
 
   //On plus de faim a partir de 60 jours sans rien faire
   calculFaim=()=>{
-    if(this.faim>1){
-      this.faim=1;
-    }
     if(this.faim>0){
       this.faim-=0.017;
     }
+
     //Pour eviter de faire des dépassements de borne
-    if (this.faim < 0) {
+    else if(this.faim>1){
+      this.faim=1;
+    }    
+    else if (this.faim < 0) {
       this.faim = 0;
     }
   };
@@ -83,16 +85,34 @@ export class Perso {
     /*
     if(this.fatigue<1){
       this.fatigue+=(1-this.faim)+this.age/1000;
-    }
+    }*/
 
     //Dépassements de borne
     if(this.fatigue>1){
       this.fatigue=1;
-    }*/
+    }
+    else if(this.fatigue<=0){
+      this.fatigue=0;
+    }
   };
 
   //On perd de la sante seulement si on a plus d'energie ou de faim ou si on est malade
   calculSante=()=>{
+    if(this.sante>0){
+      if(this.faim<=0){
+        this.sante-=0.008;
+      }
+      if(this.fatigue<=0){
+        this.sante-=0.008;
+      }
+    }
+    //Pour eviter de faire des dépassements de borne
+    else if(this.sante>1){
+      this.sante=1;
+    }
+    else if(this.sante<=0){
+      this.sante=0;
+    }
     /*
     if(this.sante>0){
       this.sante-= 0.01 - this.fatigue*this.age/1000 - this.currentSickness;

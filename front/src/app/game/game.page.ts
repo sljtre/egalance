@@ -47,6 +47,8 @@ export class GamePage implements OnInit {
 
   public deplacement: Animation;
 
+  public birthdayPassed=false;
+
   public action = 'WalkingManPositive';
   public x = 430;
   public y = 111;
@@ -75,16 +77,26 @@ export class GamePage implements OnInit {
 
   async ngOnInit() {
 
-
     // add event to prevent refresh
     window.addEventListener('beforeunload', e => {
       const confirmationMessage = '\o/';
       e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
       return confirmationMessage;              // Gecko, WebKit, Chrome <34
     });
+    
+    
+    this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon', 5, 2, '2');   
 
-    this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon', 5, 2, '2');
+    //Initialzation du jeu au donnes du joueur
+    this.day=this.persoService.perso.birthdayDay;
+    this.month=this.persoService.perso.birthdayMonth;
+    console.log(this.tuiles.getSalaire(this.persoService.perso.localization)*this.persoService.perso.socioEcoStart);
+    this.persoService.perso.wallet=this.tuiles.getSalaire(this.persoService.perso.localization)*this.persoService.perso.socioEcoStart;
+
     this.refreshAll();
+
+
+    
 
     this.importedTuiles = this.tuiles.getData(this.persoService.perso.localization);
     this.type = this.tuiles.getType(this.persoService.perso.localization);
@@ -207,7 +219,13 @@ export class GamePage implements OnInit {
     if (this.month > 12) {
       this.month -= 12;
       this.year++;
+      this.birthdayPassed=false;
       this.addTime(0);
+    }
+    if(this.day>=this.persoService.perso.birthdayDay && this.month>=this.persoService.perso.birthdayMonth && this.birthdayPassed==false){
+      this.persoService.perso.age+=1;
+      this.birthdayPassed=true;
+      console.log("BIRHTDAY : is now "+this.persoService.perso.age+" years old.");
     }
   };
 

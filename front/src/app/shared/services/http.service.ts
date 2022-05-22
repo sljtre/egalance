@@ -162,8 +162,6 @@ export class HttpService {
   };
 
   deleteDemand = async (send, receive) => {
-    console.log('sender : ', send);
-    console.log('receiver : ', receive);
     const data = {sender: send, receiver: receive};
     await this.http.post<string>(this.urlBack + 'deleteDemand', data).toPromise().then(response => {
       this.retour = response;
@@ -180,6 +178,22 @@ export class HttpService {
 
   getScoreboard = async () => {
     await this.http.post<string>(this.urlBack + 'getScoreboard', '').toPromise().then(response => {
+      this.retour = response;
+    });
+    return this.retour;
+  };
+
+  pushScore = async (s,v,fat,fai) => {
+    const data = {username: await this.storage.getNickname(), score: s, vie: v, fatigue: fat, faim: fai};
+    await this.http.post<string>(this.urlBack + 'pushScore', data).toPromise().then(response => {
+      this.retour = response;
+    });
+    return this.retour;
+  };
+
+  getScore = async () => {
+    const data = {username: await this.storage.getNickname()};
+    await this.http.post<string>(this.urlBack + 'getScore', data).toPromise().then(response => {
       this.retour = response;
     });
     return this.retour;

@@ -206,15 +206,35 @@ module.exports.deleteDemand = function (send, receive, con, res){
 }
 
 module.exports.getScoreboard = function (con, res){
-  con.query("SELECT username, score FROM users ORDER BY score DESC LIMIT 100", (err, result)=> {
+  con.query("SELECT username, score, faim, sante, fatigue FROM users ORDER BY score DESC LIMIT 100", (err, result)=> {
     if(err){
       throw err;
     }else{
       const tab = [];
       for(const line of result){
-        tab.push({name: line.username, bestScore: line.score});
+        tab.push({name: line.username, bestScore: line.score, health:line.sante, hunger: line.faim, energy: line.fatigue});
       }
       res.json({output: tab});
     }
   })
+}
+
+module.exports.pushScore = function (player,generalScore, vie, energie, bouffe, con, res){
+  con.query("UPDATE users SET score = ?, sante = ?, fatigue = ?, faim = ?", [generalScore, vie, energie, bouffe], (err, result)=>{
+    if(err){
+      throw err;
+    }else{
+      res.json({output: 'Score pushed'});
+    }
+  });
+}
+
+module.exports.getScore = function (player, con, res){
+  con.query("SELECT score FROM users WHERE username = ?", [username], (err,result)=>{
+    if(err){
+      throw err;
+    }else{
+      res.json({output: result[0].score});
+    }
+  });
 }
