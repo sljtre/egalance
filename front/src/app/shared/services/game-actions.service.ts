@@ -114,30 +114,96 @@ export class GameActionsService {
   restHandler=()=>{
     switch(this.tuileActuelle){
       case'Parc':
-        this.rouletteService.setRoulette(['Sunny day','Rainy day','Windy day'],[0.33,0.33,0.33]);
-        //Cest gratuit dans un parc on touche pas au wallet
-        //this.persoService.perso.fatigue+=0.15;
-      return 2;      
+        this.rouletteService.setRoulette(['Sunny day','Rainy day','Windy day'],[0.33,0.33,0.33]);        
+        return 2;      
       case'House':
         this.rouletteService.setRoulette(['Watch your favorite show','Neighbor mowing lawn','Spill your drink','Chill vibes'],[0.3,0.2,0.1,0.4]);
-        //Cest gratuit dans un parc on touche pas au wallet
-        //this.persoService.perso.fatigue+=0.25;
         return 1;
       case 'Museum':
-        this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*0.02;
-        this.persoService.perso.fatigue+=0.30;
+        this.rouletteService.setRoulette(['Enjoy the exhibition','Get lost in the museum','Talk to a statue'],[0.3,0.3,0.3]);
         return 1;
     
       case 'Stadium':
-        this.persoService.perso.wallet-=Number(this.tuilesService.getSalaire(this.actionCity))/100*2;
-        this.persoService.perso.fatigue+=0.40;
+        this.rouletteService.setRoulette(['Favorite team won','Favorite team lost','Get a signed jersey','Get a signed ball'],[0.3,0.3,0.2,0.2])
         return 3;
       case'Empty':
-        this.persoService.perso.fatigue+=0.1;
+        this.rouletteService.setRoulette(['Take a sunbath','Enjoy a drink','Take a walk','Yoga outside'],[0.25,0.25,0.25,0.25]);
         return 1;
       default:console.log("Not the right tile buckaroo");
     }
    };
+
+   restResponseHandler=(answer)=>{
+     switch(answer){
+      case 'Sunny day':
+        this.persoService.perso.fatigue+=0.2;
+        break;
+      case 'Rainy day':
+        this.persoService.perso.fatigue+=0.15;
+        break;
+      case 'Windy day':
+        this.persoService.perso.fatigue+=0.05;
+        break;
+      case 'Watch your favorite show':
+        this.persoService.perso.fatigue+=0.2;
+        break;
+      case 'Neighbor mowing lawn':
+        this.persoService.perso.fatigue+=0.175;
+        break;
+      case 'Spill your drink':
+        this.persoService.perso.fatigue+=0.1;
+        break;
+      case 'Chill vibes':
+        this.persoService.perso.fatigue+=0.15;
+        break;
+      case 'Enjoy the exhibition':
+        this.persoService.perso.fatigue+=0.1;
+        this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
+        break;
+      case 'Get lost in the museum':
+          this.persoService.perso.fatigue+=0.1;
+          this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
+        break;
+      case 'Talk to a statue':
+          this.persoService.perso.fatigue+=0.1;
+          this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
+        break;
+      case 'Favorite team won':
+          this.persoService.perso.fatigue+=0.1;
+          this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
+        break;
+      case 'Favorite team lost':
+          this.persoService.perso.fatigue+=0.1;
+          this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
+        break;
+      case 'Get a signed jersey':
+          this.persoService.perso.fatigue+=0.1;
+          this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
+        break;
+      case 'Get a signed ball':
+          this.persoService.perso.fatigue+=0.1;
+          this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
+        break;
+      case 'Take a sunbath':
+          this.persoService.perso.fatigue+=0.1;
+          this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
+        break;
+      case 'Enjoy a drink':
+          this.persoService.perso.fatigue+=0.1;
+          this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
+        break;
+      case 'Take a walk':
+          this.persoService.perso.fatigue+=0.1;
+          this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
+        break;
+      case 'Yoga outside':
+          this.persoService.perso.fatigue+=0.1;
+          this.persoService.perso.wallet-=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/100*0.05);
+        break;
+
+     }
+
+   }
 
   studyHandler=()=>{
     if(this.tuileActuelle==='House'){
