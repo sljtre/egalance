@@ -1,24 +1,59 @@
-.imgPerso{
-  width:50px;
-  height:60px;
-  margin:auto;
-
+.imgPerso, .imgPersoMajorite {
+  width: 50px;
+  padding: 4px;
 }
 
-.imgPersoMajorite{
-  filter: drop-shadow(0 0 1rem rgb(67, 142, 228));
-  width:50px;
-  height:60px;
-  margin:auto;
-  background-color: transparent;
+.imgPersoMajorite, .demo-majorite {
+  border-radius: 10px;
+  border: 2px dashed #001069;
+  background: #148f9f59;
 }
 
-ion-col{
-  margin-left:auto;
-  margin-right:auto;
-  text-align:center;
+.demo-majorite{
+  padding: 2px 5px;
 }
 
-ion-item{
-  border-radius:30px;
+ion-grid > ion-row {
+  height: 100%;
+}
+
+ion-col {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: flex;
+}
+
+ion-item {
+  border-radius: 30px;
+}
+
+#customisation-form {
+  background: rgba(0, 0, 0, 0.56);
+  margin: 40px 0;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  ion-col {
+    align-items: center;
+    justify-content: center;
+
+    ion-icon {
+      font-size: 26px;
+      cursor: pointer;
+    }
+  }
+
+  #birth-input {
+    border: 1px solid;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0 10px;
+    padding: 0 10px;
+  }
 }

@@ -323,7 +323,7 @@ export class GamePage implements OnInit {
           await this.deplacement.play().then(() => {
             const retour = this.tuiles.getInfo(name);
             this.currentName = retour.name;
-            this.action = 'Sport';
+            this.action = 'Neutral';
             this.x = x;
             this.y = y;
             this.isMoving = false;
