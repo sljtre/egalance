@@ -28,14 +28,14 @@ setOptions=(Noptions)=>{
   for(let i=0;i<Noptions.length;i++){
     this.options[i]=Noptions[i];
   }
-  console.log(this.options);
+  
 }
 
 setChances=(Nchances)=>{  
   for(let i=0;i<Nchances.length;i++){
     this.chances[i]=Nchances[i];
   }
-  console.log(this.chances);
+  
 }
 
 resetOptionsAndChances=()=>{

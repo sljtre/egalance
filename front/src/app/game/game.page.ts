@@ -195,6 +195,10 @@ export class GamePage implements OnInit {
   calendar = () => {
     this.persoService.calculAll();
     this.refreshAll();
+    if(this.persoService.perso.sante<=0){
+      this.eventService.eventLost(0); //valeur temporaire ed score a remplacer avec une vraie 
+      this.pause();
+    }
     this.addTime(1);
   };
 
@@ -225,7 +229,8 @@ export class GamePage implements OnInit {
     if(this.day>=this.persoService.perso.birthdayDay && this.month>=this.persoService.perso.birthdayMonth && this.birthdayPassed==false){
       this.persoService.perso.age+=1;
       this.birthdayPassed=true;
-      console.log("BIRHTDAY : is now "+this.persoService.perso.age+" years old.");
+      this.eventService.eventBirthday()
+      
     }
   };
 

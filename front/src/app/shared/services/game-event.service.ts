@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AlertController} from '@ionic/angular';
+import {PersoService} from '../services/perso.service';
+import {TuilesService} from '../services/tuiles.service'
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,46 @@ export class GameEventService {
   public alert;
   private events = [];
 
-  constructor(public alertController: AlertController) {
+  constructor(
+    public alertController: AlertController,
+    public persoService:PersoService,
+    public tuilesService:TuilesService
+    ) {
+  }
+
+  async eventBirthday(){
+    const data={
+      header : 'Birthday !',
+      message:'Congratulations you just turned '+this.persoService.perso.age+' !. Choose a gift wisely to help you succeed !',
+      buttons:[
+        {
+          text:'Full hunger',
+          handler:()=>{
+            this.persoService.perso.faim=1;
+          }
+        },
+        {
+          text:'Full health',
+          handler:()=>{
+            this.persoService.perso.sante=1;
+          }
+        },
+        {
+          text:'Full energy',
+          handler:()=>{
+            this.persoService.perso.fatigue=1;
+          }
+        },
+        {
+          text:'Some money',
+          handler:()=>{
+            this.persoService.perso.wallet+=Math.floor(this.tuilesService.getSalaire(this.persoService.perso.localization)/2);
+          }
+        }
+
+      ]
+    };
+    this.presentAlert(data);
   }
 
 
@@ -79,7 +120,7 @@ export class GameEventService {
   async eventNoMoney(){
     let data={
       header:'No money...',
-      message:'You dont have no money to spend bucko back off before we call the cop chump.',
+      message:'You have no more money better go try and get a job.',
       buttons:[
         {
           text:'I understand',
@@ -90,8 +131,29 @@ export class GameEventService {
     };
 
     this.presentAlert(data);
-  }
+  };
 
+  async eventLost(score){
+    const data={
+      header:"You lose !",
+      message:"You lived for "+this.persoService.perso.age+"years and managed to get a score of "+score+".",
+      buttons:[
+        {
+          text:"Play again",
+          handler:()=>{
+
+          }
+        },
+        {
+          text:'Leave',
+          handler:()=>{
+
+          }
+        }
+      ]
+    };
+    this.presentAlert(data);
+  };
 
   presentAlert = async (alertData) => {
     alertData.cssClass = 'custom-alert';

@@ -72,10 +72,10 @@ export class Perso {
     }
 
     //Pour eviter de faire des dépassements de borne
-    else if(this.faim>1){
+    if(this.faim>1){
       this.faim=1;
     }    
-    else if (this.faim < 0) {
+    if (this.faim < 0) {
       this.faim = 0;
     }
   };
@@ -91,7 +91,7 @@ export class Perso {
     if(this.fatigue>1){
       this.fatigue=1;
     }
-    else if(this.fatigue<=0){
+    if(this.fatigue<=0){
       this.fatigue=0;
     }
   };
@@ -107,10 +107,10 @@ export class Perso {
       }
     }
     //Pour eviter de faire des dépassements de borne
-    else if(this.sante>1){
+    if(this.sante>1){
       this.sante=1;
     }
-    else if(this.sante<=0){
+    if(this.sante<=0){
       this.sante=0;
     }
     /*
