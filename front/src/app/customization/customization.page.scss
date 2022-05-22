@@ -5,11 +5,20 @@
 }
 
 .imgPersoMajorite {
-  filter: drop-shadow(0 0 1rem rgb(67, 142, 228));
   width: 50px;
   height: 60px;
   margin: auto;
   background-color: transparent;
+}
+
+.imgPersoMajorite, .demo-majorite {
+  border-radius: 10px;
+  border: 2px dashed #001069;
+  background: #148f9f59;
+}
+
+.demo-majorite{
+  padding: 2px 5px;
 }
 
 ion-grid > ion-row {
@@ -45,7 +54,7 @@ ion-item {
     }
   }
 
-  #birth-input{
+  #birth-input {
     border: 1px solid;
     border-radius: 10px;
     display: flex;

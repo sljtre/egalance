@@ -211,11 +211,16 @@
           </ion-col>
 
           <ion-col size="6">
-            <ion-button color="success" shape="round" (click)="validatePerso()">
+            <ion-button color="success" shape="round" (click)="validatePerso()" style="margin-left: auto">
               <ion-icon name="checkbox-outline" slot="icon-only"></ion-icon>
             </ion-button>
           </ion-col>
 
+        </ion-row>
+        <ion-row>
+          <div style="font-style: italic; font-size: 14px; line-height: 1.3rem;">
+            The majority attributes in your city are reported <span class="demo-majorite">like this</span>
+          </div>
         </ion-row>
       </div>
     </ion-col>
