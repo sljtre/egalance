@@ -1,13 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {TuilesService} from '../shared/services/tuiles.service';
 import {PersoService} from '../shared/services/perso.service';
-import { GameEventService} from '../shared/services/game-event.service';
+import {GameEventService} from '../shared/services/game-event.service';
 import {RouletteService} from '../shared/services/roulette.service';
 import {GameActionsService} from '../shared/services/game-actions.service'
 import {RouterService} from '../shared/services/router.service';
 import {SaisonsComponent} from './saisons/saisons.component'
-import { Animation, AnimationController,ModalController } from '@ionic/angular';
-import { ObjectUnsubscribedError } from 'rxjs';
+import {Animation, AnimationController, ModalController} from '@ionic/angular';
+import {ObjectUnsubscribedError} from 'rxjs';
 
 
 @Component({
@@ -23,6 +23,7 @@ export class GamePage implements OnInit {
   public type = '';
   public clock;
   public paused = true;
+  public timeToAdd = 0;
 
   public day = 1;
   public month = 1;
@@ -52,25 +53,28 @@ export class GamePage implements OnInit {
 
   public isMoving = false;
 
-  public isHiddenSpin =false;
+  public isRouletteOpen = false;
+  public isHiddenSpin = false;
   public isHiddenValid = true;
-  public isDisabledValid=true;
+  public isDisabledValid = true;
   public end;
 
-  public positionPlayer = 'top:' + this.y + 'px; left:' + this.x+ 'px;';
+  public positionPlayer = 'top:' + this.y + 'px; left:' + this.x + 'px;';
 
   constructor(
     public tuiles: TuilesService,
     public persoService: PersoService,
     private eventService: GameEventService,
-    public roulette:RouletteService,
-    public gameActions:GameActionsService,
+    public roulette: RouletteService,
+    public gameActions: GameActionsService,
     private animationCtrl: AnimationController,
-    public modalController:ModalController,
+    public modalController: ModalController,
     public router: RouterService,
-  ) {};
+  ) {
+  };
 
   async ngOnInit() {
+
 
     // add event to prevent refresh
     window.addEventListener('beforeunload', e => {
@@ -78,8 +82,6 @@ export class GamePage implements OnInit {
       e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
       return confirmationMessage;              // Gecko, WebKit, Chrome <34
     });
-
-    // this.eventService.eventAccident();
 
     this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon', 5, 2, '2');
     this.refreshAll();
@@ -89,15 +91,15 @@ export class GamePage implements OnInit {
     for (let k = 0; k < 5; k++) {
       for (let i = 0; i < 10; i++) {
         if (!i && !k) {
-          this.matrix[k].push({name: 'aeroport', left:0, top:0, type: this.type});
+          this.matrix[k].push({name: 'aeroport', left: 0, top: 0, type: this.type});
         } else if (i === 5 && k === 1) {
-          this.matrix[k].push({name: 'religion', left:401, top:64, type: this.type});
+          this.matrix[k].push({name: 'religion', left: 401, top: 64, type: this.type});
         } else if (i === 6 && k === 2) {
-          this.matrix[k].push({name: 'mairie', left:438, top:128, type: this.type});
+          this.matrix[k].push({name: 'mairie', left: 438, top: 128, type: this.type});
         } else if (i === 5 && k === 2) {
-          this.matrix[k].push({name: this.persoService.perso.localization, left:365, top:128, type: 'culturel'});
+          this.matrix[k].push({name: this.persoService.perso.localization, left: 365, top: 128, type: 'culturel'});
         } else if (i === 5 && k === 3) {
-          this.matrix[k].push({name: 'justice', left:401, top:192, type: this.type});
+          this.matrix[k].push({name: 'justice', left: 401, top: 192, type: this.type});
         } else {
           const retour = this.tuiles.chooseAleatTuile(this.matrix, this.importedTuiles);
           this.matrix = retour.mat;
@@ -105,52 +107,61 @@ export class GamePage implements OnInit {
         }
       }
     }
-    this.roulette.setRoulette(["Test","These","Nuts","Johnny"],[0.3,0.2,0.4,0.1]);
 
     console.log(this.tuiles.getActions('Town hall').includes('Buy any House'));
-
   }
 
-  setRouletteForModal=()=>{    
-    this.roulette.setRoulette(["Edgar","Simon","CJ","Paul","Nathan"],[0.1,0.1,0.1,0.6,0.1])
-  }
+  actionClicked = (action) => {
+    if (!this.paused) {
+      this.pause();
+    }
+    this.action = action;
+    this.timeToAdd=this.gameActions.actionHandler(action,this.persoService.perso.localization,this.currentName);
+    if(this.timeToAdd==0){
+      this.eventService.eventNoMoney();
+    }
+    else if(this.timeToAdd<0){
+      this.addTime(-this.timeToAdd);
+    }
+    else{this.isRouletteOpen=true;}
+  }  
 
-  spin=()=>{
+  spin = () => {
     this.roulette.spin();
-    this.isHiddenSpin=true;
-    this.isHiddenValid=false;
+    this.isHiddenSpin = true;
+    this.isHiddenValid = false;
     this.checkRouletteFin();
   };
 
-  checkRouletteFin=()=>{
-    if(this.roulette.answer!=undefined){
+  checkRouletteFin = () => {
+    if (this.roulette.answer != undefined) {
+
       clearTimeout(this.end);
-      this.isDisabledValid=false;
-    }
-    else{
-      this.end =setTimeout(this.checkRouletteFin,200);
+      this.isDisabledValid = false;
+    } else {
+      this.end = setTimeout(this.checkRouletteFin, 200);
     }
   };
 
-  resetRoulette=()=>{
-    this.roulette.answer=undefined;
+  resetRoulette = () => {
+    this.roulette.answer = undefined;
+    this.roulette.setRoulette([], []);
     this.roulette.drawRouletteWheel();
   };
 
-  dismissModal=()=>{
-    this.modalController.dismiss({
-      'dismissed':true
-    });
-
+  dismissModal = () => {
+    this.isRouletteOpen = false;
+    this.gameActions.actionsResponseHandler(this.roulette.answer);
+    this.addTime(this.timeToAdd);
+    this.timeToAdd = 0;
+    this.pause();
   }
 
-  buttonReset=()=>{
-    console.log("hello we left the modal !");
-    this.isHiddenSpin=false;
-    this.isHiddenValid=true;
-    this.isDisabledValid=true;
+  buttonReset = () => {
+    this.isHiddenSpin = false;
+    this.isHiddenValid = true;
+    this.isDisabledValid = true;
   };
-
 
 
   hoverEnter = (name) => {
@@ -158,8 +169,8 @@ export class GamePage implements OnInit {
     this.hoverName = retour.name;
     this.hoverDescription = retour.description;
     this.hoverActions = 'Possible actions here : '
-    for(const line of retour.actions){
-      this.hoverActions+=line + ' ';
+    for (const line of retour.actions) {
+      this.hoverActions += line + ' ';
     }
   };
 
@@ -257,46 +268,50 @@ export class GamePage implements OnInit {
   };
 
   //Animation déplacement
-  deplacementPlay = (x, y, name) => {
+  deplacementPlay = async (x, y, name) => {
 
-    if(Math.floor(Math.floor(Math.abs(this.x+8-x)/73)+Math.floor(Math.abs(this.y+12-y)/64)) < 2) {
-      if (!this.isMoving) {
-        this.isMoving = true;
+    if (!this.paused) {
+      if (Math.floor(Math.floor(Math.abs(this.x + 8 - x) / 73) + Math.floor(Math.abs(this.y + 12 - y) / 64)) < 2) {
+        if (!this.isMoving) {
+          this.isMoving = true;
 
-        this.currentName = '';
+          this.currentName = '';
 
-        x -= 8;
-        y -= 12;
-        this.positionPlayer = '';
-        let elt = document.querySelector('#player');
-        if ((x - this.x) > 0) {
-          this.action = 'WalkingManPositive';
-        } else {
-          this.action = 'WalkingManNegative';
+          x -= 8;
+          y -= 12;
+          this.positionPlayer = '';
+          let elt = document.querySelector('#player');
+          if ((x - this.x) > 0) {
+            this.action = 'WalkingManPositive';
+          } else {
+            this.action = 'WalkingManNegative';
+          }
+
+          this.persoService.perso.fatigue -= 0.02;
+
+          let start = 'translateX(' + this.x + 'px) translateY(' + this.y + 'px)'
+          let finish = 'translateX(' + x + 'px) translateY(' + y + 'px)';
+
+          this.deplacement = this.animationCtrl.create()
+            .addElement(elt)
+            .duration((25 * (Math.abs(x - this.x) + Math.abs(y - this.y))) * (1 - this.speed / 10))
+            .iterations(1)
+            .direction('alternate')
+            .keyframes([
+              {offset: 0, transform: start},
+              {offset: 1, transform: finish}
+            ]);
+
+          await this.deplacement.play().then(() => {
+            const retour = this.tuiles.getInfo(name);
+            this.currentName = retour.name;
+            this.action = 'Sport';
+            this.x = x;
+            this.y = y;
+            this.isMoving = false;
+          });
         }
-
-        let start = 'translateX(' + this.x + 'px) translateY(' + this.y + 'px)'
-        let finish = 'translateX(' + x + 'px) translateY(' + y + 'px)';
-
-        this.deplacement = this.animationCtrl.create()
-          .addElement(elt)
-          .duration(25 * (Math.abs(x - this.x) + Math.abs(y - this.y)))
-          .iterations(1)
-          .direction('alternate')
-          .keyframes([
-            {offset: 0, transform: start},
-            {offset: 1, transform: finish}
-          ]);
-
-        this.deplacement.play().then(() => {
-          const retour = this.tuiles.getInfo(name);
-          this.currentName = retour.name;
-          this.action = 'Sport';
-          this.x = x;
-          this.y = y;
-          this.isMoving = false;
-        });
       }
     }
   }
-}
+};

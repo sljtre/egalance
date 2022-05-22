@@ -12,13 +12,17 @@ export class Perso {
   public birthdayMonth = 1;
   public age = 0;
   public currentSickness=0;   //Facteur entre 0 et 1 qui vient affecter la sante
-  public educationLevel=0;
-  
+
+  public instructionLevel=0;
+  public studyCriticalBoost=0;
+  public studyBoost=0;
+  public grade='None';
+
   public monthlyIncome=0;
-  public Wallet=0;
+  public wallet=0;
 
 
-  public fatigue = 0;
+  public fatigue = 1;
   public sante = 1;
   public faim = 1;
 
@@ -62,6 +66,9 @@ export class Perso {
 
   //On plus de faim a partir de 60 jours sans rien faire
   calculFaim=()=>{
+    if(this.faim>1){
+      this.faim=1;
+    }
     if(this.faim>0){
       this.faim-=0.017;
     }

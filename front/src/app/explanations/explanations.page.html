@@ -2,3 +2,44 @@
             style="position:absolute; top:3px; left:3px;">
   <ion-icon slot="icon-only" name="arrow-undo-outline" color="light"></ion-icon>
 </ion-button>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-title size="large">Nos algorithmes</ion-title>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-title>
+          Nombre de tuiles par pays
+        </ion-title>
+        <p>
+          Pour établir le nombre de tuiles de chaque type par ville nous nous sommes basés sur des statistiques réelles provenant pour la plupart du site <a href="https://www.nationmaster.com/" target="_blank">NationMaster</a>.<br>
+          Ensuite, nous avons établi des équations par rapport à nos données qui nous permettaient d'avoir un nombre correct de tuiles par type, par exemple on voulait un nombre d'hopitaux entre 1 et 4, cela correspond exactement aux nombres de médecins pour 1000 habitants (exemple ci-contre).
+        </p>
+      </ion-col>
+      <ion-col>
+        <ion-img src="./assets/img/explanation/Exemple1.png" style="width:50%"></ion-img>
+      </ion-col>
+    </ion-row>
+    <io-row>
+      <ion-col>
+        <p>
+          Autre exemple, le nombre d'écoles/écoles sup, on a récupéré le nombre d'enseignants par élèves dans le primaire et le secondaire puis on en a fait une moyenne, la formule déterminant le nombre d'écoles étant 5-(moyenne/10), ensuite si on a plus de 1 école alors on en transforme une en école sup.
+        </p>
+      </ion-col>
+      <ion-col>
+        <ion-img src="./assets/img/explanation/Exemple2.png" style="width:75%;"></ion-img>
+      </ion-col>
+    </io-row>
+    <io-row>
+      <ion-col>
+        <p>
+          Pour le nombre de bars on a pris la consommation de litres d'éthanol par an par habitant, en fonction de la valeur on a déterminé un nombre de tuiles correspondantes (la table étant celle en dessous de la colonne).
+        </p>
+      </ion-col>
+      <ion-col>
+        <ion-img src="./assets/img/explanation/Exemple3.png" style="width:25%;"></ion-img>
+      </ion-col>
+    </io-row>
+  </ion-grid>
+</ion-content>

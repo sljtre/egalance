@@ -23,16 +23,24 @@ export class RouletteService {
   private ctx;
 
 
-setOptions=(options)=>{
-  for(let i=0;i<options.length;i++){
-    this.options[i]=options[i];
+setOptions=(Noptions)=>{
+  
+  for(let i=0;i<Noptions.length;i++){
+    this.options[i]=Noptions[i];
   }
+  console.log(this.options);
 }
 
-setChances=(chances)=>{
-  for(let i=0;i<chances.length;i++){
-    this.chances[i]=chances[i];
+setChances=(Nchances)=>{  
+  for(let i=0;i<Nchances.length;i++){
+    this.chances[i]=Nchances[i];
   }
+  console.log(this.chances);
+}
+
+resetOptionsAndChances=()=>{
+  this.options=[];
+  this.chances=[];
 }
 
 setColor=()=> {
