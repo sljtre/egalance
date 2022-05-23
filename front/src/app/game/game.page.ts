@@ -129,11 +129,11 @@ export class GamePage implements OnInit {
     }
     this.action = action;
     this.timeToAdd=this.gameActions.actionHandler(action,this.persoService.perso.localization,this.currentName);
-    if(this.timeToAdd==0 && this.persoService.perso.wallet<0){
-      this.eventService.eventNoMoney();
-    }
-    else if(this.timeToAdd==0){
+    if(this.timeToAdd==-99999){
 
+    }
+    else if(this.timeToAdd==0 && this.persoService.perso.wallet<0){
+      this.eventService.eventNoMoney();
     }
     else if(this.timeToAdd<0){
       this.addTime(-this.timeToAdd);

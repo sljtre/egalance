@@ -35,7 +35,7 @@ export class GameActionsService {
         break;
       case 'Rest':
         result=this.restHandler();
-        console.log("We are going into rest");
+        break;        
       case 'Work':
         result=this.workHandler();
         break;
@@ -44,12 +44,13 @@ export class GameActionsService {
         break;
       case 'Pray':
         result=this.prayHandler();
+        break;
       case 'Study':
         result=this.studyHandler();
         break;
       default:
         this.eventService.eventNotImplementedYet();
-        return 0;
+        return -99999;
       
     }
     return result;
@@ -65,10 +66,13 @@ export class GameActionsService {
         break;
       case 'Study':
         this.studyResponseHandler(answer);
+        break;
       case 'Rest':
         this.restResponseHandler(answer);
+        break;
       case 'Drink':
         this.drinkHandler();
+        break;
       default:
         
         break;
@@ -124,19 +128,20 @@ export class GameActionsService {
   restHandler=()=>{
     switch(this.tuileActuelle){
       case'Parc':
-        this.rouletteService.setRoulette(['Sunny day','Rainy day','Windy day'],[0.33,0.33,0.33]);        
+        this.rouletteService.setRoulette(['Sunny day','Rainy day','Windy day'],[0.5,0.15,0.35]);        
         return 2;      
       case'House':
         this.rouletteService.setRoulette(['Watch your favorite show','Neighbor mowing lawn','Spill your drink','Chill vibes'],[0.3,0.2,0.1,0.4]);
         return 1;
       case 'Museum':
-        this.rouletteService.setRoulette(['Enjoy the exhibition','Get lost in the museum','Talk to a statue'],[0.3,0.3,0.3]);
+        this.rouletteService.setRoulette(['Enjoy the exhibition','Get lost in the museum','Talk to a statue'],[0.5,0.25,0.25]);
         return 1;
     
       case 'Stadium':
         this.rouletteService.setRoulette(['Favorite team won','Favorite team lost','Get a signed jersey','Get a signed ball'],[0.3,0.3,0.2,0.2])
         return 3;
       case'Empty':
+      
         this.rouletteService.setRoulette(['Take a sunbath','Enjoy a drink','Take a walk','Yoga outside'],[0.25,0.25,0.25,0.25]);
         return 1;
       default:console.log("Not the right tile buckaroo");
