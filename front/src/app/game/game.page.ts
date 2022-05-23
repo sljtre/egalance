@@ -49,7 +49,7 @@ export class GamePage implements OnInit {
 
   public birthdayPassed=false;
 
-  public action = 'WalkingManPositive';
+  public action = 'Neutral';
   public x = 430;
   public y = 111;
 
@@ -128,6 +128,9 @@ export class GamePage implements OnInit {
       this.pause();
     }
     this.action = action;
+    if (action == 'Practice') {
+      this.action = 'Sport';
+    }
     this.timeToAdd=this.gameActions.actionHandler(action,this.persoService.perso.localization,this.currentName);
     if(this.timeToAdd==-99999){
 
