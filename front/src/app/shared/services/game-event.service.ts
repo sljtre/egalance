@@ -155,6 +155,24 @@ export class GameEventService {
     this.presentAlert(data);
   };
 
+  async eventNotImplementedYet(){
+    const data={
+      header:'Oops!',
+      message:'The action you requested hasn\'t been added yet...\nCome back later when its out.',
+      buttons:[
+        {
+          text:'I understand',
+          handler:()=>{
+
+          }
+        }
+
+      ] 
+    };
+    this.presentAlert(data);
+
+  }
+
   presentAlert = async (alertData) => {
     alertData.cssClass = 'custom-alert';
     alertData.mode = 'ios';

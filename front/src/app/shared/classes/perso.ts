@@ -4,6 +4,8 @@ export class Perso {
   public socioEcoStart = '';
 
 
+
+
   public religion = '';
   public gender = '';
   public skin = '';
@@ -25,6 +27,10 @@ export class Perso {
   public fatigue = 1;
   public sante = 1;
   public faim = 1;
+
+  public scoreFatigue=0;
+  public scoreSante=0;
+  public scoreFaim=0;
 
   constructor(loc) {
     this.localization = loc;

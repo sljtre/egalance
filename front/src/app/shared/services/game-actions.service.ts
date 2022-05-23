@@ -35,6 +35,7 @@ export class GameActionsService {
         break;
       case 'Rest':
         result=this.restHandler();
+        console.log("We are going into rest");
       case 'Work':
         result=this.workHandler();
         break;
@@ -46,7 +47,10 @@ export class GameActionsService {
       case 'Study':
         result=this.studyHandler();
         break;
-      default:break;
+      default:
+        this.eventService.eventNotImplementedYet();
+        return 0;
+      
     }
     return result;
   }
@@ -61,7 +65,13 @@ export class GameActionsService {
         break;
       case 'Study':
         this.studyResponseHandler(answer);
-      default:break;
+      case 'Rest':
+        this.restResponseHandler(answer);
+      case 'Drink':
+        this.drinkHandler();
+      default:
+        
+        break;
     }
 
   }
