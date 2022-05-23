@@ -35,7 +35,7 @@ export class GameActionsService {
         break;
       case 'Rest':
         result=this.restHandler();
-        break;        
+        break;
       case 'Work':
         result=this.workHandler();
         break;
@@ -51,7 +51,7 @@ export class GameActionsService {
       default:
         this.eventService.eventNotImplementedYet();
         return -99999;
-      
+
     }
     return result;
   }
@@ -74,7 +74,7 @@ export class GameActionsService {
         this.drinkHandler();
         break;
       default:
-        
+
         break;
     }
 
@@ -100,16 +100,16 @@ export class GameActionsService {
     this.persoService.perso.wallet+=answer;
     this.persoService.perso.fatigue-=this.tuilesService.getEnergyCost(this.tuileActuelle, this.persoService.perso.instructionLevel);
     this.persoService.perso.faim-=0.51
-    //Comme c deja des nombres négatis on a besoin de farie un += pour soustraire correctement @Paul 
+    //Comme c deja des nombres négatis on a besoin de farie un += pour soustraire correctement @Paul
     if(this.persoService.perso.fatigue<0){
       this.persoService.perso.sante+=this.persoService.perso.fatigue/2;
       this.persoService.perso.fatigue=0;
-    }    
+    }
     if(this.persoService.perso.faim<0){
       this.persoService.perso.sante+=this.persoService.perso.faim/2;
       this.persoService.perso.faim=0;
     }
-    
+
   };
 
   marryHandler=()=>{  };
@@ -128,23 +128,23 @@ export class GameActionsService {
   restHandler=()=>{
     switch(this.tuileActuelle){
       case'Parc':
-        this.rouletteService.setRoulette(['Sunny day','Rainy day','Windy day'],[0.5,0.15,0.35]);        
-        return 2;      
+        this.rouletteService.setRoulette(['Sunny day','Rainy day','Windy day'],[0.5,0.15,0.35]);
+        return 2;
       case'House':
         this.rouletteService.setRoulette(['Watch your favorite show','Neighbor mowing lawn','Spill your drink','Chill vibes'],[0.3,0.2,0.1,0.4]);
         return 1;
       case 'Museum':
         this.rouletteService.setRoulette(['Enjoy the exhibition','Get lost in the museum','Talk to a statue'],[0.5,0.25,0.25]);
         return 1;
-    
+
       case 'Stadium':
         this.rouletteService.setRoulette(['Favorite team won','Favorite team lost','Get a signed jersey','Get a signed ball'],[0.3,0.3,0.2,0.2])
         return 3;
       case'Empty':
-      
+
         this.rouletteService.setRoulette(['Take a sunbath','Enjoy a drink','Take a walk','Yoga outside'],[0.25,0.25,0.25,0.25]);
         return 1;
-      default:console.log("Not the right tile buckaroo");
+      default:console.log('Not the right tile buckaroo');
     }
    };
 
@@ -230,7 +230,7 @@ export class GameActionsService {
         this.persoService.perso.wallet-=this.tuilesService.getSalaire(this.persoService.perso.localization)*0.03;
         return 60;
       }else{
-        //TRIGGER EVENT PAS D'ARGENT
+        this.eventService.eventNoMoney();
         return 0;
       }
     }else if(this.tuileActuelle==='Museum'){
@@ -239,7 +239,7 @@ export class GameActionsService {
         this.persoService.perso.wallet-=this.tuilesService.getSalaire(this.persoService.perso.localization)*0.05;
         return 60;
       }else{
-        //TRIGGER EVENT PAS D'ARGENT
+        this.eventService.eventNoMoney();
         return 0;
       }
     }else{
@@ -292,7 +292,64 @@ export class GameActionsService {
         }
         break;
       case 'School':
-        
+        if(this.persoService.perso.faim<0.1){
+          this.persoService.perso.vie-=0.5;
+        }else{
+          this.persoService.perso.faim=0.1;
+        }
+        if(this.persoService.perso.fatigue<0.1){
+          this.persoService.perso.vie-=0.5;
+        }else{
+          this.persoService.perso.fatigue=0.1;
+        }
+        if(answer==='Success'){
+          this.persoService.perso.studyBoost=0;
+          this.persoService.perso.studyCriticalBoost=0;
+          this.persoService.perso.instructionLevel++;
+        }else if(answer==='Fail'){
+          this.persoService.perso.studyBoost+=0.1;
+        }else{
+          this.persoService.perso.studyBoost=0;
+          this.persoService.perso.studyCriticalBoost=0;
+          this.persoService.perso.instructionLevel+=2;
+        }
+        if(this.persoService.perso.instructionLevel>3){
+          this.persoService.perso.grade='Licence';
+          this.eventService.eventDiplome('Licence');
+        }
+        break;
+      case 'College':
+        if(this.persoService.perso.faim<0.1){
+          this.persoService.perso.vie-=0.5;
+        }else{
+          this.persoService.perso.faim=0.1;
+        }
+        if(this.persoService.perso.fatigue<0.1){
+          this.persoService.perso.vie-=0.5;
+        }else{
+          this.persoService.perso.fatigue=0.1;
+        }
+        if(answer==='Success'){
+          this.persoService.perso.studyBoost=0;
+          this.persoService.perso.studyCriticalBoost=0;
+          this.persoService.perso.instructionLevel++;
+        }else if(answer==='Fail'){
+          this.persoService.perso.studyBoost+=0.1;
+        }else{
+          this.persoService.perso.studyBoost=0;
+          this.persoService.perso.studyCriticalBoost=0;
+          this.persoService.perso.instructionLevel+=2;
+        }
+        if(this.persoService.perso.instructionLevel>8){
+          this.persoService.perso.instructionLevel=8;
+        }
+        if(this.persoService.perso.instructionLevel===8){
+          this.persoService.perso.grade='Doctorate';
+          this.eventService.eventDiplome('Doctorate');
+        }else if(this.persoService.perso.instructionLevel>=5){
+          this.persoService.perso.grade='Master';
+          this.eventService.eventDiplome('Master');
+        }
         break;
       default: break;
     }
@@ -316,13 +373,13 @@ export class GameActionsService {
     case 'Moscow':
     case 'New Delhi':
     case 'Ouagadougou':
-    
+
     case 'Johannesburg':
     case 'Beijing':
    }*/
 
-   return -6;//We return a negative to warn us taht we dont need to do a roulette spin 
-   //TODO NEED TO UPDATE ADD TIME TO take the absolute value then 
+   return -6;//We return a negative to warn us taht we dont need to do a roulette spin
+   //TODO NEED TO UPDATE ADD TIME TO take the absolute value then
   }
 
   /*Dont need a response handler if there isnt a roulette to spin for the answer :)
@@ -330,7 +387,7 @@ export class GameActionsService {
   }
   */
 
-  
+
 
   watchHandler=()=>{};
 
@@ -352,10 +409,10 @@ export class GameActionsService {
           this.rouletteService.setRoulette(['Why you here lol'],[1]);
           break;
         default:console.log("Faute de frappe dans la religion du personnage");break;
-      }      
+      }
       return 3;
     case'House':
-      this.rouletteService.setRoulette(['Morning Prayer','Lunch Prayer','Afternoon Prayer','Evening Prayer'],[0.25,0.25,0.25,0.25]);      
+      this.rouletteService.setRoulette(['Morning Prayer','Lunch Prayer','Afternoon Prayer','Evening Prayer'],[0.25,0.25,0.25,0.25]);
       return 2;
     }
   }
@@ -367,54 +424,54 @@ export class GameActionsService {
       case 'Feel God':
         this.persoService.perso.sante+=0.10;
         this.persoService.perso.fatigue-=0.10;
-        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);
         break;
       case 'Feel Jesus':
         this.persoService.perso.sante+=0.10;
         this.persoService.perso.fatigue-=0.10;
-        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);
         break;
       case 'Feel Mary':
         this.persoService.perso.sante+=0.10;
         this.persoService.perso.fatigue-=0.10;
-        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);
         break;
       case 'Feel nothing':
         this.persoService.perso.sante+=0.10;
         this.persoService.perso.fatigue-=0.10;
-        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);
         break;
       //For the jews
       case 'Meet God':
         this.persoService.perso.sante+=0.10;
         this.persoService.perso.fatigue-=0.10;
-        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);
         break;
       case 'Feel His presence':
         this.persoService.perso.sante+=0.10;
         this.persoService.perso.fatigue-=0.10;
-        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);
         break;
       //For the muslims
       case '1 rak\'ah':
         this.persoService.perso.sante+=0.10;
       this.persoService.perso.fatigue-=0.10;
-        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);
         break;
       case '2 rak\'ah':
         this.persoService.perso.sante+=0.10;
         this.persoService.perso.fatigue-=0.10;
-      this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+      this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);
         break;
       case '3 rak\'ah':
         this.persoService.perso.sante+=0.10;
         this.persoService.perso.fatigue-=0.10;
-        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);
         break;
       case '4 rak\'ah':
         this.persoService.perso.sante+=0.10;
         this.persoService.perso.fatigue-=0.10;
-        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);  
+        this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.01);
         break;
       //For the atheists
       case 'Why you here lol':
@@ -524,8 +581,8 @@ export class GameActionsService {
               this.persoService.perso.faim+=0.05;
             break;
           default:console.log("Error in roulette options");break;
-        }        
-        
+        }
+
 
         this.persoService.perso.fatigue-=0.014;
         this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*0.5);
@@ -543,7 +600,7 @@ export class GameActionsService {
             this.persoService.perso.faim+=0.15
             break;
           default:console.log("Error in roulette options");break;
-        }        
+        }
         this.persoService.perso.fatigue-=0.01;
         this.persoService.perso.wallet-=Math.floor(Number(this.tuilesService.getSalaire(this.actionCity))/100*1.6);
         break;

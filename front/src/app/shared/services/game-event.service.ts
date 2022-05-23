@@ -175,6 +175,22 @@ export class GameEventService {
 
   }
 
+  async eventDiplome(name){
+    let data={
+      header:'Diploma',
+      message:'You passed the '+name+' exam !',
+      buttons:[
+        {
+          text:'Great',
+          handler:()=>{
+            //Do nothing cuz there is nothing to do with no money this is just a warning
+          }
+        }]
+    };
+
+    this.presentAlert(data);
+  };
+
   presentAlert = async (alertData) => {
     alertData.cssClass = 'custom-alert';
     alertData.mode = 'ios';
