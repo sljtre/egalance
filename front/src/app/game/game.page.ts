@@ -127,11 +127,13 @@ export class GamePage implements OnInit {
     if (!this.paused) {
       this.pause();
     }
+    console.log(action);
     this.action = action;
     if (action == 'Practice') {
       this.action = 'Sport';
     }
     if (action == 'Study') {
+      console.log(action);
       this.action = 'Work';
     }
     this.timeToAdd=this.gameActions.actionHandler(action,this.persoService.perso.localization,this.currentName);
@@ -320,6 +322,7 @@ export class GamePage implements OnInit {
           }
 
           this.persoService.perso.fatigue -= 0.02;
+          this.persoService.perso.faim -= 0.017;
 
           let start = 'translateX(' + this.x + 'px) translateY(' + this.y + 'px)'
           let finish = 'translateX(' + x + 'px) translateY(' + y + 'px)';

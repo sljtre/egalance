@@ -74,7 +74,7 @@ export class Perso {
   //On plus de faim a partir de 60 jours sans rien faire
   calculFaim=()=>{
     if(this.faim>0){
-      this.faim-=0.017;
+      //this.faim-=0.017;
     }
 
     //Pour eviter de faire des dépassements de borne
