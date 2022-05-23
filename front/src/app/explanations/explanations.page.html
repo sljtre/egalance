@@ -1,10 +1,10 @@
-<ion-button shape="round" color="success" (click)="router.redirect('welcome')"
-            style="position:absolute; top:3px; left:3px;">
-  <ion-icon slot="icon-only" name="arrow-undo-outline" color="light"></ion-icon>
-</ion-button>
 <ion-content>
   <ion-grid>
     <ion-row>
+      <ion-button shape="round" color="success" (click)="router.redirect('welcome')"
+            style="top:3px; left:3px;">
+            <ion-icon slot="icon-only" name="arrow-undo-outline" color="light"></ion-icon>
+      </ion-button>
       <ion-title size="large">Nos algorithmes</ion-title>
     </ion-row>
     <ion-row>
@@ -41,5 +41,23 @@
         <ion-img src="./assets/img/explanation/Exemple3.png" style="width:25%;"></ion-img>
       </ion-col>
     </io-row>
+    <ion-row>
+      <ion-col>
+        <ion-title>
+          Les actions
+        </ion-title>
+        <p>
+          Pour le travail, un salaire est attribué en fonction du niveau d'études et de l'endroit où tu travailles et de ton personnage, la fatigue dépend également du niveau d'études. Le graphique ci-contre montre l'évolution des gains potentiels (la courbe en pointillés) et l'évolution de la fatigue (la courbe solide) par rapport au niveau d'études.
+        </p>
+      </ion-col>
+      <ion-col>
+        <ion-img src="./assets/img/explanation/Graph1.png" style="width:50%;"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <p>
+        Pour les autres actions également, les probabilités d'obtenir de bon lancers de roues dépendent du personnage mais pas du niveau d'études.
+      </p>
+    </ion-row>
   </ion-grid>
 </ion-content>
