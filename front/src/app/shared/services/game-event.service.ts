@@ -136,7 +136,7 @@ export class GameEventService {
   async eventLost(score){
     const data={
       header:"You lose !",
-      message:"You lived for "+this.persoService.perso.age+"years and managed to get a score of "+score+".",
+      message:"You lived for "+this.persoService.perso.age+" years and managed to get a score of "+score+".",
       buttons:[
         {
           text:"Play again",
