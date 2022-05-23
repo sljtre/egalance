@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {AlertController} from '@ionic/angular';
 import {PersoService} from '../services/perso.service';
-import {TuilesService} from '../services/tuiles.service'
+import {TuilesService} from '../services/tuiles.service';
+import {RouterService} from './router.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class GameEventService {
   constructor(
     public alertController: AlertController,
     public persoService:PersoService,
-    public tuilesService:TuilesService
+    public tuilesService:TuilesService,
+    public router: RouterService,
     ) {
   }
 
@@ -141,13 +143,13 @@ export class GameEventService {
         {
           text:"Play again",
           handler:()=>{
-
+            this.router.redirect('city-selection');
           }
         },
         {
           text:'Leave',
           handler:()=>{
-
+            this.router.redirect('scoreboard');
           }
         }
       ]
@@ -167,7 +169,7 @@ export class GameEventService {
           }
         }
 
-      ] 
+      ]
     };
     this.presentAlert(data);
 
