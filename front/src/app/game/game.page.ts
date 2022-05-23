@@ -131,6 +131,9 @@ export class GamePage implements OnInit {
     if (action == 'Practice') {
       this.action = 'Sport';
     }
+    if (action == 'Study') {
+      this.action = 'Work';
+    }
     this.timeToAdd=this.gameActions.actionHandler(action,this.persoService.perso.localization,this.currentName);
     if(this.timeToAdd==-99999){
 
