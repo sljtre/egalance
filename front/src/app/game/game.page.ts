@@ -83,9 +83,9 @@ export class GamePage implements OnInit {
       e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
       return confirmationMessage;              // Gecko, WebKit, Chrome <34
     });
-    
-    
-    this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon', 5, 2, '2');   
+
+
+    // this.persoService.dev('Rio de Janeiro', 'judaisme', 'homme', '4', 'David Salomon', 5, 2, '2');
 
     //Initialzation du jeu au donnes du joueur
     this.day=this.persoService.perso.birthdayDay;
@@ -96,7 +96,7 @@ export class GamePage implements OnInit {
     this.refreshAll();
 
 
-    
+
 
     this.importedTuiles = this.tuiles.getData(this.persoService.perso.localization);
     this.type = this.tuiles.getType(this.persoService.perso.localization);
@@ -137,9 +137,9 @@ export class GamePage implements OnInit {
     }
     else if(this.timeToAdd<0){
       this.addTime(-this.timeToAdd);
-    }    
+    }
     else{this.isRouletteOpen=true;}
-  }  
+  }
 
   spin = () => {
     this.roulette.spin();
@@ -199,7 +199,7 @@ export class GamePage implements OnInit {
     this.persoService.calculAll();
     this.refreshAll();
     if(this.persoService.perso.sante<=0){
-      this.eventService.eventLost(0); //valeur temporaire ed score a remplacer avec une vraie 
+      this.eventService.eventLost(0); //valeur temporaire ed score a remplacer avec une vraie
       this.pause();
     }
     this.addTime(1);
@@ -233,7 +233,7 @@ export class GamePage implements OnInit {
       this.persoService.perso.age+=1;
       this.birthdayPassed=true;
       this.eventService.eventBirthday()
-      
+
     }
   };
 

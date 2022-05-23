@@ -396,7 +396,7 @@ export class TuilesService {
       actions: ['Heal', 'Work'],
       studyLevel:[5,6,7,8],
       incomeMultiplicator:[1.05,1.05,1.05,1.8],
-      energyCost:[0.83,0.83,0.83,0.72],
+      energyCost:[0.35,0.35,0.35,0.31],
     }],
     [{
       name: 'School',
@@ -405,7 +405,7 @@ export class TuilesService {
       actions: ['Study', 'Work'],
       studyLevel:[5,6,7,8],
       incomeMultiplicator:[0.94,0.94,0.94,0.99],
-      energyCost:[0.57,0.57,0.57,0.49],
+      energyCost:[0.23,0.23,0.23,0.2],
     }],
     [{
       name: 'College',
@@ -414,7 +414,7 @@ export class TuilesService {
       actions: ['Study', 'Work'],
       studyLevel:[8],
       incomeMultiplicator:[1.83],
-      energyCost:[0.49],
+      energyCost:[0.25],
     }],
     [{
       name: 'Supermarket',
@@ -423,7 +423,7 @@ export class TuilesService {
       actions: ['Shopping', 'Work'],
       studyLevel:[0,1,2,3,4,5,6,7,8],
       incomeMultiplicator:[0.75,0.75,0.75,0.85,0.85,0.93,0.93,0.93,1.04],
-      energyCost:[0.86,0.86,0.86,0.82,0.82,0.74,0.74,0.74,0.67],
+      energyCost:[0.38,0.38,0.38,0.32,0.32,0.28,0.28,0.28,0.23],
     }],
     [{
       name: 'Cinema',
@@ -432,7 +432,7 @@ export class TuilesService {
       actions: ['Watch', 'Work'],
       studyLevel:[0,1,2,3,4,5,6,7,8],
       incomeMultiplicator:[0.75,0.75,0.75,0.86,0.86,0.95,0.95,0.95,1.09],
-      energyCost:[0.76,0.76,0.76,0.72,0.72,0.66,,0.66,,0.66,0.63],
+      energyCost:[0.36,0.36,0.36,0.33,0.33,0.3,0.3,0.3,0.27],
     }],
     [{
       name: 'Bar',
@@ -441,7 +441,7 @@ export class TuilesService {
       actions: ['Drink', 'Eat', 'Work'],
       studyLevel:[0,1,2,3,4,5,6,7,8],
       incomeMultiplicator:[0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88],
-      energyCost:[0.68,0.68,0.68,0.68,0.68,0.68,0.68,0.68,0.68],
+      energyCost:[0.42,0.42,0.42,0.42,0.42,0.42,0.42,0.42,0.42],
     }],
     [{
       name: 'Religion',
@@ -459,7 +459,7 @@ export class TuilesService {
       actions: ['Work'],
       studyLevel:[5,6,7,8],
       incomeMultiplicator:[1.45,1.45,1.45,1.8],
-      energyCost:[0.82,0.82,0.82,0.78],
+      energyCost:[0.42,0.42,0.42,0.36],
     }],
     [{
       name: 'Town hall',
@@ -468,7 +468,7 @@ export class TuilesService {
       actions: ['Mary', 'Rent', 'Work'],
       studyLevel:[5,6,7,8],
       incomeMultiplicator:[0.87,0.87,0.87,0.95],
-      energyCost:[0.58,0.58,0.58,0.49],
+      energyCost:[0.22,0.22,0.22,0.19],
     }],
     [{
       name: 'Parc',
@@ -495,7 +495,7 @@ export class TuilesService {
       actions: ['Work'],
       studyLevel:[3,4,5,6,7,8],
       incomeMultiplicator: [1.2,1.2,1.35,1.35,1.35,1.5],
-      energyCost:[0.65,0.65,0.57,0.57,0.57, 0.49],
+      energyCost:[0.27,0.27,0.24,0.24,0.24,0.21],
     }],
     [{
       name: 'Factory',
@@ -504,7 +504,7 @@ export class TuilesService {
       actions: ['Work'],
       studyLevel:[0,1,2,3,4,5,6,7,8],
       incomeMultiplicator:[0.75,0.75,0.75,0.9,0.9,0.9,1.06,1.06,1.23],
-      energyCost:[0.94,0.94,0.94,0.87,0.87,0.81,0.81,0.81,0.76],
+      energyCost:[0.43,0.43,0.43,0.39,0.39,0.34,0.34,0.34,0.31],
     }],
     [{
       name: 'Farm',
@@ -513,7 +513,7 @@ export class TuilesService {
       actions: ['Eat', 'Work'],
       studyLevel:[0,1,2,3,4,5,6,7,8],
       incomeMultiplicator:[0.65,0.65,0.65,0.73,0.73,0.8,0.8,0.8,0.86],
-      energyCost:[0.91,0.91,0.91,0.86,0.86,0.76,0.76,0.59],
+      energyCost:[0.45,0.45,0.45,0.43,0.43,0.38,0.38,0.38,0.34],
     }],
     [{
       name: 'Library',
@@ -522,7 +522,7 @@ export class TuilesService {
       actions: ['Study', 'Work'],
       studyLevel:[3,4,5,6,7,8],
       incomeMultiplicator:[0.75,0.75,0.85,0.85,0.85,0.92],
-      energyCost:[0.54,0.54,0.52,0.52,0.52,0.49],
+      energyCost:[0.29,0.29,0.25,0.25,0.25,0.21],
     }],
     [{
       name: 'Gymnasium',
@@ -531,7 +531,7 @@ export class TuilesService {
       actions: ['Practice', 'Work'],
       studyLevel:[5,6,7,8],
       incomeMultiplicator:[1.1,1.1,1.1,1.3],
-      energyCost:[0.76,0.76,0.76,0.54],
+      energyCost:[0.34,0.34,0.34,0.29],
     }],
     [{
       name: 'Museum',
@@ -540,7 +540,7 @@ export class TuilesService {
       actions: ['Rest', 'Study', 'Work'],
       studyLevel:[3,4,5,6,7,8],
       incomeMultiplicator:[0.84,0.84,0.97,0.97,0.97,1.12],
-      energyCost:[0.67,0.67,0.55,0.55,0.55,0.49],
+      energyCost:[0.34,0.34,0.31,0.31,0.31,0.27],
     }],
     [{
       name: 'Restaurant',
@@ -549,7 +549,7 @@ export class TuilesService {
       actions: ['Eat', 'Work'],
       studyLevel:[3,4,5,6,7,8],
       incomeMultiplicator:[0.82,0.82,0.89,0.89,0.89,0.93],
-      energyCost:[0.87,0.87,0.84,0.84,0.84,0.79],
+      energyCost:[0.41,0.41,0.38,0.38,0.38,0.35],
     }],
     [{
       name: 'Bank',
@@ -558,7 +558,7 @@ export class TuilesService {
       actions: ['Deposit', 'Withdraw', 'Work'],
       studyLevel:[5,6,7,8],
       incomeMultiplicator:[1.5,1.5,1.5,1.9],
-      energyCost:[0.56,0.56,0.56,0.49],
+      energyCost:[0.23,0.23,0.23,0.19],
     }],
     [{
       name: 'Stadium',
@@ -567,7 +567,7 @@ export class TuilesService {
       actions: ['Practice', 'Rest', 'Work'],
       studyLevel:[5,6,7,8],
       incomeMultiplicator:[1.1,1.1,1.1,1.3],
-      energyCost:[0.67,0.67,0.67,0.62],
+      energyCost:[0.25,0.25,0.25,0.21],
     }],
     [{
       name: 'Airport',
@@ -576,7 +576,7 @@ export class TuilesService {
       actions: ['Travel', 'Work'],
       studyLevel:[3,4,5,6,7,8],
       incomeMultiplicator:[0.78,0.78,0.86,0.86,0.86,0.93],
-      energyCost:[0.76,0.76,0.72,0.72,0.72,0.67],
+      energyCost:[0.21,0.21,0.18,0.18,0.18,0.15],
     }],
     [{
       name: 'Empty',
