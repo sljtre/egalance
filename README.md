@@ -23,6 +23,7 @@ Une fois que l'import est validé, lancer un premier terminal dans le dossier "b
 Lancer ensuite un second terminal et faire les commandes suivantes :
 
 -npm i @angular/cli -g
+
 -npm i @ionic/cli -g
 
 Puis allez dans le dossier "front", faîtes "npm i" (ce sera un peu long, c'est normal) puis "ionic serve".
