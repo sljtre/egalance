@@ -8,9 +8,9 @@ Un projet de 2ème année à l'ISEN !
 **Objectif :** un jeu sérieux sur le thème de l'un des objectifs 
 de development durable donné par l'ONU (ici, l'égalité des chances)
 
-#Pour lancer le projet :
+# Pour lancer le projet :
 
-###Prérequis : Node, Wamp, MySQL Workbench
+### Prérequis : Node, Wamp, MySQL Workbench
 
 Vous allez avoir besoin de lancer wamp et mySQL Workbench.
 
